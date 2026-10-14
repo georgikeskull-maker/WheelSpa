@@ -727,6 +727,61 @@
         grid-template-columns: repeat(4, 1fr);
       }
     }
+    /* Мобильная оптимизация (до 640px) */
+@media (max-width: 640px) {
+  .nav-container {
+    padding: 0.75rem 1rem;
+  }
+  .brand {
+    font-size: 1.25rem;
+  }
+  .nav-actions {
+    gap: 0.5rem;
+  }
+  .lang-btn {
+    padding: 3px 6px;
+    font-size: 0.75rem;
+  }
+  .btn-cta {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.85rem;
+  }
+  .hero {
+    padding: 2rem 1rem 1.5rem;
+  }
+  .hero h1 {
+    font-size: 1.85rem;
+  }
+  .hero p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .section {
+    margin: 2.5rem auto;
+    padding: 0 1rem;
+  }
+  .specs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .spec-item {
+    padding: 1rem 0.5rem;
+  }
+  .spec-item .num {
+    font-size: 1.35rem;
+  }
+  .card {
+    padding: 1.5rem;
+  }
+  .booking-box {
+    padding: 2rem 1rem;
+  }
+  .booking-actions .btn-phone,
+  .booking-actions .btn-cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
   </style>
 </head>
 <body>
