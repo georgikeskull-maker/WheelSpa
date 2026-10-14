@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WheelSpa / NomadSpa — Мобильная спа-купель с аэромассажем в Таллинне и Харьюмаа</title>
+  <meta name="description" content="Аренда горячей спа-купели на прицепе с дровяной печью, подогревом аэромассажа и LED-подсветкой. Доставка по Таллинну и Харьюмаа.">
+  <style>
+    :root {
+      --bg-main: #0f0e0c;
+      --bg-card: #1a1815;
+      --bg-card-hover: #24201c;
+      --bg-input: #12100e;
+      --text-main: #f4f0ea;
+      --text-muted: #a69d91;
+      --accent-amber: #e67e22;
+      --accent-amber-glow: #f39c12;
+      --accent-wood: #8d5524;
+      --border-color: #2e2923;
+      --success: #2ecc71;
+      --danger: #e74c3c;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+      --transition: all 0.25s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Статус синхронизации в шапке */
+    .sync-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+    }
+    .sync-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-amber);
+    }
+    .sync-dot.live {
+      background: var(--success);
+      box-shadow: 0 0 8px var(--success);
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15, 14, 12, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      gap: 15px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-title span {
+      color: var(--accent-amber);
+    }
+
+    .nav-links {
+      display: none;
+      gap: 24px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-amber-glow);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lang-switcher {
+      display: flex;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .lang-btn.active {
+      background: var(--accent-amber);
+      color: #000;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-amber-glow), var(--accent-amber));
+      color: #0f0e0c;
+      box-shadow: 0 4px 20px rgba(230, 126, 34, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(243, 156, 18, 0.5);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent-amber);
+      background: rgba(230, 126, 34, 0.1);
+    }
+
+    .btn-sm {
+      padding: 8px 14px;
+      font-size: 0.85rem;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      padding: 70px 0 80px;
+      background: 
+        radial-gradient(circle at 80% 20%, rgba(230, 126, 34, 0.16), transparent 45%),
+        radial-gradient(circle at 20% 80%, rgba(141, 85, 36, 0.18), transparent 50%),
+        var(--bg-main);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 30px;
+      background: rgba(230, 126, 34, 0.15);
+      border: 1px solid rgba(230, 126, 34, 0.4);
+      color: var(--accent-amber-glow);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.3rem);
+      line-height: 1.15;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      max-width: 600px;
+    }
+
+    .hero-bullets {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 34px;
+    }
+
+    .hero-bullets li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      background: var(--bg-card);
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .bullet-icon {
+      color: var(--accent-amber-glow);
+      font-size: 1.2rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    /* Визуальная карточка справа в Hero */
+    .hero-visual {
+      background: linear-gradient(145deg, #231e19, #151310);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(243, 156, 18, 0.25), transparent 70%);
+      pointer-events: none;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .spec-item {
+      background: rgba(0, 0, 0, 0.35);
+      padding: 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .spec-val {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--accent-amber-glow);
+    }
+
+    .spec-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* СЕКЦИИ */
+    section {
+      padding: 75px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 50px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* ОСОБЕННОСТИ */
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      border-color: var(--accent-wood);
+      background: var(--bg-card-hover);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(230, 126, 34, 0.15);
+      color: var(--accent-amber-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* ТАРИФЫ */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 35px;
+    }
+
+    .price-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 32px 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .price-card.popular {
+      border-color: var(--accent-amber);
+      background: linear-gradient(180deg, rgba(230, 126, 34, 0.08) 0%, var(--bg-card) 100%);
+      box-shadow: 0 10px 30px rgba(230, 126, 34, 0.15);
+    }
+
+    .popular-tag {
+      position: absolute;
+      top: -13px;
+      right: 24px;
+      background: var(--accent-amber);
+      color: #000;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    .price-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .price-period {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .price-amount {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--accent-amber-glow);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+
+    .price-amount span {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .price-list {
+      list-style: none;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.95rem;
+    }
+
+    .price-list li::before {
+      content: "✓";
+      color: var(--accent-amber);
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .addons-banner {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .addon-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .addon-price {
+      font-weight: 800;
+      color: var(--accent-amber-glow);
+      font-size: 1.15rem;
+    }
+
+    /* КАЛЬКУЛЯТОР */
+    .calc-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 13px 16px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-main);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent-amber);
+    }
+
+    .range-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .range-val {
+      color: var(--accent-amber-glow);
+      font-weight: 800;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent-amber);
+      margin-top: 8px;
+      cursor: pointer;
+    }
+
+    .date-status {
+      margin-top: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+
+    .date-status.busy {
+      display: block;
+      background: rgba(231, 76, 60, 0.15);
+      color: #ff6b6b;
+      border: 1px solid rgba(231, 76, 60, 0.4);
+    }
+
+    .date-status.free {
+      display: block;
+      background: rgba(46, 204, 113, 0.12);
+      color: var(--success);
+      border: 1px solid rgba(46, 204, 113, 0.35);
+    }
+
+    .calc-summary {
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .summary-row strong {
+      color: var(--text-main);
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 20px 0;
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .total-price {
+      font-size: 2.5rem;
+      color: var(--accent-amber-glow);
+    }
+
+    .calc-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* FAQ */
+    .faq-list {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    details {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      transition: var(--transition);
+    }
+
+    details[open] {
+      border-color: var(--accent-wood);
+    }
+
+    summary {
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      font-size: 1.4rem;
+      color: var(--accent-amber);
+    }
+
+    details[open] summary::after {
+      content: "−";
+    }
+
+    details p {
+      margin-top: 14px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 60px 0 40px;
+      background: #0a0908;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    .footer-contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* DESKTOP MEDIA QUERIES */
+    @media (min-width: 768px) {
+      .nav-links {
+        display: flex;
+      }
+      .hero-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+      }
+      .hero-bullets {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .pricing-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .calc-wrapper {
+        grid-template-columns: 1.1fr 0.9fr;
+        padding: 40px;
+      }
+      .footer-grid {
+        grid-template-columns: 1.5fr 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .features-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="#" class="brand-title">🔥 WHEEL<span>SPA</span></a>
+        <div class="sync-badge" title="Статус связи с Google Таблицей">
+          <span class="sync-dot" id="syncDot"></span>
+          <span id="syncText">Резервный тариф</span>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#features" data-i18n="nav_features">О купели</a>
+        <a href="#pricing" data-i18n="nav_pricing">Цены</a>
+        <a href="#calculator" data-i18n="nav_calc">Калькулятор</a>
+        <a href="#faq" data-i18n="nav_faq">FAQ</a>
+        <a href="#contacts" data-i18n="nav_contacts">Контакты</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="lang-switcher">
+  <button class="lang-btn active" onclick="setLanguage('et')" id="lang-et">ET</button>
+  <button class="lang-btn" onclick="setLanguage('ru')" id="lang-ru">RU</button>
+  <button class="lang-btn" onclick="setLanguage('en')" id="lang-en">EN</button>
+</div>
+        <a href="#calculator" class="btn btn-primary btn-sm" data-i18n="header_book">Бронь</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="hero-badge" data-i18n="hero_badge">📍 Таллинн и вся Харьюмаа</span>
+        <h1 data-i18n="hero_title">Горячая спа-купель с аэромассажем прямо к дому или на природу</h1>
+        <p class="hero-subtitle" data-i18n="hero_subtitle">
+          Премиальный отдых без суеты: привезем, установим по уровню и расскажем все нюансы. Вам остается только затопить печь и наслаждаться теплом.
+        </p>
+
+        <ul class="hero-bullets">
+          <li><span class="bullet-icon">🔥</span> <span data-i18n="hero_b1">Быстрый дровяной нагрев (1.5–2.5 ч)</span></li>
+          <li><span class="bullet-icon">🫧</span> <span data-i18n="hero_b2">Мощный аэромассаж с подогревом воздуха</span></li>
+          <li><span class="bullet-icon">✨</span> <span data-i18n="hero_b3">Атмосферная LED-подсветка воды</span></li>
+          <li><span class="bullet-icon">🛻</span> <span data-i18n="hero_b4">Зарегистрированный прицеп — легко ставить</span></li>
+        </ul>
+
+        <div class="hero-cta">
+          <a href="#calculator" class="btn btn-primary" data-i18n="hero_btn_calc">Рассчитать стоимость</a>
+          <a href="#" id="heroWaBtn" target="_blank" rel="noopener" class="btn btn-outline" data-i18n="hero_btn_chat">Написать в WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <h3 data-i18n="visual_title">Технические параметры купели</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;" data-i18n="visual_sub">
+          Овальная термо-чаша с утеплением закрытым ППУ — держит тепло даже в мороз.
+        </p>
+        <div class="spec-grid">
+          <div class="spec-item">
+            <div class="spec-val">6–8</div>
+            <div class="spec-label" data-i18n="spec_people">Человек вместимость</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-val">38°C</div>
+            <div class="spec-label" data-i18n="spec_temp">Идеальная температура</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-val">~1400L</div>
+            <div class="spec-label" data-i18n="spec_vol">Объем чаши</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-val">220V</div>
+            <div class="spec-label" data-i18n="spec_pow">Для массажа и LED</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="feat_title">Особенности и комплектация</h2>
+        <p data-i18n="feat_sub">Продуманная инженерия для комфорта и безопасности в любую погоду</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🛁</div>
+          <h3 data-i18n="f1_title">Эргономичная чаша из стеклопластика</h3>
+          <p data-i18n="f1_desc">Гладкое гигиеничное покрытие, удобные сиденья и полноценное утепление купели пенополиуретаном для сохранения жара.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔥</div>
+          <h3 data-i18n="f2_title">Мощная внешняя печь из нержавейки</h3>
+          <p data-i18n="f2_desc">Не крадет место внутри купели, безопасна при купании с детьми и прогревает воду за рекордные 2 часа.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💨</div>
+          <h3 data-i18n="f3_title">Аэромассаж с теплым воздухом</h3>
+          <p data-i18n="f3_desc">Система подает подогретый воздух: тысячи пузырьков расслабляют мышцы и не остужают воду зимой.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3 data-i18n="f4_title">100% дезинфекция перед выездом</h3>
+          <p data-i18n="f4_desc">После каждого клиента чаша и система форсунок проходят полную мойку и обработку профессиональными средствами.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="price_section_title">Тарифы и цены</h2>
+        <p data-i18n="price_section_sub">Прозрачные условия без скрытых доплат. Все цены актуальны на сегодня.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Будни -->
+        <div class="price-card">
+          <div>
+            <div class="price-title" data-i18n="p_card1_title">Будни (Пн–Чт)</div>
+            <div class="price-period" data-i18n="p_card1_period">Аренда на 24 часа</div>
+            <div class="price-amount"><span id="ui_price_weekday">90</span>€ <span data-i18n="per_day">/ сутки</span></div>
+            <ul class="price-list">
+              <li data-i18n="p_inc_1">Купель с аэромассажем и LED</li>
+              <li data-i18n="p_inc_2">Термокрышка для быстрого нагрева</li>
+              <li data-i18n="p_inc_3">Удлинитель и сливной шланг</li>
+              <li data-i18n="p_inc_4">Инструктаж и установка на месте</li>
+            </ul>
+          </div>
+          <a href="#calculator" onclick="selectTariffFromCard('weekday')" class="btn btn-outline" data-i18n="btn_choose">Выбрать тариф</a>
+        </div>
+
+        <!-- Выходные -->
+        <div class="price-card">
+          <div>
+            <div class="price-title" data-i18n="p_card2_title">Выходные (Пт–Вс)</div>
+            <div class="price-period" data-i18n="p_card2_period">Аренда на 24 часа</div>
+            <div class="price-amount"><span id="ui_price_weekend">130</span>€ <span data-i18n="per_day">/ сутки</span></div>
+            <ul class="price-list">
+              <li data-i18n="p_inc_1">Купель с аэромассажем и LED</li>
+              <li data-i18n="p_inc_2">Термокрышка для быстрого нагрева</li>
+              <li data-i18n="p_inc_3">Удлинитель и сливной шланг</li>
+              <li data-i18n="p_inc_4">Инструктаж и установка на месте</li>
+            </ul>
+          </div>
+          <a href="#calculator" onclick="selectTariffFromCard('weekend')" class="btn btn-outline" data-i18n="btn_choose">Выбрать тариф</a>
+        </div>
+
+        <!-- Пакет Уикенд -->
+        <div class="price-card popular">
+          <div class="popular-tag" data-i18n="pop_badge">Хит сезона</div>
+          <div>
+            <div class="price-title" data-i18n="p_card3_title">Пакет «Весь Уикенд»</div>
+            <div class="price-period" data-i18n="p_card3_period">С пятницы до воскресенья</div>
+            <div class="price-amount"><span id="ui_price_full_weekend">220</span>€ <span data-i18n="per_pack">/ пакет</span></div>
+            <ul class="price-list">
+              <li data-i18n="p_inc_1">Купель с аэромассажем и LED</li>
+              <li data-i18n="p_inc_2">Термокрышка для быстрого нагрева</li>
+              <li data-i18n="p_inc_3">Удлинитель и сливной шланг</li>
+              <li data-i18n="p_inc_5">Максимальная выгода на все выходные</li>
+            </ul>
+          </div>
+          <a href="#calculator" onclick="selectTariffFromCard('full_weekend')" class="btn btn-primary" data-i18n="btn_choose">Выбрать пакет</a>
+        </div>
+      </div>
+
+      <div class="addons-banner">
+        <div class="addon-item">
+          <span>🪵 <span data-i18n="addon_wood_label">Сухие березовые дрова (40л):</span></span>
+          <span class="addon-price"><span id="ui_price_wood">10</span>€ / <span data-i18n="bag_unit">мешок</span></span>
+        </div>
+        <div class="addon-item">
+          <span>🏙️ <span data-i18n="addon_tallinn_label">Доставка по Таллинну:</span></span>
+          <span class="addon-price"><span id="ui_delivery_tallinn">0</span>€</span>
+        </div>
+        <div class="addon-item">
+          <span>🛣️ <span data-i18n="addon_km_label">За пределами Таллинна:</span></span>
+          <span class="addon-price"><span id="ui_delivery_km">1.2</span>€ / км</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section id="calculator">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="calc_title">Калькулятор стоимости и бронирование</h2>
+        <p data-i18n="calc_sub">Соберите свой заказ за 30 секунд и отправьте готовую заявку напрямую в мессенджер</p>
+      </div>
+
+      <div class="calc-wrapper">
+        <!-- Левая колонка: Настройки -->
+        <div>
+          <div class="form-group">
+            <label for="calcTariff" data-i18n="calc_lbl_tariff">1. Выберите тариф</label>
+            <select id="calcTariff" class="form-control" onchange="calculateTotal()">
+              <option value="weekday" data-i18n="opt_weekday">Будни (Пн–Чт)</option>
+              <option value="weekend" data-i18n="opt_weekend">Выходной день (24 часа)</option>
+              <option value="full_weekend" selected data-i18n="opt_full_weekend">Пакет «Весь Уикенд» (Пт–Вс)</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="daysCountGroup" style="display: none;">
+            <div class="range-header">
+              <label for="calcDays" data-i18n="calc_lbl_days">Количество суток:</label>
+              <span class="range-val"><span id="daysVal">1</span></span>
+            </div>
+            <input type="range" id="calcDays" min="1" max="5" value="1" oninput="calculateTotal()">
+          </div>
+
+          <div class="form-group">
+            <label for="calcDate" data-i18n="calc_lbl_date">2. Желаемая дата заезда</label>
+            <input type="date" id="calcDate" class="form-control" onchange="checkDateAvailability(); calculateTotal()">
+            <div id="dateStatusBox" class="date-status"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="calcLocation" data-i18n="calc_lbl_loc">3. Зона доставки</label>
+            <select id="calcLocation" class="form-control" onchange="toggleDistanceSlider(); calculateTotal()">
+              <option value="tallinn" data-i18n="loc_tallinn">В пределах Таллинна</option>
+              <option value="harju" data-i18n="loc_harju">За пределами Таллинна (Харьюмаа)</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="distanceGroup" style="display: none;">
+            <div class="range-header">
+              <label for="calcKm" data-i18n="calc_lbl_km">Расстояние от границы Таллинна (км):</label>
+              <span class="range-val"><span id="kmVal">15</span> км</span>
+            </div>
+            <input type="range" id="calcKm" min="1" max="100" value="15" oninput="calculateTotal()">
+          </div>
+
+          <div class="form-group">
+            <div class="range-header">
+              <label for="calcWood" data-i18n="calc_lbl_wood">4. Сухие дрова в мешках (рекомендуем 2–3 мешка):</label>
+              <span class="range-val"><span id="woodVal">2</span> шт.</span>
+            </div>
+            <input type="range" id="calcWood" min="0" max="10" value="2" oninput="calculateTotal()">
+          </div>
+        </div>
+
+        <!-- Правая колонка: Итог -->
+        <div class="calc-summary">
+          <div>
+            <h3 style="margin-bottom: 18px;" data-i18n="sum_title">Ваш расчет:</h3>
+            <div class="summary-row">
+              <span data-i18n="sum_rent">Аренда купели:</span>
+              <strong><span id="sumRent">220</span>€</strong>
+            </div>
+            <div class="summary-row">
+              <span data-i18n="sum_delivery">Доставка:</span>
+              <strong><span id="sumDelivery">0</span>€</strong>
+            </div>
+            <div class="summary-row">
+              <span data-i18n="sum_wood">Дрова (<span id="sumWoodBags">2</span>):</span>
+              <strong><span id="sumWood">20</span>€</strong>
+            </div>
+            <div class="summary-total">
+              <span data-i18n="sum_total_lbl">Итого к оплате:</span>
+              <span class="total-price"><span id="sumTotal">240</span>€</span>
+            </div>
+          </div>
+
+          <div class="calc-buttons">
+            <button class="btn btn-primary" onclick="sendOrder('whatsapp')" data-i18n="btn_order_wa">
+              📲 Забронировать через WhatsApp
+            </button>
+            <button class="btn btn-outline" onclick="sendOrder('telegram')" data-i18n="btn_order_tg">
+              ✈️ Отправить заявку в Telegram
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="faq_title">Частые вопросы и правила аренды</h2>
+        <p data-i18n="faq_sub">Что нужно подготовить перед приездом купели</p>
+      </div>
+
+      <div class="faq-list">
+        <details open>
+          <summary data-i18n="faq_q1">Какая площадка нужна для установки прицепа?</summary>
+          <p data-i18n="faq_a1">Нужна относительно ровная площадка размером минимум 3×4.5 метра и свободный проезд шириной от 2.3 метра. Мы сами выставим прицеп на надежные упоры по уровню.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq_q2">Что нужно для набора воды и работы массажа?</summary>
+          <p data-i18n="faq_a2">Потребуется садовый шланг с водой для наполнения чаши (~1400 литров, занимает около 45–60 минут) и обычная розетка 220V в радиусе 25 метров для питания компрессора аэромассажа и LED-подсветки.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq_q3">Сколько времени топится купель и главное правило печи?</summary>
+          <p data-i18n="faq_a3">Летом вода нагревается до 38°C за 1.5–2 часа, зимой за 2–3 часа при закрытой термокрышке. ВАЖНО: разжигать печь можно ТОЛЬКО после того, как верхний патрубок печи полностью скрылся под водой! Сливать воду можно только после полного затухания углей.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq_q4">Нужно ли мыть купель перед возвратом?</summary>
+          <p data-i18n="faq_a4">Мы просим только слить воду после остывания печи и не оставлять внутри крупный мусор (листья от веников, пластиковые стаканы). Полную мойку и дезинфекцию мы делаем сами на базе.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER & CONTACTS -->
+  <footer id="contacts">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-title" style="margin-bottom: 12px;">🔥 WHEEL<span>SPA</span> / NOMADSPA</div>
+          <p style="color: var(--text-muted); max-width: 380px;" data-i18n="footer_desc">
+            Аренда мобильной спа-купели на прицепе в Таллинне и уезде Харьюмаа. Идеально для семейных выходных, дней рождений и релакса на природе.
+          </p>
+        </div>
+
+        <div>
+          <h4 data-i18n="footer_contacts_title">Прямая связь</h4>
+          <div class="footer-contact-links">
+            <a href="tel:+37255500000" id="footerPhoneLink" style="font-size: 1.2rem; font-weight: 800; color: var(--accent-amber-glow);">
+              📞 <span id="ui_phone_display">+372 555 00 000</span>
+            </a>
+            <a href="#" id="footerWaLink" target="_blank" rel="noopener" style="color: var(--text-muted);">💬 WhatsApp</a>
+            <a href="#" id="footerTgLink" target="_blank" rel="noopener" style="color: var(--text-muted);">✈️ Telegram</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 data-i18n="footer_loc_title">Локация и время работы</h4>
+          <p style="color: var(--text-muted); margin-top: 12px;" data-i18n="footer_loc_desc">
+            📍 База: Таллинн, Эстония<br>
+            🕘 Прием заказов и доставка: Ежедневно 09:00 – 22:00
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 WheelSpa / NomadSpa Tallinn. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT: CMS INTEGRATION + CALCULATOR + I18N -->
+  <script>
+    /**
+     * ============================================================================
+     * 1. НАСТРОЙКА GOOGLE SHEETS CMS И FALLBACK ДАННЫХ
+     * ============================================================================
+     * Вставь сюда ID своей таблицы из адресной строки между /d/ и /edit
+     */
+    const GOOGLE_SHEET_ID = 'PASTE_YOUR_GOOGLE_SHEET_ID_HERE';
+    const GOOGLE_SHEET_NAME = 'Sheet1'; // Или 'Лист1', если интерфейс на русском (по умолчанию берется первый лист, если не указывать)
+
+    // Жесткий резервный конфиг (работает мгновенно и если нет сети / не вставлен ID)
+    const FALLBACK_CONFIG = {
+      price_weekday: 90,
+      price_weekend: 130,
+      price_full_weekend: 220,
+      price_wood: 10,
+      delivery_tallinn: 0,
+      delivery_km: 1.2,
+      phone_display: '+372 555 00 000',
+      phone_wa: '37255500000',
+      telegram_user: 'wheelspa_ee',
+      busy_dates: ['2026-10-16', '2026-10-17']
+    };
+
+    // Активное состояние приложения
+    let appConfig = { ...FALLBACK_CONFIG };
+    let currentLang = 'et';
+
+    /**
+     * ============================================================================
+     * 2. СЛОВАРЬ МУЛЬТИЯЗЫЧНОСТИ (RU / ET / EN)
+     * ============================================================================
+     */
+    const i18n = {
+      ru: {
+        nav_features: 'О купели',
+        nav_pricing: 'Цены',
+        nav_calc: 'Калькулятор',
+        nav_faq: 'FAQ',
+        nav_contacts: 'Контакты',
+        header_book: 'Бронь',
+        hero_badge: '📍 Таллинн и вся Харьюмаа',
+        hero_title: 'Горячая спа-купель с аэромассажем прямо к дому или на природу',
+        hero_subtitle: 'Премиальный отдых без суеты: привезем, установим по уровню и расскажем все нюансы. Вам остается только затопить печь и наслаждаться теплом.',
+        hero_b1: 'Быстрый дровяной нагрев (1.5–2.5 ч)',
+        hero_b2: 'Мощный аэромассаж с подогревом воздуха',
+        hero_b3: 'Атмосферная LED-подсветка воды',
+        hero_b4: 'Зарегистрированный прицеп — легко ставить',
+        hero_btn_calc: 'Рассчитать стоимость',
+        hero_btn_chat: 'Написать в WhatsApp',
+        visual_title: 'Технические параметры купели',
+        visual_sub: 'Овальная термо-чаша с утеплением закрытым ППУ — держит тепло даже в мороз.',
+        spec_people: 'Человек вместимость',
+        spec_temp: 'Идеальная температура',
+        spec_vol: 'Объем чаши',
+        spec_pow: 'Для массажа и LED',
+        feat_title: 'Особенности и комплектация',
+        feat_sub: 'Продуманная инженерия для комфорта и безопасности в любую погоду',
+        f1_title: 'Эргономичная чаша из стеклопластика',
+        f1_desc: 'Гладкое гигиеничное покрытие, удобные сиденья и полноценное утепление купели пенополиуретаном для сохранения жара.',
+        f2_title: 'Мощная внешняя печь из нержавейки',
+        f2_desc: 'Не крадет место внутри купели, безопасна при купании с детьми и прогревает воду за рекордные 2 часа.',
+        f3_title: 'Аэромассаж с теплым воздухом',
+        f3_desc: 'Система подает подогретый воздух: тысячи пузырьков расслабляют мышцы и не остужают воду зимой.',
+        f4_title: '100% дезинфекция перед выездом',
+        f4_desc: 'После каждого клиента чаша и система форсунок проходят полную мойку и обработку профессиональными средствами.',
+        price_section_title: 'Тарифы и цены',
+        price_section_sub: 'Прозрачные условия без скрытых доплат. Все цены актуальны на сегодня.',
+        p_card1_title: 'Будни (Пн–Чт)',
+        p_card1_period: 'Аренда на 24 часа',
+        p_card2_title: 'Выходные (Пт–Вс)',
+        p_card2_period: 'Аренда на 24 часа',
+        p_card3_title: 'Пакет «Весь Уикенд»',
+        p_card3_period: 'С пятницы до воскресенья',
+        per_day: '/ сутки',
+        per_pack: '/ пакет',
+        pop_badge: 'Хит сезона',
+        p_inc_1: 'Купель с аэромассажем и LED',
+        p_inc_2: 'Термокрышка для быстрого нагрева',
+        p_inc_3: 'Удлинитель и сливной шланг',
+        p_inc_4: 'Инструктаж и установка на месте',
+        p_inc_5: 'Максимальная выгода на все выходные',
+        btn_choose: 'Выбрать тариф',
+        addon_wood_label: 'Сухие березовые дрова (40л):',
+        bag_unit: 'мешок',
+        addon_tallinn_label: 'Доставка по Таллинну:',
+        addon_km_label: 'За пределами Таллинна:',
+        calc_title: 'Калькулятор стоимости и бронирование',
+        calc_sub: 'Соберите свой заказ за 30 секунд и отправьте готовую заявку напрямую в мессенджер',
+        calc_lbl_tariff: '1. Выберите тариф',
+        opt_weekday: 'Будни (Пн–Чт)',
+        opt_weekend: 'Выходной день (24 часа)',
+        opt_full_weekend: 'Пакет «Весь Уикенд» (Пт–Вс)',
+        calc_lbl_days: 'Количество суток:',
+        calc_lbl_date: '2. Желаемая дата заезда',
+        calc_lbl_loc: '3. Зона доставки',
+        loc_tallinn: 'В пределах Таллинна',
+        loc_harju: 'За пределами Таллинна (Харьюмаа)',
+        calc_lbl_km: 'Расстояние от границы Таллинна (км):',
+        calc_lbl_wood: '4. Сухие дрова в мешках (рекомендуем 2–3 мешка):',
+        sum_title: 'Ваш расчет:',
+        sum_rent: 'Аренда купели:',
+        sum_delivery: 'Доставка:',
+        sum_wood: 'Дрова:',
+        sum_total_lbl: 'Итого к оплате:',
+        btn_order_wa: '📲 Забронировать через WhatsApp',
+        btn_order_tg: '✈️ Отправить заявку в Telegram',
+        date_busy_msg: '⚠️ Эта дата уже забронирована. Пожалуйста, выберите другой день.',
+        date_free_msg: '✅ Дата свободна для бронирования!',
+        faq_title: 'Частые вопросы и правила аренды',
+        faq_sub: 'Что нужно подготовить перед приездом купели',
+        faq_q1: 'Какая площадка нужна для установки прицепа?',
+        faq_a1: 'Нужна относительно ровная площадка размером минимум 3×4.5 метра и свободный проезд шириной от 2.3 метра. Мы сами выставим прицеп на надежные упоры по уровню.',
+        faq_q2: 'Что нужно для набора воды и работы массажа?',
+        faq_a2: 'Потребуется садовый шланг с водой для наполнения чаши (~1400 литров, занимает около 45–60 минут) и обычная розетка 220V в радиусе 25 метров для питания компрессора аэромассажа и LED-подсветки.',
+        faq_q3: 'Сколько времени топится купель и главное правило печи?',
+        faq_a3: 'Летом вода нагревается до 38°C за 1.5–2 часа, зимой за 2–3 часа при закрытой термокрышке. ВАЖНО: разжигать печь можно ТОЛЬКО после того, как верхний патрубок печи полностью скрылся под водой!',
+        faq_q4: 'Нужно ли мыть купель перед возвратом?',
+        faq_a4: 'Мы просим только слить воду после остывания печи и не оставлять внутри крупный мусор. Полную мойку и дезинфекцию мы делаем сами на базе.',
+        footer_desc: 'Аренда мобильной спа-купели на прицепе в Таллинне и уезде Харьюмаа. Идеально для семейных выходных, дней рождений и релакса на природе.',
+        footer_contacts_title: 'Прямая связь',
+        footer_loc_title: 'Локация и время работы',
+        footer_loc_desc: '📍 База: Таллинн, Эстония<br>🕘 Прием заказов и доставка: Ежедневно 09:00 – 22:00'
+      },
+      et: {
+        nav_features: 'Kümblustünnist',
+        nav_pricing: 'Hinnakiri',
+        nav_calc: 'Kalkulaator',
+        nav_faq: 'KKK',
+        nav_contacts: 'Kontakt',
+        header_book: 'Broneeri',
+        hero_badge: '📍 Tallinn ja kogu Harjumaa',
+        hero_title: 'Kuum mullisüsteemiga kümblustünn otse Sinu koju või loodusesse',
+        hero_subtitle: 'Muretu puhkus: toome kohale, paigaldame loodi ja juhendame. Sinu ülesandeks jääb vaid ahi küdema panna ja nautida.',
+        hero_b1: 'Kiire puuküttega soojendus (1.5–2.5 h)',
+        hero_b2: 'Võimas õhumassaaž eelsoojendatud õhuga',
+        hero_b3: 'Hubane LED-valgustus vees',
+        hero_b4: 'Registreeritud haagis — lihtne paigaldada',
+        hero_btn_calc: 'Arvuta hind',
+        hero_btn_chat: 'Kirjuta WhatsAppi',
+        visual_title: 'Tehnilised andmed',
+        visual_sub: 'Ovaalne PUR-vahuga soojustatud klaasplastist sisu — hoiab sooja ka pakasega.',
+        spec_people: 'Inimest mahutavus',
+        spec_temp: 'Ideaalne veetemp.',
+        spec_vol: 'Vee maht',
+        spec_pow: 'Massaaži ja LED jaoks',
+        feat_title: 'Varustus ja eelised',
+        feat_sub: 'Läbimõeldud inseneritöö mugavuseks ja turvalisuseks iga ilmaga',
+        f1_title: 'Ergonoomiline klaasplastist sisu',
+        f1_desc: 'Sile ja hügieeniline pind, mugavad istmed ning täielik PUR-soojustus soojuse hoidmiseks.',
+        f2_title: 'Võimas väline roostevabast terasest ahi',
+        f2_desc: 'Ei võta tünnis ruumi, on lastega kasutamisel turvaline ja kütab vee soojaks u 2 tunniga.',
+        f3_title: 'Sooja õhuga mullisüsteem',
+        f3_desc: 'Süsteem puhub eelsoojendatud õhku: tuhanded mullid lõõgastavad lihaseid ega jahuta vett talvel maha.',
+        f4_title: '100% desinfitseeritud enne iga renti',
+        f4_desc: 'Pärast iga klienti läbib tünn ja düüside süsteem põhjaliku pesu ning desinfitseerimise.',
+        price_section_title: 'Paketid ja hinnakiri',
+        price_section_sub: 'Läbipaistvad tingimused ilma peidetud kuludeta.',
+        p_card1_title: 'Argipäevad (E–N)',
+        p_card1_period: 'Rent 24 tunniks',
+        p_card2_title: 'Nädalavahetus (R–P)',
+        p_card2_period: 'Rent 24 tunniks',
+        p_card3_title: 'Täispakett «Nädalavahetus»',
+        p_card3_period: 'Reedest pühapäevani',
+        per_day: '/ 24h',
+        per_pack: '/ pakett',
+        pop_badge: 'Populaarseim',
+        p_inc_1: 'Mullisüsteemi ja LED-valgusega tünn',
+        p_inc_2: 'Termokate kiireks kütmiseks',
+        p_inc_3: 'Pikendusjuhe ja tühjendusvoolik',
+        p_inc_4: 'Paigaldus ja instruktaaž kohapeal',
+        p_inc_5: 'Parim hind terveks nädalavahetuseks',
+        btn_choose: 'Vali pakett',
+        addon_wood_label: 'Kuivad kasepuud (40L võrk):',
+        bag_unit: 'võrk',
+        addon_tallinn_label: 'Transport Tallinnas:',
+        addon_km_label: 'Väljaspool Tallinna:',
+        calc_title: 'Hinnakalkulaator ja broneerimine',
+        calc_sub: 'Koosta oma tellimus 30 sekundiga ja saada valmis päring otse sõnumirakendusse',
+        calc_lbl_tariff: '1. Vali pakett',
+        opt_weekday: 'Argipäev (E–N)',
+        opt_weekend: 'Nädalavahetuse päev (24h)',
+        opt_full_weekend: 'Täispakett «Nädalavahetus» (R–P)',
+        calc_lbl_days: 'Päevade arv:',
+        calc_lbl_date: '2. Soovitud kuupäev',
+        calc_lbl_loc: '3. Transpordi piirkond',
+        loc_tallinn: 'Tallinna piires',
+        loc_harju: 'Väljaspool Tallinna (Harjumaa)',
+        calc_lbl_km: 'Kaugus Tallinna piirist (km):',
+        calc_lbl_wood: '4. Kuivad küttepuud (soovitame 2–3 võrku):',
+        sum_title: 'Sinu arvestus:',
+        sum_rent: 'Kümblustünni rent:',
+        sum_delivery: 'Transport:',
+        sum_wood: 'Küttepuud:',
+        sum_total_lbl: 'Kokku tasuda:',
+        btn_order_wa: '📲 Broneeri WhatsAppis',
+        btn_order_tg: '✈️ Saada päring Telegramis',
+        date_busy_msg: '⚠️ See kuupäev on juba broneeritud. Palun vali teine päev.',
+        date_free_msg: '✅ Kuupäev on vaba!',
+        faq_title: 'Korduma kippuvad küsimused',
+        faq_sub: 'Mida on vaja enne kümblustünni saabumist ette valmistada',
+        faq_q1: 'Millist platsi on haagise jaoks vaja?',
+        faq_a1: 'Vaja on suhteliselt tasast pinda vähemalt 3×4.5 meetrit ja ligipääsu laiusega vähemalt 2.3 meetrit. Paigaldame haagise ise tugijalgadele loodi.',
+        faq_q2: 'Mida on vaja vee täitmiseks ja mullisüsteemi tööks?',
+        faq_a2: 'Vajalik on aiavoolik vee laskmiseks (~1400 liitrit, võtab u 45–60 min) ja tavaline 220V pistikupesa 25 meetri raadiuses õhumassaaži ja LED-valguse jaoks.',
+        faq_q3: 'Kui kaua tünn soojeneb ja mis on ahju peamine reegel?',
+        faq_a3: 'Suvel soojeneb vesi 38°C-ni 1.5–2 tunniga, talvel 2–3 tunniga suletud termokattega. NB! Tuld tohib ahju teha AINULT siis, kui ülemine läbiviik on täielikult vee all!',
+        faq_q4: 'Kas tünn tuleb enne tagastamist puhtaks pesta?',
+        faq_a4: 'Palume vaid vee pärast ahju täielikku jahtumist välja lasta ja suurema prügi eemaldada. Põhjaliku pesu ja desinfitseerimise teeme ise.',
+        footer_desc: 'Mobiilse kümblustünni rent Tallinnas ja Harjumaal. Ideaalne perepuhkuseks, sünnipäevadeks ja lõõgastumiseks.',
+        footer_contacts_title: 'Kiire ühendus',
+        footer_loc_title: 'Asukoht ja tööaeg',
+        footer_loc_desc: '📍 Asukoht: Tallinn, Eesti<br>🕘 Tellimused ja transport: Iga päev 09:00 – 22:00'
+      },
+      en: {
+        nav_features: 'Features',
+        nav_pricing: 'Pricing',
+        nav_calc: 'Calculator',
+        nav_faq: 'FAQ',
+        nav_contacts: 'Contacts',
+        header_book: 'Book Now',
+        hero_badge: '📍 Tallinn & Harju County',
+        hero_title: 'Hot Spa Tub with Air Massage Delivered to Your Home or Nature',
+        hero_subtitle: 'Premium relaxation without hassle: we deliver, level the trailer, and explain everything. Just light the stove and enjoy.',
+        hero_b1: 'Fast wood-fired heating (1.5–2.5 hrs)',
+        hero_b2: 'Powerful preheated air massage system',
+        hero_b3: 'Ambient underwater LED lighting',
+        hero_b4: 'Registered trailer — easy setup anywhere',
+        hero_btn_calc: 'Calculate Price',
+        hero_btn_chat: 'Chat on WhatsApp',
+        visual_title: 'Technical Specifications',
+        visual_sub: 'Oval fiberglass shell insulated with closed-cell PU foam — retains heat even in freezing winter.',
+        spec_people: 'Person capacity',
+        spec_temp: 'Optimal temp',
+        spec_vol: 'Water volume',
+        spec_pow: 'For massage & LED',
+        feat_title: 'Features & Equipment',
+        feat_sub: 'Engineered for comfort, hygiene, and safety in any season',
+        f1_title: 'Ergonomic Fiberglass Tub',
+        f1_desc: 'Smooth hygienic finish, comfortable seating, and full polyurethane foam insulation to lock in heat.',
+        f2_title: 'Powerful External Stainless Stove',
+        f2_desc: 'Maximizes space inside the tub, safe for families with kids, and heats water in ~2 hours.',
+        f3_title: 'Warm Air Bubble Massage',
+        f3_desc: 'Pumps preheated air into the tub: thousands of bubbles relax muscles without cooling the water.',
+        f4_title: '100% Sanitized Before Every Rental',
+        f4_desc: 'After every client, the tub and jet system undergo complete washing and professional disinfection.',
+        price_section_title: 'Rates & Packages',
+        price_section_sub: 'Transparent pricing with zero hidden fees.',
+        p_card1_title: 'Weekdays (Mon–Thu)',
+        p_card1_period: '24-hour rental',
+        p_card2_title: 'Weekends (Fri–Sun)',
+        p_card2_period: '24-hour rental',
+        p_card3_title: 'Full Weekend Package',
+        p_card3_period: 'Friday to Sunday',
+        per_day: '/ 24h',
+        per_pack: '/ pack',
+        pop_badge: 'Best Value',
+        p_inc_1: 'Hot tub with air massage & LED',
+        p_inc_2: 'Thermal cover for fast heating',
+        p_inc_3: 'Power extension & drain hose',
+        p_inc_4: 'On-site leveling & briefing',
+        p_inc_5: 'Best value for the entire weekend',
+        btn_choose: 'Select Rate',
+        addon_wood_label: 'Dry birch firewood (40L bag):',
+        bag_unit: 'bag',
+        addon_tallinn_label: 'Delivery within Tallinn:',
+        addon_km_label: 'Outside Tallinn:',
+        calc_title: 'Price Calculator & Booking',
+        calc_sub: 'Configure your rental in 30 seconds and send a ready booking request via messenger',
+        calc_lbl_tariff: '1. Select Package',
+        opt_weekday: 'Weekdays (Mon–Thu)',
+        opt_weekend: 'Weekend Day (24h)',
+        opt_full_weekend: 'Full Weekend Package (Fri–Sun)',
+        calc_lbl_days: 'Number of days:',
+        calc_lbl_date: '2. Preferred Start Date',
+        calc_lbl_loc: '3. Delivery Zone',
+        loc_tallinn: 'Within Tallinn',
+        loc_harju: 'Outside Tallinn (Harjumaa)',
+        calc_lbl_km: 'Distance from Tallinn border (km):',
+        calc_lbl_wood: '4. Firewood bags (2–3 bags recommended):',
+        sum_title: 'Order Summary:',
+        sum_rent: 'Hot tub rental:',
+        sum_delivery: 'Delivery:',
+        sum_wood: 'Firewood:',
+        sum_total_lbl: 'Total Estimate:',
+        btn_order_wa: '📲 Book via WhatsApp',
+        btn_order_tg: '✈️ Send Request via Telegram',
+        date_busy_msg: '⚠️ This date is already booked. Please choose another day.',
+        date_free_msg: '✅ Date is available!',
+        faq_title: 'FAQ & Rental Rules',
+        faq_sub: 'Everything you need to know before delivery',
+        faq_q1: 'What space is required for the trailer?',
+        faq_a1: 'A relatively flat area of at least 3×4.5 meters and a gateway width of at least 2.3 meters. We level and secure the trailer on wheel chocks and stabilizers.',
+        faq_q2: 'What is needed for water and electricity?',
+        faq_a2: 'A garden hose to fill the tub (~1400L takes 45–60 min) and a standard 220V socket within 25 meters to power the air massage blower and LED lights.',
+        faq_q3: 'How long does heating take & what is the main stove rule?',
+        faq_a3: '1.5–2 hours in summer, 2–3 hours in winter with the thermal cover on. CRITICAL: Never light the stove until the upper water pipe is completely submerged!',
+        faq_q4: 'Do I need to clean the tub before return?',
+        faq_a4: 'Simply drain the water ONLY after the stove embers have completely cooled down and remove any large debris. We handle full sanitization.',
+        footer_desc: 'Mobile hot tub rental in Tallinn and Harju County. Perfect for family weekends, birthdays, and outdoor relaxation.',
+        footer_contacts_title: 'Direct Contact',
+        footer_loc_title: 'Location & Hours',
+        footer_loc_desc: '📍 Base: Tallinn, Estonia<br>🕘 Bookings & delivery: Daily 09:00 – 22:00'
+      }
+    };
+
+    /**
+     * ============================================================================
+     * 3. ЗАГРУЗКА ДАННЫХ ИЗ GOOGLE SHEETS (АСИНХРОННО С ТАЙМАУТОМ)
+     * ============================================================================
+     */
+    async function loadDataFromGoogleSheets() {
+      // Если ID не задан — остаемся на резервных данных
+      if (!GOOGLE_SHEET_ID || GOOGLE_SHEET_ID === 'PASTE_YOUR_GOOGLE_SHEET_ID_HERE') {
+        console.info('Используется FALLBACK_CONFIG (не указан GOOGLE_SHEET_ID).');
+        return;
+      }
+
+      const url = `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/gviz/tq?tqx=out:json`;
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 4500); // 4.5 сек таймаут
+
+      try {
+        const response = await fetch(url, { signal: controller.signal });
+        clearTimeout(timeoutId);
+        if (!response.ok) throw new Error('HTTP error ' + response.status);
+
+        const text = await response.text();
+        // Google оборачивает JSON в google.visualization.Query.setResponse({...});
+        const jsonMatch = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]+)\);/);
+        if (!jsonMatch || !jsonMatch[1]) throw new Error('Invalid GVIZ format');
+
+        const data = JSON.parse(jsonMatch[1]);
+        const rows = data.table.rows;
+
+        rows.forEach(row => {
+          const keyCell = row.c && row.c[0] ? String(row.c[0].v || '').trim() : '';
+          const valCell = row.c && row.c[1] && row.c[1].v !== null ? String(row.c[1].v).trim() : '';
+
+          if (!keyCell || keyCell === 'key') return;
+
+          if (['price_weekday', 'price_weekend', 'price_full_weekend', 'price_wood', 'delivery_tallinn', 'delivery_km'].includes(keyCell)) {
+            const parsedNum = parseFloat(valCell.replace(',', '.'));
+            if (!isNaN(parsedNum)) {
+              appConfig[keyCell] = parsedNum;
+            }
+          } else if (keyCell === 'busy_dates') {
+            appConfig.busy_dates = valCell
+              .split(',')
+              .map(d => d.trim())
+              .filter(Boolean);
+          } else if (keyCell in appConfig) {
+            appConfig[keyCell] = valCell;
+          }
+        });
+
+        // Обновляем индикатор синхронизации
+        document.getElementById('syncDot').classList.add('live');
+        document.getElementById('syncText').textContent = 'Google Sheets Live';
+
+        // Перерисовываем UI с новыми данными
+        renderConfigToUI();
+        checkDateAvailability();
+        calculateTotal();
+
+      } catch (err) {
+        console.warn('Не удалось загрузить таблицу, работаем на FALLBACK_CONFIG:', err.message);
+      }
+    }
+
+    /**
+     * ============================================================================
+     * 4. ОБНОВЛЕНИЕ DOM И ЛОГИКА КАЛЬКУЛЯТОРА
+     * ============================================================================
+     */
+    function renderConfigToUI() {
+      document.getElementById('ui_price_weekday').textContent = appConfig.price_weekday;
+      document.getElementById('ui_price_weekend').textContent = appConfig.price_weekend;
+      document.getElementById('ui_price_full_weekend').textContent = appConfig.price_full_weekend;
+      document.getElementById('ui_price_wood').textContent = appConfig.price_wood;
+      document.getElementById('ui_delivery_tallinn').textContent = appConfig.delivery_tallinn;
+      document.getElementById('ui_delivery_km').textContent = appConfig.delivery_km;
+      document.getElementById('ui_phone_display').textContent = appConfig.phone_display;
+
+      const cleanPhone = String(appConfig.phone_wa).replace(/\D/g, '');
+      document.getElementById('footerPhoneLink').href = `tel:+${cleanPhone}`;
+      document.getElementById('heroWaBtn').href = `https://wa.me/${cleanPhone}`;
+      document.getElementById('footerWaLink').href = `https://wa.me/${cleanPhone}`;
+      document.getElementById('footerTgLink').href = `https://t.me/${appConfig.telegram_user}`;
+    }
+
+    function selectTariffFromCard(tariffVal) {
+      const sel = document.getElementById('calcTariff');
+      sel.value = tariffVal;
+      calculateTotal();
+    }
+
+    function toggleDistanceSlider() {
+      const loc = document.getElementById('calcLocation').value;
+      document.getElementById('distanceGroup').style.display = (loc === 'harju') ? 'block' : 'none';
+    }
+
+    function checkDateAvailability() {
+      const dateInput = document.getElementById('calcDate').value;
+      const statusBox = document.getElementById('dateStatusBox');
+      if (!dateInput) {
+        statusBox.className = 'date-status';
+        return true;
+      }
+
+      if (appConfig.busy_dates.includes(dateInput)) {
+        statusBox.className = 'date-status busy';
+        statusBox.textContent = i18n[currentLang].date_busy_msg;
+        return false;
+      } else {
+        statusBox.className = 'date-status free';
+        statusBox.textContent = i18n[currentLang].date_free_msg;
+        return true;
+      }
+    }
+
+    function calculateTotal() {
+      const tariff = document.getElementById('calcTariff').value;
+      const daysGroup = document.getElementById('daysCountGroup');
+
+      // Показываем ползунок количества суток только если выбран не пакет уикенда
+      daysGroup.style.display = (tariff === 'full_weekend') ? 'none' : 'block';
+
+      const days = parseInt(document.getElementById('calcDays').value, 10) || 1;
+      document.getElementById('daysVal').textContent = days;
+
+      let rentCost = 0;
+      if (tariff === 'weekday') {
+        rentCost = appConfig.price_weekday * days;
+      } else if (tariff === 'weekend') {
+        rentCost = appConfig.price_weekend * days;
+      } else {
+        rentCost = appConfig.price_full_weekend;
+      }
+
+      const loc = document.getElementById('calcLocation').value;
+      const km = parseInt(document.getElementById('calcKm').value, 10) || 0;
+      document.getElementById('kmVal').textContent = km;
+
+      let deliveryCost = 0;
+      if (loc === 'tallinn') {
+        deliveryCost = appConfig.delivery_tallinn;
+      } else {
+        deliveryCost = Math.round(km * appConfig.delivery_km);
+      }
+
+      const woodBags = parseInt(document.getElementById('calcWood').value, 10) || 0;
+      document.getElementById('woodVal').textContent = woodBags;
+      document.getElementById('sumWoodBags').textContent = woodBags;
+      const woodCost = woodBags * appConfig.price_wood;
+
+      const total = rentCost + deliveryCost + woodCost;
+
+      document.getElementById('sumRent').textContent = rentCost;
+      document.getElementById('sumDelivery').textContent = deliveryCost;
+      document.getElementById('sumWood').textContent = woodCost;
+      document.getElementById('sumTotal').textContent = total;
+
+      return { tariff, days, rentCost, loc, km, deliveryCost, woodBags, woodCost, total };
+    }
+
+    function sendOrder(platform) {
+      const calc = calculateTotal();
+      const dateVal = document.getElementById('calcDate').value || 'не указана / pole valitud';
+
+      if (dateVal && appConfig.busy_dates.includes(dateVal)) {
+        alert(i18n[currentLang].date_busy_msg);
+        return;
+      }
+
+      const tariffSelect = document.getElementById('calcTariff');
+      const tariffName = tariffSelect.options[tariffSelect.selectedIndex].text;
+      const daysStr = calc.tariff === 'full_weekend' ? '' : ` (${calc.days} сут./päeva)`;
+      const locStr = calc.loc === 'tallinn' ? 'Tallinn' : `Harjumaa (${calc.km} km)`;
+
+      const msgLines = [
+        `🔥 *WheelSpa / NomadSpa — Заявка на бронь*`,
+        `📅 Дата: ${dateVal}`,
+        `🛁 Тариф: ${tariffName}${daysStr} — ${calc.rentCost}€`,
+        `🛻 Доставка: ${locStr} — ${calc.deliveryCost}€`,
+        `🪵 Дрова: ${calc.woodBags} меш. — ${calc.woodCost}€`,
+        `💰 *ИТОГО: ${calc.total}€*`
+      ];
+
+      const encodedText = encodeURIComponent(msgLines.join('\n'));
+      const cleanPhone = String(appConfig.phone_wa).replace(/\D/g, '');
+
+      if (platform === 'whatsapp') {
+        window.open(`https://wa.me/${cleanPhone}?text=${encodedText}`, '_blank');
+      } else {
+        window.open(`https://t.me/${appConfig.telegram_user}?text=${encodedText}`, '_blank');
+      }
+    }
+
+    /**
+     * ============================================================================
+     * 5. ПЕРЕКЛЮЧЕНИЕ ЯЗЫКОВ
+     * ============================================================================
+     */
+    function setLanguage(lang) {
+      if (!i18n[lang]) return;
+      currentLang = lang;
+      document.documentElement.lang = lang;
+
+      ['et', 'ru', 'en'].forEach(code => {
+  const btn = document.getElementById(`lang-${code}`);
+  if (btn) btn.classList.toggle('active', code === lang);
+});
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang][key]) {
+          el.innerHTML = i18n[lang][key];
+        }
+      });
+
+      checkDateAvailability();
+      calculateTotal();
+    }
+
+    // Инициализация при старте
+   document.addEventListener('DOMContentLoaded', () => {
+  // Ставим сегодняшнюю дату как минимальную в календаре
+  const today = new Date().toISOString().split('T')[0];
+  const dateInput = document.getElementById('calcDate');
+  if (dateInput) {
+    dateInput.min = today;
+    dateInput.value = today;
+  }
+
+  // Принудительно переключаем весь текст страницы на эстонский
+  setLanguage('et');
+
+  renderConfigToUI();
+  calculateTotal();
+  loadDataFromGoogleSheets();
+});
+  </script>
+</body>
+</html>
