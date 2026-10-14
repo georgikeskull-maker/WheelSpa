@@ -727,59 +727,90 @@
         grid-template-columns: repeat(4, 1fr);
       }
     }
-    /* Мобильная оптимизация (до 640px) */
-@media (max-width: 640px) {
-  .nav-container {
-    padding: 0.75rem 1rem;
+/* Полная адаптация под мобильные устройства */
+@media (max-width: 768px) {
+  /* Фикс шапки и контейнера */
+  .container {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
   }
+  .header-inner {
+    padding: 8px 12px !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+  
+  /* Логотип в одну ровную строчку */
   .brand {
-    font-size: 1.25rem;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
   }
-  .nav-actions {
-    gap: 0.5rem;
+  .brand-title {
+    font-size: 1.1rem !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+  /* Скрываем длинную служебную плашку статуса на телефоне, чтобы не ломала шапку */
+  .sync-badge {
+    display: none !important;
+  }
+  
+  /* Меню и кнопки в шапке */
+  .nav-links {
+    display: none !important;
+  }
+  .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    flex-shrink: 0 !important;
+  }
+  .lang-switcher {
+    padding: 2px !important;
+    gap: 1px !important;
   }
   .lang-btn {
-    padding: 3px 6px;
-    font-size: 0.75rem;
+    padding: 3px 6px !important;
+    font-size: 0.7rem !important;
   }
-  .btn-cta {
-    padding: 0.5rem 0.85rem;
-    font-size: 0.85rem;
+  .header-actions .btn,
+  .header-actions a[href*="booking"] {
+    padding: 6px 10px !important;
+    font-size: 0.75rem !important;
+    white-space: nowrap !important;
   }
-  .hero {
-    padding: 2rem 1rem 1.5rem;
+
+  /* Заголовок первого экрана */
+  h1, .hero h1 {
+    font-size: 1.65rem !important;
+    line-height: 1.25 !important;
   }
-  .hero h1 {
-    font-size: 1.85rem;
+
+  /* Сетки преимуществ и карточек */
+  .hero-bullets {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
   }
-  .hero p {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
+  .features-grid, 
+  .pricing-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
   }
-  .section {
-    margin: 2.5rem auto;
-    padding: 0 1rem;
+  .calc-wrapper {
+    display: block !important;
+    padding: 16px !important;
   }
-  .specs-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
-  .spec-item {
-    padding: 1rem 0.5rem;
-  }
-  .spec-item .num {
-    font-size: 1.35rem;
-  }
-  .card {
-    padding: 1.5rem;
-  }
-  .booking-box {
-    padding: 2rem 1rem;
-  }
-  .booking-actions .btn-phone,
-  .booking-actions .btn-cta {
-    width: 100%;
-    justify-content: center;
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
   }
 }
   </style>
