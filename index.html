@@ -851,37 +851,13 @@
     text-align: center !important;
   }
 }
-html {
-  background-color: #121417;
-}
-
-body {
+html, body {
   margin: 0;
+  padding: 0;
   background-color: #121417;
   color: #fff;
 }
-
-/* Растягиваем центральный контент, чтобы он вытолкнул футер вниз */
-main, section#faq {
-  flex: 1 0 auto;
-}
-
-footer#contacts {
-  margin-top: auto;
-  width: 100%;
-}
-
-footer#contacts::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  height: 100vh; /* Заливает 100% высоты экрана вниз под футером */
-  background: #1c1917;
-  pointer-events: none;
-}
-  </style>
+      </style>
 </head>
 <body>
 
@@ -1176,7 +1152,7 @@ footer#contacts::after {
   </section>
 
 <!-- FOOTER & CONTACTS -->
-  <footer id="contacts" style="background: rgba(30, 26, 23, 0.95); padding: 32px 0 40px; border-top: 1px solid rgba(245, 158, 11, 0.2);">
+ <footer id="contacts" style="background: rgba(30, 26, 23, 0.95); padding: 32px 0 50px; border-top: 1px solid rgba(245, 158, 11, 0.2);">
     <div class="container">
       <div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; margin-bottom: 24px;">
         
