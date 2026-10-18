@@ -200,20 +200,32 @@
       padding: 8px 14px;
       font-size: 0.85rem;
     }
-.hero-image-wrapper {
+.hero-media {
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-bottom: 1.25rem;
+  justify-content: center;
   width: 100%;
 }
 
-.hero-promo-img {
+.hero-main-logo {
   width: 100%;
-  max-width: 100%;
+  max-width: 540px;
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.65));
+  transition: transform 0.3s ease;
+}
+
+.hero-main-logo:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* На мобильных телефонах */
+@media (max-width: 768px) {
+  .hero-main-logo {
+    max-width: 360px;
+    margin: 1.5rem auto 0;
+  }
 }
     /* HERO */
     .hero {
@@ -890,10 +902,9 @@
           <a href="#" id="heroWaBtn" target="_blank" rel="noopener" class="btn btn-outline" data-i18n="hero_btn_chat">Написать в WhatsApp</a>
         </div>
       </div>
-<div class="hero-visual">
-        <div class="hero-image-wrapper">
-          <img src="logo.png" alt="WheelSpa kümblustünn" class="hero-promo-img">
-        </div>
+<div class="hero-media">
+  <img src="logo.png" alt="WheelSpa tünnisaun haagisel" class="hero-main-logo">
+</div>
         <h3 data-i18n="visual_title">Технические параметры купели</h3>
         ...
       <div class="hero-visual">
