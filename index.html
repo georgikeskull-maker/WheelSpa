@@ -1125,14 +1125,15 @@ footer#contacts {
             </div>
           </div>
 
-          <div class="calc-buttons">
-            <button class="btn btn-primary" onclick="sendOrder('whatsapp')" data-i18n="btn_order_wa">
-              📲 Забронировать через WhatsApp
-            </button>
-            <button class="btn btn-outline" onclick="sendOrder('telegram')" data-i18n="btn_order_tg">
-              ✈️ Отправить заявку в Telegram
-            </button>
-          </div>
+       <!-- Блок ввода телефона и кнопка заказа -->
+        <div style="margin-top: 18px; display: flex; flex-direction: column; gap: 10px;">
+          <input type="tel" id="clientPhone" placeholder="+372 5X XX XX XX" required style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; font-size: 1rem; outline: none; box-sizing: border-box;">
+          
+          <button id="submitBookingBtn" onclick="sendBookingOrder()" class="btn btn-primary" style="width: 100%; padding: 14px; font-weight: 700; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; background: #f59e0b; color: #000; border: none; font-size: 1rem;">
+            <span data-i18n="btn_submit_order">Saada broneeringusoov</span>
+          </button>
+          <div id="bookingStatusMsg" style="display: none; font-size: 0.88rem; text-align: center; margin-top: 6px;"></div>
+        </div>
         </div>
       </div>
   </section>
