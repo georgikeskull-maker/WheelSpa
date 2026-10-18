@@ -697,6 +697,12 @@
     }
 
     /* DESKTOP MEDIA QUERIES */
+    .logo-img {
+  height: 44px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
     @media (min-width: 768px) {
       .nav-links {
         display: flex;
@@ -729,6 +735,9 @@
     }
 /* Полная адаптация под мобильные устройства */
 @media (max-width: 768px) {
+  .logo-img {
+    height: 36px !important;
+  }
   /* Фикс шапки и контейнера */
   .container {
     padding-left: 12px !important;
@@ -821,7 +830,9 @@
   <header>
     <div class="container header-inner">
       <div class="brand">
-        <a href="#" class="brand-title">🔥 WHEEL<span>SPA</span></a>
+        <a href="#" class="brand-title">
+  <img src="logo.png" alt="WheelSpa" class="logo-img">
+</a>
         <div class="sync-badge" title="Статус связи с Google Таблицей">
           <span class="sync-dot" id="syncDot"></span>
           <span id="syncText">Резервный тариф</span>
