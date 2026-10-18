@@ -1146,46 +1146,66 @@
   </section>
 
   <!-- FOOTER & CONTACTS -->
-  <footer id="contacts">
+  <footer id="contacts" style="background: #111418; padding: 48px 0 24px; border-top: 1px solid rgba(255,255,255,0.08);">
     <div class="container">
-      <div class="footer-grid">
+      <div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px; margin-bottom: 36px;">
+        
+        <!-- Колонка 1: Бренд -->
         <div>
-          <div class="brand-title" style="margin-bottom: 12px;">🔥 WHEEL<span>SPA</span></div>
-          <p style="color: var(--text-muted); max-width: 380px;" data-i18n="footer_desc">
-            Аренда мобильной спа-купели на прицепе в Таллинне и уезде Харьюмаа. Идеально для семейных выходных, дней рождений и релакса на природе.
+          <div class="brand-title" style="margin-bottom: 12px; font-size: 1.25rem; font-weight: 800; letter-spacing: 0.05em;">
+            🔥 WHEEL<span style="color: var(--accent-amber, #f59e0b);">SPA</span>
+          </div>
+          <p style="color: var(--text-muted, #9ca3af); font-size: 0.88rem; line-height: 1.6; margin: 0;" data-i18n="footer_desc">
+            Mobiilse kümblustünni rent Tallinnas ja Harjumaal. Ideaalne perepuhkuseks, sünnipäevadeks ja lõõgastumiseks.
           </p>
         </div>
-<div>
-  <h4 data-i18n="footer_contacts_title" style="margin-bottom: 10px;">Прямая связь</h4>
-  <div style="display: flex; flex-direction: column; gap: 8px;">
-    <a href="tel:+37255516666" id="footerPhoneLink" style="font-size: 1.15rem; font-weight: 700; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
-  <span style="color: var(--accent-amber);">☎</span> <span id="ui_phone_display">+372 555 1 6666</span>
-</a>
-    <div style="display: flex; gap: 8px; margin-top: 2px;">
-      <a href="#" id="footerWaLink" target="_blank" rel="noopener" style="padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: var(--text-muted); font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
-        💬 WhatsApp
-      </a>
-      <a href="#" id="footerTgLink" target="_blank" rel="noopener" style="padding: 4px 10px; border-radius: 6px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: var(--text-muted); font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
-        ✈️ Telegram
-      </a>
-    </div>
-  </div>
-</div>
-    <div>
-          <h4 data-i18n="footer_loc_title" style="margin-bottom: 10px;">Asukoht ja tööaeg:</h4>
-          <div style="display: flex; flex-direction: column; gap: 6px; font-size: 0.9rem; color: var(--text-muted); line-height: 1.4;">
-            <div>📍 <strong>Asukoht:</strong> Tallinn ja Harjumaa</div>
-            <div>🕒 <strong>Tellimused ja transport:</strong> Iga päev 09:00 – 22:00</div>
+
+        <!-- Колонка 2: Прямая связь -->
+        <div>
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: #fff; margin: 0 0 14px 0; text-transform: uppercase; letter-spacing: 0.05em;" data-i18n="footer_contacts_title">
+            Kiire ühendus
+          </h4>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <a href="tel:+37255516666" id="footerPhoneLink" style="font-size: 1.05rem; font-weight: 700; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+              <span style="color: var(--accent-amber, #f59e0b);">📞</span>
+              <span id="ui_phone_display">+372 555 1 6666</span>
+            </a>
+            <div style="display: flex; gap: 8px; margin-top: 2px;">
+              <a href="#" id="footerWaLink" target="_blank" rel="noopener" style="padding: 6px 12px; border-radius: 6px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: #e5e7eb; font-size: 0.82rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                WhatsApp
+              </a>
+              <a href="#" id="footerTgLink" target="_blank" rel="noopener" style="padding: 6px 12px; border-radius: 6px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); color: #e5e7eb; font-size: 0.82rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                Telegram
+              </a>
+            </div>
           </div>
         </div>
-      </div>    
 
-      <div class="footer-bottom">
-  © 2026 WheelSpa · GVKFORGE OÜ (17623024) · All rights reserved.
-</div>
+        <!-- Колонка 3: Локация и график -->
+        <div>
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: #fff; margin: 0 0 14px 0; text-transform: uppercase; letter-spacing: 0.05em;" data-i18n="footer_loc_title">
+            Asukoht ja tööaeg
+          </h4>
+          <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: var(--text-muted, #9ca3af); line-height: 1.5;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: var(--accent-amber, #f59e0b);">📍</span>
+              <span>Tallinn ja Harjumaa</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: var(--accent-amber, #f59e0b);">🕒</span>
+              <span style="white-space: nowrap;">Iga päev 09:00 – 22:00</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Копирайт под чертой -->
+      <div style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 20px; text-align: center; font-size: 0.8rem; color: #6b7280;">
+        © 2026 WheelSpa · GVKFORGE OÜ (17623024) · All rights reserved.
+      </div>
     </div>
   </footer>
-
   <!-- JAVASCRIPT: CMS INTEGRATION + CALCULATOR + I18N -->
   <script>
     /**
