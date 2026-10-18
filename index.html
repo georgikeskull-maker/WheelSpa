@@ -851,9 +851,10 @@
     text-align: center !important;
   }
 }
- html {
+html {
   height: 100%;
-  background-color: #0b0f17; /* Базовый цвет фона сайта, чтобы снизу не было черной пустоты */
+  background-color: #0b0f17 !important;
+  overscroll-behavior-y: none; /* Запрещает браузеру оттягивать страницу и оголять щель */
 }
 
 body {
@@ -861,13 +862,18 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-color: #0b0f17;
+  background-color: #0b0f17 !important;
+}
+
+main, section:last-of-type {
+  flex: 1 0 auto;
 }
 
 footer#contacts {
   margin-top: auto !important;
   width: 100%;
-}  
+  background: #0d0f12 !important;
+}
   </style>
 </head>
 <body>
@@ -1163,7 +1169,7 @@ footer#contacts {
   </section>
 
  <!-- FOOTER -->
-  <footer id="contacts" style="background: #0d0f12; padding: 40px 0 24px; border-top: 1px solid rgba(255, 255, 255, 0.05);">
+<footer id="contacts" style="background: #0d0f12; padding: 48px 0 60px; border-top: 1px solid rgba(255,255,255,0.07);">
     <div class="container">
       <div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px; margin-bottom: 36px;">
         
