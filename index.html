@@ -852,28 +852,24 @@
   }
 }
 html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
-  min-height: 100%;
-  background: #0b0f17 !important; /* Единый благородный темный цвет сайта */
-  color: #fff;
 }
 
-/* Растягиваем футер вниз, чтобы под ним не было полос */
-footer#contacts {
-  background: transparent !important; /* Убирает любую отдельную полосу */
-  width: 100%;
-  padding-bottom: 40px;
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-main, section:last-of-type {
-  flex: 1 0 auto;
+section#faq {
+  flex: 1 0 auto; /* Растягивает секцию FAQ, заполняя всё свободное пространство экрана */
 }
 
 footer#contacts {
-  margin-top: auto !important;
+  margin-top: auto;
   width: 100%;
-  background: #0d0f12 !important;
 }
   </style>
 </head>
@@ -1170,7 +1166,7 @@ footer#contacts {
   </section>
 
  <!-- FOOTER -->
-<footer id="contacts" style="background: transparent; padding: 48px 0 32px; border-top: 1px solid rgba(255,255,255,0.06);">
+<footer id="contacts" style="background: transparent; padding: 48px 0 32px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
     <div class="container">
       <div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px; margin-bottom: 36px;">
         
