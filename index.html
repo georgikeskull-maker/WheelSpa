@@ -57,6 +57,8 @@
 
     /* Статус синхронизации в шапке */
     .sync-badge {
+      display: none !important;
+}
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -697,11 +699,12 @@
     }
 
     /* DESKTOP MEDIA QUERIES */
-    .logo-img {
-  height: 44px;
+   .logo-img {
+  height: 68px; /* было 44px — теперь все детали, бочка и буквы будут отлично видны */
   width: auto;
   display: block;
   object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4)); /* лёгкий объём */
 }
     @media (min-width: 768px) {
       .nav-links {
@@ -736,7 +739,7 @@
 /* Полная адаптация под мобильные устройства */
 @media (max-width: 768px) {
   .logo-img {
-    height: 36px !important;
+    height: 48px !important;
   }
   /* Фикс шапки и контейнера */
   .container {
