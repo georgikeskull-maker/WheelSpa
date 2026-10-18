@@ -852,7 +852,8 @@
   }
 }
 html {
-  height: 100%;
+  background-color: #1c1917 !important;
+  min-height: 100%;
 }
 
 body {
@@ -860,16 +861,25 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  background-color: #121417;
 }
 
-/* Растягиваем секцию FAQ на всю оставшуюся высоту экрана */
-section#faq {
-  flex: 1 0 auto;
-}
-
+/* Растягиваем фон футера вниз бесконечно */
 footer#contacts {
   margin-top: auto !important;
-  width: 100%;
+  position: relative;
+  background: #1c1917 !important; /* Тот самый коричневато-графитовый оттенок карточек */
+}
+
+footer#contacts::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 100vh; /* Заливает 100% высоты экрана вниз под футером */
+  background: #1c1917;
+  pointer-events: none;
 }
   </style>
 </head>
@@ -1166,7 +1176,7 @@ footer#contacts {
   </section>
 
 <!-- FOOTER & CONTACTS -->
-  <footer id="contacts" style="background: rgba(28, 25, 23, 0.92); padding: 32px 0 20px; border-top: 1px solid rgba(245, 158, 11, 0.15); box-shadow: 0 -10px 30px rgba(0,0,0,0.3); margin-top: auto;">
+ <footer id="contacts" style="padding: 28px 0 20px; border-top: 1px solid rgba(245, 158, 11, 0.2);">
     <div class="container">
       <div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; margin-bottom: 24px;">
         
