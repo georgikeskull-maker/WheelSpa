@@ -854,14 +854,27 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #121417 !important; /* Настоящий графитовый антрацит без синевы */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #121417 !important;
   color: #fff;
 }
 
-/* Принудительно убираем синий градиент у секции FAQ */
-#faq, section#faq {
+/* Растягиваем центральную часть, чтобы прижать футер к полу без пустот */
+main {
+  flex: 1 0 auto;
+}
+
+section#faq {
   background: transparent !important;
 }
+
+footer#contacts {
+  margin-top: auto;
+  width: 100%;
+}
+    
       </style>
 </head>
 <body>
