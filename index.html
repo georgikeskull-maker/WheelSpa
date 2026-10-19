@@ -1883,7 +1883,7 @@ if (sumWoodBagsEl) sumWoodBagsEl.textContent = woodBags;
   };
 
   try {
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz2g3BHG3ilKMfvFCtxqhW71hizM_LnNL7j61lt5Hq44T907f0_PWlJHQzo-heejyfQuQ/exec';
+   await fetch("https://script.google.com/macros/s/AKfycbz2g3BHG3ilKMfvFCtxqhW71hizM_LnNL7j61lt5Hq44T907f0_PWlJHQzo-heejyfQuQ/exec", {
       method: "POST",
       mode: "no-cors",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
