@@ -1249,7 +1249,7 @@ footer#contacts {
      */
     const GOOGLE_SHEET_ID = 'PASTE_YOUR_GOOGLE_SHEET_ID_HERE';
     const GOOGLE_SHEET_NAME = 'Sheet1'; // Или 'Лист1', если интерфейс на русском (по умолчанию берется первый лист, если не указывать)
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8ZVLGlvvt4pcMxge3dvKG5kxLRYJJ2ZvrGPFCH-v_nUlQktsCJ1HoYL42YGiq6Egs/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzrZaqrCpzhHDMvSWaAlc9zit_DKyIhYGy588JNnp9I5fyDHeGREtlc9tt2l6_PxJD91w/exec';
     
     // Жесткий резервный конфиг (работает мгновенно и если нет сети / не вставлен ID)
     const FALLBACK_CONFIG = {
@@ -1883,7 +1883,7 @@ if (sumWoodBagsEl) sumWoodBagsEl.textContent = woodBags;
   };
 
   try {
-   await fetch("https://script.google.com/macros/s/AKfycby8ZVLGlvvt4pcMxge3dvKG5kxLRYJJ2ZvrGPFCH-v_nUlQktsCJ1HoYL42YGiq6Egs/exec", {
+   await fetch(GOOGLE_SCRIPT_URL, {
       method: "POST",
       mode: "no-cors",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
