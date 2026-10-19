@@ -1830,6 +1830,82 @@ footer#contacts {
 }
 
     // Инициализация при старте
+    async function sendBookingOrder() {
+  const phoneInput = document.getElementById("clientPhone");
+  const phone = phoneInput ? phoneInput.value.trim() : "";
+  const statusMsg = document.getElementById("bookingStatusMsg");
+  const btn = document.getElementById("submitBookingBtn");
+
+  if (!phone || phone.length < 6) {
+    if (statusMsg) {
+      statusMsg.style.display = "block";
+      statusMsg.style.color = "#ef4444";
+      statusMsg.textContent = "Palun sisestage korrektne telefoninumber!";
+    }
+    return;
+  }
+
+  // Считываем значения из калькулятора
+  const dateEl = document.getElementById("calcDate");
+  const dateVal = dateEl ? dateEl.value : "";
+
+  const tariffEl = document.getElementById("calcTariff") || document.getElementById("calcPackage");
+  const packageVal = tariffEl && tariffEl.selectedOptions.length ? tariffEl.selectedOptions[0].text : "Rent";
+
+  const locEl = document.getElementById("calcLocation");
+  const locVal = locEl && locEl.selectedOptions.length ? locEl.selectedOptions[0].text : "Tallinn";
+
+  const woodEl = document.getElementById("calcWood") || document.getElementById("woodRange");
+  const woodVal = woodEl ? (woodEl.value + " tk") : "0 tk";
+
+  const totalEl = document.getElementById("sumTotal");
+  const totalVal = totalEl ? totalEl.textContent : "0";
+
+  if (btn) {
+    btn.disabled = true;
+    btn.style.opacity = "0.7";
+    btn.textContent = "Saadan...";
+  }
+
+  const payload = {
+    name: "Klient (koduleht)",
+    phone: phone,
+    date: dateVal,
+    package: packageVal,
+    location: locVal,
+    wood: woodVal,
+    total: totalVal
+  };
+
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+
+    if (statusMsg) {
+      statusMsg.style.display = "block";
+      statusMsg.style.color = "#10b981";
+      statusMsg.textContent = "Aitäh! Teie soov on saadetud. Võtame peagi ühendust!";
+    }
+    if (phoneInput) phoneInput.value = "";
+    if (btn) btn.textContent = "Saadetud ✓";
+  } catch (err) {
+    console.error("Booking error:", err);
+    if (statusMsg) {
+      statusMsg.style.display = "block";
+      statusMsg.style.color = "#ef4444";
+      statusMsg.textContent = "Viga saatmisel. Palun helistage meile!";
+    }
+    if (btn) {
+      btn.disabled = false;
+      btn.style.opacity = "1";
+      btn.textContent = "Saada broneeringusoov";
+    }
+  }
+}
    document.addEventListener('DOMContentLoaded', () => {
   // Ставим сегодняшнюю дату как минимальную в календаре
   const today = new Date().toISOString().split('T')[0];
