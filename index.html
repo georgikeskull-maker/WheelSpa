@@ -1249,8 +1249,8 @@ footer#contacts {
      */
     const GOOGLE_SHEET_ID = 'PASTE_YOUR_GOOGLE_SHEET_ID_HERE';
     const GOOGLE_SHEET_NAME = 'Sheet1'; // Или 'Лист1', если интерфейс на русском (по умолчанию берется первый лист, если не указывать)
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwAJOHcmCR0uT_TTHOL4pT5l9yCA8F1coSQ38qb2GS1Bc6AUpY4S55xDZGBp-XNR0IDkA/exec';
-
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz2g3BHG3ilKMfvFCtxqhW71hizM_LnNL7j61lt5Hq44T907f0_PWlJHQzo-heejyfQuQ/exec';
+    
     // Жесткий резервный конфиг (работает мгновенно и если нет сети / не вставлен ID)
     const FALLBACK_CONFIG = {
       price_weekday: 90,
@@ -1764,13 +1764,13 @@ footer#contacts {
       checkDateAvailability();
       calculateTotal();
     }
-    async function sendBookingOrder() {
+  async function sendBookingOrder() {
   const phoneInput = document.getElementById("clientPhone");
   const phone = phoneInput ? phoneInput.value.trim() : "";
   const statusMsg = document.getElementById("bookingStatusMsg");
   const btn = document.getElementById("submitBookingBtn");
 
-  if (!phone || phone.length < 7) {
+  if (!phone || phone.length < 6) {
     if (statusMsg) {
       statusMsg.style.display = "block";
       statusMsg.style.color = "#ef4444";
@@ -1779,13 +1779,16 @@ footer#contacts {
     return;
   }
 
-  const dateVal = document.getElementById("calcDate") ? document.getElementById("calcDate").value : "";
-  const pkgEl = document.getElementById("calcPackage");
-  const pkgVal = pkgEl && pkgEl.selectedOptions.length ? pkgEl.selectedOptions[0].text : "";
+  const dateEl = document.getElementById("calcDate");
+  const dateVal = dateEl ? dateEl.value : "";
+  const pkgEl = document.getElementById("calcTariff") || document.getElementById("calcPackage");
+  const pkgVal = pkgEl && pkgEl.selectedOptions && pkgEl.selectedOptions.length ? pkgEl.selectedOptions[0].text : "Pakett";
   const locEl = document.getElementById("calcLocation");
-  const locVal = locEl && locEl.selectedOptions.length ? locEl.selectedOptions[0].text : "";
-  const woodVal = document.getElementById("woodRange") ? document.getElementById("woodRange").value : "0";
-  const totalVal = document.getElementById("sumTotal") ? document.getElementById("sumTotal").textContent : "0";
+  const locVal = locEl && locEl.selectedOptions && locEl.selectedOptions.length ? locEl.selectedOptions[0].text : "";
+  const woodEl = document.getElementById("woodRange") || document.getElementById("calcWood");
+  const woodVal = woodEl ? woodEl.value : "0";
+  const totalEl = document.getElementById("sumTotal");
+  const totalVal = totalEl ? totalEl.textContent : "0";
 
   if (btn) {
     btn.disabled = true;
@@ -1797,7 +1800,7 @@ footer#contacts {
     await fetch(GOOGLE_SCRIPT_URL, {
       method: "POST",
       mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify({
         phone: phone,
         date: dateVal,
@@ -1815,7 +1818,8 @@ footer#contacts {
     }
     if (phoneInput) phoneInput.value = "";
     if (btn) btn.textContent = "Saadetud ✓";
-  } catch (err) {
+  } catch (e) {
+    console.error("Booking error:", e);
     if (statusMsg) {
       statusMsg.style.display = "block";
       statusMsg.style.color = "#ef4444";
