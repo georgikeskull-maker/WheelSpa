@@ -1134,24 +1134,14 @@ footer#contacts {
             </div>
           </div>
 
-       <!-- Блок оформления бронирования -->
-        <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
-          <input 
-            type="tel" 
-            id="clientPhone" 
-            placeholder="+372 5X XX XX XX" 
-            style="width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--border-color, #2e2923); background: var(--bg-input, #12100e); color: #fff; font-size: 1rem; outline: none; box-sizing: border-box;"
-          />
-          <button 
-            type="button" 
-            id="submitBookingBtn" 
-            onclick="sendBookingOrder()" 
-            style="width: 100%; padding: 14px 20px; border-radius: 8px; border: none; background: var(--accent-amber, #e67e22); color: #000; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.25s ease;"
-            data-i18n="calc_submit_btn"
-          >
-            Saada broneeringusoov
+       <!-- Блок ввода телефона и кнопка заказа -->
+        <div style="margin-top: 18px; display: flex; flex-direction: column; gap: 10px;">
+          <input type="tel" id="clientPhone" placeholder="+372 5X XX XX XX" required style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; font-size: 1rem; outline: none; box-sizing: border-box;">
+          
+          <button id="submitBookingBtn" onclick="sendBookingOrder()" class="btn btn-primary" style="width: 100%; padding: 14px; font-weight: 700; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; background: #f59e0b; color: #000; border: none; font-size: 1rem;">
+            <span data-i18n="btn_submit_order">Saada broneeringusoov</span>
           </button>
-          <div id="bookingStatusMsg" style="display: none; font-size: 0.85rem; text-align: center; margin-top: 4px; line-height: 1.4;"></div>
+          <div id="bookingStatusMsg" style="display: none; font-size: 0.88rem; text-align: center; margin-top: 6px;"></div>
         </div>
         </div>
       </div>
@@ -1374,18 +1364,6 @@ footer#contacts {
         footer_contacts_title: 'Прямая связь',
         footer_loc_title: 'Локация и время работы',
         footer_loc_desc: '📍 База: Таллинн, Эстония<br>🕘 Прием заказов и доставка: Ежедневно 09:00 – 20:00'
-        calc_submit_btn: 'Отправить заявку на бронь',
-    booking_phone_err: 'Пожалуйста, введите корректный номер телефона!',
-    booking_success: 'Спасибо! Ваша заявка отправлена. Скоро свяжемся!',
-    booking_error: 'Ошибка при отправке. Пожалуйста, позвоните нам!',
-    booking_sending: 'Отправка...',
-    booking_sent: 'Отправлено ✓',
-      calc_submit_btn: 'Отправить заявку на бронь',
-  booking_phone_err: 'Пожалуйста, введите корректный номер телефона!',
-  booking_success: 'Спасибо! Ваша заявка отправлена. Скоро свяжемся!',
-  booking_error: 'Ошибка при отправке. Пожалуйста, позвоните нам!',
-  booking_sending: 'Отправка...',
-  booking_sent: 'Отправлено ✓',
       },
       et: {
         nav_features: 'Kümblustünnist',
@@ -1476,18 +1454,6 @@ footer#contacts {
         footer_contacts_title: 'Kiire ühendus',
         footer_loc_title: 'Asukoht ja tööaeg',
         footer_loc_desc: '📍 Asukoht: Tallinn, Eesti<br>🕘 Tellimused ja transport: Iga päev 09:00 – 20:00'
-      calc_submit_btn: 'Saada broneeringusoov',
-    booking_phone_err: 'Palun sisestage korrektne telefoninumber!',
-    booking_success: 'Aitäh! Teie soov on saadetud. Võtame peagi ühendust!',
-    booking_error: 'Viga saatmisel. Palun helistage meile!',
-    booking_sending: 'Saadan...',
-    booking_sent: 'Saadetud ✓',
-        calc_submit_btn: 'Saada broneeringusoov',
-  booking_phone_err: 'Palun sisestage korrektne telefoninumber!',
-  booking_success: 'Aitäh! Teie soov on saadetud. Võtame peagi ühendust!',
-  booking_error: 'Viga saatmisel. Palun helistage meile!',
-  booking_sending: 'Saadan...',
-  booking_sent: 'Saadetud ✓',
       },
       en: {
         nav_features: 'Features',
@@ -1578,18 +1544,6 @@ footer#contacts {
         footer_contacts_title: 'Direct Contact',
         footer_loc_title: 'Location & Hours',
         footer_loc_desc: '📍 Base: Tallinn, Estonia<br>🕘 Bookings & delivery: Daily 09:00 – 20:00'
-        calc_submit_btn: 'Saada broneeringusoov',
-    booking_phone_err: 'Palun sisestage korrektne telefoninumber!',
-    booking_success: 'Aitäh! Teie soov on saadetud. Võtame peagi ühendust!',
-    booking_error: 'Viga saatmisel. Palun helistage meile!',
-    booking_sending: 'Saadan...',
-    booking_sent: 'Saadetud ✓',
-          calc_submit_btn: 'Send Booking Request',
-  booking_phone_err: 'Please enter a valid phone number!',
-  booking_success: 'Thank you! Your request has been sent. We will contact you soon!',
-  booking_error: 'Error sending request. Please call us!',
-  booking_sending: 'Sending...',
-  booking_sent: 'Sent ✓',
       }
     };
 
@@ -1971,116 +1925,6 @@ footer#contacts {
   renderConfigToUI();
   calculateTotal();
   loadDataFromGoogleSheets();
-});
-    // Связка верхних карточек тарифов с выпадающим списком калькулятора
-function selectPackage(pkgValue) {
-  selectTariffFromCard(pkgValue);
-}
-
-// Дублирующий алиас на случай, если кнопки вызывают selectTariffFromCard напрямую
-window.selectTariffFromCard = function(tariffVal) {
-  const sel = document.getElementById('calcTariff') || document.getElementById('calcPackage');
-  if (sel) {
-    sel.value = tariffVal;
-  }
-  if (typeof calculateTotal === 'function') {
-    calculateTotal();
-  }
-  const calcSec = document.getElementById('calculator');
-  if (calcSec) {
-    calcSec.scrollIntoView({ behavior: 'smooth' });
-  }
-};
-
-// Функция отправки заявки в Google Apps Script -> Telegram + Календарь
-async function sendBookingOrder() {
-  const phoneInput = document.getElementById("clientPhone");
-  const phone = phoneInput ? phoneInput.value.trim() : "";
-  const statusMsg = document.getElementById("bookingStatusMsg");
-  const btn = document.getElementById("submitBookingBtn");
-  
-  const lang = (typeof currentLang !== 'undefined') ? currentLang : 'et';
-  const langDict = (typeof i18n !== 'undefined' && i18n[lang]) ? i18n[lang] : ((typeof i18n !== 'undefined' && i18n['et']) ? i18n['et'] : {});
-
-  if (!phone || phone.length < 6) {
-    if (statusMsg) {
-      statusMsg.style.display = "block";
-      statusMsg.style.color = "#ef4444";
-      statusMsg.textContent = langDict.booking_phone_err || "Palun sisestage korrektne telefoninumber!";
-    }
-    return;
-  }
-
-  const dateEl = document.getElementById("calcDate");
-  const dateVal = dateEl ? dateEl.value : "";
-  const tariffEl = document.getElementById("calcTariff") || document.getElementById("calcPackage");
-  const packageVal = tariffEl && tariffEl.selectedOptions && tariffEl.selectedOptions.length ? tariffEl.selectedOptions[0].text : "Pakett";
-  const locEl = document.getElementById("calcLocation");
-  const locVal = locEl && locEl.selectedOptions && locEl.selectedOptions.length ? locEl.selectedOptions[0].text : "Tallinn";
-  const woodEl = document.getElementById("woodRange") || document.getElementById("calcWood");
-  const woodVal = woodEl ? (woodEl.value + " tk") : "0 tk";
-  const totalEl = document.getElementById("sumTotal");
-  const totalVal = totalEl ? totalEl.textContent.trim() : "0";
-
-  if (btn) {
-    btn.disabled = true;
-    btn.style.opacity = "0.7";
-    btn.textContent = langDict.booking_sending || "Saadan...";
-  }
-
-  const payload = {
-    name: "Klient (koduleht)",
-    phone: phone,
-    date: dateVal,
-    package: packageVal,
-    location: locVal,
-    wood: woodVal,
-    total: totalVal
-  };
-
-  const scriptUrl = 'https://script.google.com/macros/s/AKfycbz2g3BHG3ilKMfvFCtxqhW71hizM_LnNL7j61lt5Hq44T907f0_PWlJHQzo-heejyfQuQ/exec';
-
-  try {
-    await fetch(scriptUrl, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(payload)
-    });
-
-    if (statusMsg) {
-      statusMsg.style.display = "block";
-      statusMsg.style.color = "#10b981";
-      statusMsg.textContent = langDict.booking_success || "Aitäh! Teie soov on saadetud. Võtame peagi ühendust!";
-    }
-    if (phoneInput) phoneInput.value = "";
-    if (btn) btn.textContent = langDict.booking_sent || "Saadetud ✓";
-  } catch (err) {
-    console.error("Booking error:", err);
-    if (statusMsg) {
-      statusMsg.style.display = "block";
-      statusMsg.style.color = "#ef4444";
-      statusMsg.textContent = langDict.booking_error || "Viga saatmisel. Palun helistage meile!";
-    }
-    if (btn) {
-      btn.disabled = false;
-      btn.style.opacity = "1";
-      btn.textContent = langDict.calc_submit_btn || "Saada broneeringusoov";
-    }
-  }
-}
-
-// Привязка событий калькулятора
-window.addEventListener('load', () => {
-  const tariffEl = document.getElementById("calcTariff") || document.getElementById("calcPackage");
-  const dateEl = document.getElementById("calcDate");
-  const locEl = document.getElementById("calcLocation");
-  const woodEl = document.getElementById("woodRange") || document.getElementById("calcWood");
-
-  if (tariffEl && typeof calculateTotal === 'function') tariffEl.addEventListener("change", calculateTotal);
-  if (dateEl && typeof calculateTotal === 'function') dateEl.addEventListener("change", calculateTotal);
-  if (locEl && typeof calculateTotal === 'function') locEl.addEventListener("change", calculateTotal);
-  if (woodEl && typeof calculateTotal === 'function') woodEl.addEventListener("input", calculateTotal);
 });
   </script>
 </body>
