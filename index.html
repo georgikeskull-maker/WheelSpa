@@ -1694,7 +1694,8 @@ footer#contacts {
 
       const woodBags = parseInt(document.getElementById('calcWood').value, 10) || 0;
       document.getElementById('woodVal').textContent = woodBags;
-      document.getElementById('sumWoodBags').textContent = woodBags;
+      const sumWoodBagsEl = document.getElementById('sumWoodBags');
+if (sumWoodBagsEl) sumWoodBagsEl.textContent = woodBags;
       const woodCost = woodBags * appConfig.price_wood;
 
       const total = rentCost + deliveryCost + woodCost;
