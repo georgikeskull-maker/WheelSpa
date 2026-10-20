@@ -931,134 +931,70 @@ footer#contacts {
   </header>
 
   <!-- HERO -->
-  <section id="hero" class="hero" style="position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 110px 20px 60px; text-align: center;">
-  <div class="container" style="max-width: 860px; margin: 0 auto; width: 100%;">
-    
-    <!-- Воздушная скандинавская карточка -->
-    <div style="background: rgba(10, 15, 20, 0.42); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 32px; padding: 44px 36px; box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);">
+  <section id="hero" class="hero" style="position: relative; min-height: 100vh; display: flex; align-items: center; padding: 120px 24px 60px; background: #0b0f14 url('https://static.tildacdn.ink/tild3232-6131-4834-b335-653466323338/photo-1759709953690-.jpg') center/cover no-repeat;">
+  
+  <!-- Мягкое затемнение слева для кристальной читаемости текста -->
+  <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11,15,20,0.92) 0%, rgba(11,15,20,0.7) 45%, rgba(11,15,20,0.3) 100%); pointer-events: none;"></div>
+
+  <div class="container" style="position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; width: 100%;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; align-items: center;">
       
-      <!-- Тонкий бейдж стоимости -->
-      <div style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 999px; color: #fbbf24; font-size: 0.85rem; font-weight: 600; margin-bottom: 20px; letter-spacing: 0.02em;">
-        <span>✨</span>
-        <span data-i18n="hero_price_tag">Premium kümblustünn alates 70€ / ööpäev</span>
+      <!-- ЛЕВАЯ КОЛОНКА: Смысл, оффер, кнопки -->
+      <div style="text-align: left;">
+        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 999px; color: #fbbf24; font-size: 0.85rem; font-weight: 600; margin-bottom: 20px;">
+          <span>✨</span>
+          <span data-i18n="hero_price_tag">Premium kümblustünn alates 70€ / ööpäev</span>
+        </div>
+
+        <h1 data-i18n="hero_title" style="font-size: clamp(2rem, 3.8vw, 3rem); font-weight: 800; line-height: 1.2; color: #ffffff; margin-bottom: 18px; letter-spacing: -0.02em;">
+          Kuum mullisüsteemiga kümblustünn otse Sinu koju või loodusesse
+        </h1>
+
+        <p data-i18n="hero_subtitle" style="font-size: 1.05rem; line-height: 1.6; color: #d1d5db; max-width: 520px; margin-bottom: 28px;">
+          Muretu puhkus: toome kohale, paigaldame loodi ja juhendame. Sinu ülesandeks jääb vaid ahi küdema panna ja nautida.
+        </p>
+
+        <!-- Бейджи -->
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px;">
+          <div style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 999px; font-size: 0.85rem; color: #f3f4f6;">
+            <span>🫧</span> <span data-i18n="hero_badge_bubble">Mullisüsteem & LED</span>
+          </div>
+          <div style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 999px; font-size: 0.85rem; color: #f3f4f6;">
+            <span>🔥</span> <span data-i18n="hero_badge_fire">Kuum vesi kuni 40°C</span>
+          </div>
+          <div style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 999px; font-size: 0.85rem; color: #f3f4f6;">
+            <span>🚚</span> <span data-i18n="hero_badge_delivery">Tallinn ja Harjumaa</span>
+          </div>
+        </div>
+
+        <!-- Кнопки действий -->
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center;">
+          <a href="#calculator" style="display: inline-flex; align-items: center; gap: 8px; background: #f59e0b; color: #0b0f14; font-weight: 700; font-size: 0.95rem; padding: 12px 26px; border-radius: 999px; text-decoration: none; box-shadow: 0 4px 20px rgba(245, 158, 11, 0.35);">
+            <span data-i18n="hero_scroll_hint">Arvuta rendi hind</span>
+            <span>↓</span>
+          </a>
+        </div>
       </div>
 
-      <!-- Выверенный заголовок -->
-      <h1 data-i18n="hero_title" style="font-size: clamp(1.8rem, 3.6vw, 2.6rem); font-weight: 800; line-height: 1.25; color: #ffffff; margin: 0 auto 16px; max-width: 740px; letter-spacing: -0.02em;">
-        Kuum mullisüsteemiga kümblustünn otse Sinu koju või loodusesse
-      </h1>
-      
-      <!-- Подзаголовок -->
-      <p class="hero-subtitle" data-i18n="hero_subtitle" style="font-size: 1.05rem; line-height: 1.6; color: #e2e8f0; max-width: 600px; margin: 0 auto 28px;">
-        Muretu puhkus: toome kohale, paigaldame loodi ja juhendame. Sinu ülesandeks jääb vaid ahi küdema panna ja nautida.
-      </p>
-
-      <!-- Бейджи характеристик -->
-      <div class="hero-badges" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 30px;">
-        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 999px; font-size: 0.88rem; font-weight: 500; color: #f8fafc;">
-          <span>🫧</span>
-          <span data-i18n="hero_badge_bubble">Mullisüsteem & LED</span>
+      <!-- ПРАВАЯ КОЛОНКА: Визуальная витрина с купелью -->
+      <div style="position: relative;">
+        <div style="position: relative; border-radius: 28px; overflow: hidden; border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 25px 60px rgba(0,0,0,0.6);">
+          <img src="https://static.tildacdn.ink/tild3232-6131-4834-b335-653466323338/photo-1759709953690-.jpg" alt="WheelSpa kümblustünn" style="width: 100%; height: 380px; object-fit: cover; display: block; filter: brightness(0.95);">
+          
+          <!-- Стильный ярлык поверх картинки -->
+          <div style="position: absolute; bottom: 16px; left: 16px; right: 16px; padding: 12px 18px; background: rgba(11, 15, 20, 0.75); backdrop-filter: blur(10px); border-radius: 16px; border: 1px solid rgba(255,255,255,0.12); display: flex; justify-content: space-around; font-size: 0.85rem; color: #fff; text-align: center;">
+            <div>👥 <strong>6–8</strong> kohta</div>
+            <div style="color: rgba(255,255,255,0.3);">|</div>
+            <div>🪵 <strong>~2h</strong> kütteaeg</div>
+            <div style="color: rgba(255,255,255,0.3);">|</div>
+            <div>💧 <strong>1400L</strong> maht</div>
+          </div>
         </div>
-        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 999px; font-size: 0.88rem; font-weight: 500; color: #f8fafc;">
-          <span>🔥</span>
-          <span data-i18n="hero_badge_fire">Kuum vesi kuni 40°C</span>
-        </div>
-        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 999px; font-size: 0.88rem; font-weight: 500; color: #f8fafc;">
-          <span>🚚</span>
-          <span data-i18n="hero_badge_delivery">Tallinn ja Harjumaa</span>
-        </div>
-      </div>
-
-      <!-- Аккуратная кнопка перехода -->
-      <div>
-        <a href="#calculator" style="display: inline-flex; align-items: center; gap: 8px; color: #111418; background: #f59e0b; text-decoration: none; font-size: 0.92rem; font-weight: 700; padding: 10px 24px; border-radius: 999px; box-shadow: 0 4px 20px rgba(245, 158, 11, 0.35); transition: transform 0.2s ease;">
-          <span data-i18n="hero_scroll_hint">Arvuta rendi hind</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </a>
       </div>
 
     </div>
-
   </div>
 </section>
-  <!-- PRICING -->
-  <section id="pricing">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="price_section_title">Тарифы и цены</h2>
-        <p data-i18n="price_section_sub">Прозрачные условия без скрытых доплат. Все цены актуальны на сегодня.</p>
-      </div>
-
-      <div class="pricing-grid">
-        <!-- Будни -->
-        <div class="price-card">
-          <div>
-            <div class="price-title" data-i18n="p_card1_title">Будни (Пн–Чт)</div>
-            <div class="price-period" data-i18n="p_card1_period">Аренда на 24 часа</div>
-            <div class="price-amount"><span id="ui_price_weekday">90</span>€ <span data-i18n="per_day">/ сутки</span></div>
-            <ul class="price-list">
-              <li data-i18n="p_inc_1">Купель с аэромассажем и LED</li>
-              <li data-i18n="p_inc_2">Термокрышка для быстрого нагрева</li>
-              <li data-i18n="p_inc_3">Удлинитель и сливной шланг</li>
-              <li data-i18n="p_inc_4">Инструктаж и установка на месте</li>
-            </ul>
-          </div>
-          <a href="#calculator" onclick="selectTariffFromCard('weekday')" class="btn btn-outline" data-i18n="btn_choose">Выбрать тариф</a>
-        </div>
-
-        <!-- Выходные -->
-        <div class="price-card">
-          <div>
-            <div class="price-title" data-i18n="p_card2_title">Выходные (Пт–Вс)</div>
-            <div class="price-period" data-i18n="p_card2_period">Аренда на 24 часа</div>
-            <div class="price-amount"><span id="ui_price_weekend">130</span>€ <span data-i18n="per_day">/ сутки</span></div>
-            <ul class="price-list">
-              <li data-i18n="p_inc_1">Купель с аэромассажем и LED</li>
-              <li data-i18n="p_inc_2">Термокрышка для быстрого нагрева</li>
-              <li data-i18n="p_inc_3">Удлинитель и сливной шланг</li>
-              <li data-i18n="p_inc_4">Инструктаж и установка на месте</li>
-            </ul>
-          </div>
-          <a href="#calculator" onclick="selectTariffFromCard('weekend')" class="btn btn-outline" data-i18n="btn_choose">Выбрать тариф</a>
-        </div>
-
-        <!-- Пакет Уикенд -->
-        <div class="price-card popular">
-          <div class="popular-tag" data-i18n="pop_badge">Хит сезона</div>
-          <div>
-            <div class="price-title" data-i18n="p_card3_title">Пакет «Весь Уикенд»</div>
-            <div class="price-period" data-i18n="p_card3_period">С пятницы до воскресенья</div>
-            <div class="price-amount"><span id="ui_price_full_weekend">220</span>€ <span data-i18n="per_pack">/ пакет</span></div>
-            <ul class="price-list">
-              <li data-i18n="p_inc_1">Купель с аэромассажем и LED</li>
-              <li data-i18n="p_inc_2">Термокрышка для быстрого нагрева</li>
-              <li data-i18n="p_inc_3">Удлинитель и сливной шланг</li>
-              <li data-i18n="p_inc_5">Максимальная выгода на все выходные</li>
-            </ul>
-          </div>
-          <a href="#calculator" onclick="selectTariffFromCard('full_weekend')" class="btn btn-primary" data-i18n="btn_choose">Выбрать пакет</a>
-        </div>
-      </div>
-
-      <div class="addons-banner">
-        <div class="addon-item">
-          <span>🪵 <span data-i18n="addon_wood_label">Сухие березовые дрова (40л):</span></span>
-          <span class="addon-price"><span id="ui_price_wood">10</span>€ / <span data-i18n="bag_unit">мешок</span></span>
-        </div>
-        <div class="addon-item">
-          <span>🏙️ <span data-i18n="addon_tallinn_label">Доставка по Таллинну:</span></span>
-          <span class="addon-price"><span id="ui_delivery_tallinn">0</span>€</span>
-        </div>
-        <div class="addon-item">
-          <span>🛣️ <span data-i18n="addon_km_label">За пределами Таллинна:</span></span>
-          <span class="addon-price"><span id="ui_delivery_km">1.2</span>€ / км</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- CALCULATOR -->
   <section id="calculator">
     <div class="container">
