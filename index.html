@@ -931,38 +931,56 @@ footer#contacts {
   </header>
 
   <!-- HERO -->
-  <section id="hero" class="hero">
-  <div class="container hero-grid">
-    <h1 data-i18n="hero_title">Kuum mullisüsteemiga kümblustünn otse Sinu koju või loodusesse</h1>
-    <p class="hero-subtitle" data-i18n="hero_subtitle">
-      Muretu puhkus: toome kohale, paigaldame loodi ja juhendame. Sinu ülesandeks jääb vaid ahi küdema panna ja nautida.
-    </p>
+  <section id="hero" class="hero" style="position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 20px 80px; text-align: center;">
+  <div class="container" style="max-width: 900px; margin: 0 auto; width: 100%;">
+    
+    <!-- Скандинавская карточка со стеклянным размытием -->
+    <div style="background: rgba(11, 15, 20, 0.62); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 28px; padding: 48px 32px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);">
+      
+      <!-- Микро-бейдж стоимости -->
+      <div style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 999px; color: #f59e0b; font-size: 0.88rem; font-weight: 600; margin-bottom: 22px;">
+        <span>✨</span>
+        <span data-i18n="hero_price_tag">Premium kümblustünn alates 70€ / ööpäev</span>
+      </div>
 
-    <!-- Скандинавские бейджи с преимуществами -->
-    <div class="hero-badges" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 24px 0 32px;">
-      <div class="hero-badge-item" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 999px; font-size: 0.9rem; font-weight: 500; color: #ffffff;">
-        <span>🫧</span>
-        <span data-i18n="hero_badge_bubble">Mullisüsteem & LED</span>
+      <!-- Главный заголовок -->
+      <h1 data-i18n="hero_title" style="font-size: clamp(1.9rem, 4.2vw, 2.9rem); font-weight: 800; line-height: 1.25; color: #ffffff; margin: 0 auto 16px; max-width: 780px; letter-spacing: -0.01em;">
+        Kuum mullisüsteemiga kümblustünn otse Sinu koju või loodusesse
+      </h1>
+      
+      <!-- Подзаголовок -->
+      <p class="hero-subtitle" data-i18n="hero_subtitle" style="font-size: 1.05rem; line-height: 1.6; color: #d1d5db; max-width: 640px; margin: 0 auto 32px;">
+        Muretu puhkus: toome kohale, paigaldame loodi ja juhendame. Sinu ülesandeks jääb vaid ahi küdema panna ja nautida.
+      </p>
+
+      <!-- Премиальные бейджи преимуществ -->
+      <div class="hero-badges" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 34px;">
+        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 999px; font-size: 0.92rem; font-weight: 500; color: #f9fafb;">
+          <span>🫧</span>
+          <span data-i18n="hero_badge_bubble">Mullisüsteem & LED</span>
+        </div>
+        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 999px; font-size: 0.92rem; font-weight: 500; color: #f9fafb;">
+          <span>🔥</span>
+          <span data-i18n="hero_badge_fire">Kuum vesi kuni 40°C</span>
+        </div>
+        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 999px; font-size: 0.92rem; font-weight: 500; color: #f9fafb;">
+          <span>🚚</span>
+          <span data-i18n="hero_badge_delivery">Tallinn ja Harjumaa</span>
+        </div>
       </div>
-      <div class="hero-badge-item" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 999px; font-size: 0.9rem; font-weight: 500; color: #ffffff;">
-        <span>🔥</span>
-        <span data-i18n="hero_badge_fire">Kuum vesi kuni 40°C</span>
+
+      <!-- Деликатная кнопка-стрелка к калькулятору -->
+      <div>
+        <a href="#calculator" style="display: inline-flex; align-items: center; gap: 10px; color: #f59e0b; text-decoration: none; font-size: 0.95rem; font-weight: 600; padding: 10px 22px; border-radius: 999px; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); transition: transform 0.2s ease, background 0.2s ease;">
+          <span data-i18n="hero_scroll_hint">Arvuta rendi hind</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </a>
       </div>
-      <div class="hero-badge-item" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 999px; font-size: 0.9rem; font-weight: 500; color: #ffffff;">
-        <span>🚚</span>
-        <span data-i18n="hero_badge_delivery">Tallinn ja Harjumaa</span>
-      </div>
+
     </div>
 
-    <!-- Деликатная стрелка вниз к калькулятору -->
-    <div style="margin-top: 10px;">
-      <a href="#calculator" style="display: inline-flex; flex-direction: column; align-items: center; gap: 6px; color: #ffffff; text-decoration: none; font-size: 0.95rem; font-weight: 600; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">
-        <span data-i18n="hero_scroll_hint">Arvuta rendi hind</span>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </a>
-    </div>
   </div>
 </section>
 
