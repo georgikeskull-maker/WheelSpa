@@ -95,9 +95,9 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(15, 14, 12, 0.88);
+      background: rgba(15, 23, 42, 0.55);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .header-inner {
@@ -210,61 +210,52 @@
       padding: 8px 14px;
       font-size: 0.85rem;
     }
-.hero-media {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.hero-main-logo {
-  width: 100%;
-  max-width: 540px;
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.65));
-  transition: transform 0.3s ease;
-}
-
-.hero-main-logo:hover {
-  transform: translateY(-4px) scale(1.02);
-}
-
-/* На мобильных телефонах */
-@media (max-width: 768px) {
-  .hero-main-logo {
-    max-width: 360px;
-    margin: 1.5rem auto 0;
-  }
-}
     /* HERO */
     .hero {
       position: relative;
-      padding: 70px 0 80px;
-      background: 
-        radial-gradient(circle at 80% 20%, rgba(230, 126, 34, 0.16), transparent 45%),
-        radial-gradient(circle at 20% 80%, rgba(141, 85, 36, 0.18), transparent 50%),
-        var(--bg-main);
-      border-bottom: 1px solid var(--border-color);
+      isolation: isolate;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 142px 0 100px;
+      margin-top: -72px;
+      background-color: var(--bg-main);
+      background-image: url('https://static.tildacdn.ink/tild3232-6131-4834-b335-653466323338/photo-1759709953690-.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-bottom: none;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0.85) 0%,
+        rgba(15, 23, 42, 0.78) 24%,
+        rgba(15, 14, 12, 0.68) 52%,
+        rgba(230, 126, 34, 0.22) 80%,
+        var(--bg-main) 100%
+      );
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
     }
 
     .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: 30px;
-      background: rgba(230, 126, 34, 0.15);
-      border: 1px solid rgba(230, 126, 34, 0.4);
-      color: var(--accent-amber-glow);
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 18px;
+      justify-content: center;
+      max-width: 820px;
     }
 
     .hero h1 {
@@ -272,43 +263,39 @@
       line-height: 1.15;
       font-weight: 800;
       margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 0 2px 24px rgba(15, 23, 42, 0.9);
     }
 
     .hero-subtitle {
       font-size: 1.1rem;
-      color: var(--text-muted);
-      margin-bottom: 28px;
-      max-width: 600px;
-    }
-
-    .hero-bullets {
-      list-style: none;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin-bottom: 34px;
-    }
-
-    .hero-bullets li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 500;
-      background: var(--bg-card);
-      padding: 12px 16px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-color);
-    }
-
-    .bullet-icon {
-      color: var(--accent-amber-glow);
-      font-size: 1.2rem;
+      color: #f4f0ea;
+      margin: 0 auto 32px;
+      max-width: 640px;
+      text-shadow: 0 2px 16px rgba(15, 23, 42, 0.85);
     }
 
     .hero-cta {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 14px;
+    }
+
+    .hero-cta .btn-primary {
+      box-shadow: 0 4px 22px rgba(230, 126, 34, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-cta .btn-outline {
+      background: rgba(15, 23, 42, 0.62);
+      border-color: rgba(244, 240, 234, 0.55);
+      color: #fff;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-cta .btn-outline:hover {
+      background: rgba(230, 126, 34, 0.22);
+      border-color: var(--accent-amber);
     }
 
     /* Визуальная карточка справа в Hero */
@@ -746,12 +733,6 @@
       .nav-links {
         display: flex;
       }
-      .hero-grid {
-        grid-template-columns: 1.15fr 0.85fr;
-      }
-      .hero-bullets {
-        grid-template-columns: repeat(2, 1fr);
-      }
       .features-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -841,11 +822,6 @@
   }
 
   /* Сетки преимуществ и карточек */
-  .hero-bullets {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 8px !important;
-  }
   .features-grid, 
   .pricing-grid {
     display: grid !important;
@@ -917,33 +893,18 @@ footer#contacts {
   </header>
 
   <!-- HERO -->
-  <section class="hero">
+  <section id="hero" class="hero">
     <div class="container hero-grid">
-      <div>
-        <span class="hero-badge" data-i18n="hero_badge">📍 Таллинн и вся Харьюмаа</span>
-        <h1 data-i18n="hero_title">Горячая спа-купель с аэромассажем прямо к дому или на природу</h1>
-        <p class="hero-subtitle" data-i18n="hero_subtitle">
-          Премиальный отдых без суеты: привезем, установим по уровню и расскажем все нюансы. Вам остается только затопить печь и наслаждаться теплом.
-        </p>
-
-        <ul class="hero-bullets">
-          <li><span class="bullet-icon">🔥</span> <span data-i18n="hero_b1">Быстрый дровяной нагрев (1.5–2.5 ч)</span></li>
-          <li><span class="bullet-icon">🫧</span> <span data-i18n="hero_b2">Мощный аэромассаж с подогревом воздуха</span></li>
-          <li><span class="bullet-icon">✨</span> <span data-i18n="hero_b3">Атмосферная LED-подсветка воды</span></li>
-          <li><span class="bullet-icon">🛻</span> <span data-i18n="hero_b4">Зарегистрированный прицеп — легко ставить</span></li>
-        </ul>
-
-        <div class="hero-cta">
-          <a href="#calculator" class="btn btn-primary" data-i18n="hero_btn_calc">Рассчитать стоимость</a>
-          <a href="#" id="heroWaBtn" target="_blank" rel="noopener" class="btn btn-outline" data-i18n="hero_btn_chat">Написать в WhatsApp</a>
-        </div>
-      </div>
-<div class="hero-media">
-        <img src="logo.png" alt="WheelSpa tünnisaun haagisel" class="hero-main-logo">
+      <h1 data-i18n="hero_title">Горячая спа-купель с аэромассажем прямо к дому или на природу</h1>
+      <p class="hero-subtitle" data-i18n="hero_subtitle">
+        Премиальный отдых без суеты: привезем, установим по уровню и расскажем все нюансы. Вам остается только затопить печь и наслаждаться теплом.
+      </p>
+      <div class="hero-cta">
+        <a href="#calculator" class="btn btn-primary" data-i18n="hero_btn_calc">Рассчитать стоимость</a>
+        <a href="#" id="heroWaBtn" target="_blank" rel="noopener" class="btn btn-outline" data-i18n="hero_btn_chat">Написать в WhatsApp</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- FEATURES -->
   <section id="features">
