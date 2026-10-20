@@ -933,17 +933,39 @@ footer#contacts {
 
   <!-- HERO -->
   <section id="hero" class="hero">
-    <div class="container hero-grid">
-      <h1 data-i18n="hero_title">Горячая спа-купель с аэромассажем прямо к дому или на природу</h1>
-      <p class="hero-subtitle" data-i18n="hero_subtitle">
-        Премиальный отдых без суеты: привезем, установим по уровню и расскажем все нюансы. Вам остается только затопить печь и наслаждаться теплом.
-      </p>
-      <div class="hero-cta">
-  <a href="#calculator" class="btn btn-primary" ...>Рассчитать стоимость</a>
-  <a href="#" id="herowaBtn" ...>...</a>
-</div>
+  <div class="container hero-grid">
+    <h1 data-i18n="hero_title">Kuum mullisüsteemiga kümblustünn otse Sinu koju või loodusesse</h1>
+    <p class="hero-subtitle" data-i18n="hero_subtitle">
+      Muretu puhkus: toome kohale, paigaldame loodi ja juhendame. Sinu ülesandeks jääb vaid ahi küdema panna ja nautida.
+    </p>
+
+    <!-- Скандинавские бейджи с преимуществами -->
+    <div class="hero-badges" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 24px 0 32px;">
+      <div class="hero-badge-item" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 999px; font-size: 0.9rem; font-weight: 500; color: #ffffff;">
+        <span>🫧</span>
+        <span data-i18n="hero_badge_bubble">Mullisüsteem & LED</span>
+      </div>
+      <div class="hero-badge-item" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 999px; font-size: 0.9rem; font-weight: 500; color: #ffffff;">
+        <span>🔥</span>
+        <span data-i18n="hero_badge_fire">Kuum vesi kuni 40°C</span>
+      </div>
+      <div class="hero-badge-item" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 999px; font-size: 0.9rem; font-weight: 500; color: #ffffff;">
+        <span>🚚</span>
+        <span data-i18n="hero_badge_delivery">Tallinn ja Harjumaa</span>
+      </div>
     </div>
-  </section>
+
+    <!-- Деликатная стрелка вниз к калькулятору -->
+    <div style="margin-top: 10px;">
+      <a href="#calculator" style="display: inline-flex; flex-direction: column; align-items: center; gap: 6px; color: #ffffff; text-decoration: none; font-size: 0.95rem; font-weight: 600; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">
+        <span data-i18n="hero_scroll_hint">Arvuta rendi hind</span>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
 
   <!-- FEATURES -->
   <section id="features">
