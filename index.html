@@ -1756,50 +1756,64 @@ footer#contacts {
     }
 
     function calculateTotal() {
-      const tariff = document.getElementById('calcTariff').value;
-      const daysGroup = document.getElementById('daysCountGroup');
+  const tariffElem = document.getElementById('calcTariff');
+  const tariff = tariffElem ? tariffElem.value : 'weekday';
 
-      // Показываем ползунок количества суток только если выбран не пакет уикенда
-      daysGroup.style.display = (tariff === 'full_weekend') ? 'none' : 'block';
+  // Безопасное управление показом блока дней (если он есть)
+  const daysGroup = document.getElementById('daysCountGroup');
+  if (daysGroup) {
+    daysGroup.style.display = (tariff === 'full_weekend' || tariff === 'weekend_full') ? 'none' : 'block';
+  }
 
-      const days = parseInt(document.getElementById('calcDays').value, 10) || 1;
-      document.getElementById('daysVal').textContent = days;
+  const daysInput = document.getElementById('calcDays');
+  const days = daysInput ? (parseInt(daysInput.value, 10) || 1) : 1;
+  const daysValElem = document.getElementById('daysVal');
+  if (daysValElem) daysValElem.textContent = days;
 
-      let rentCost = 0;
-      if (tariff === 'weekday') {
-        rentCost = appConfig.price_weekday * days;
-      } else if (tariff === 'weekend') {
-        rentCost = appConfig.price_weekend * days;
-      } else {
-        rentCost = appConfig.price_full_weekend;
-      }
+  let rentCost = 0;
+  if (tariff === 'weekday') {
+    rentCost = appConfig.price_weekday * days;
+  } else if (tariff === 'weekend' || tariff === 'weekend_day') {
+    rentCost = appConfig.price_weekend * days;
+  } else {
+    rentCost = appConfig.price_full_weekend;
+  }
 
-      const loc = document.getElementById('calcLocation').value;
-      const km = parseInt(document.getElementById('calcKm').value, 10) || 0;
-      document.getElementById('kmVal').textContent = km;
+  const locElem = document.getElementById('calcLocation');
+  const loc = locElem ? locElem.value : 'tallinn';
 
-      let deliveryCost = 0;
-      if (loc === 'tallinn') {
-        deliveryCost = appConfig.delivery_tallinn;
-      } else {
-        deliveryCost = Math.round(km * appConfig.delivery_km);
-      }
+  const kmInput = document.getElementById('calcKm') || document.getElementById('calcDistance');
+  const km = kmInput ? (parseInt(kmInput.value, 10) || 0) : 0;
+  const kmValElem = document.getElementById('kmVal') || document.getElementById('distVal');
+  if (kmValElem) kmValElem.textContent = km;
 
-      const woodBags = parseInt(document.getElementById('calcWood').value, 10) || 0;
-      document.getElementById('woodVal').textContent = woodBags;
-      const sumWoodBagsEl = document.getElementById('sumWoodBags');
-if (sumWoodBagsEl) sumWoodBagsEl.textContent = woodBags;
-      const woodCost = woodBags * appConfig.price_wood;
+  let deliveryCost = 0;
+  if (loc === 'harju') {
+    deliveryCost = km * appConfig.delivery_km;
+  } else {
+    deliveryCost = appConfig.delivery_tallinn;
+  }
 
-      const total = rentCost + deliveryCost + woodCost;
+  const woodInput = document.getElementById('calcWood');
+  const woodBags = woodInput ? (parseInt(woodInput.value, 10) || 0) : 0;
+  const woodCost = woodBags * appConfig.price_wood;
 
-      document.getElementById('sumRent').textContent = rentCost;
-      document.getElementById('sumDelivery').textContent = deliveryCost;
-      document.getElementById('sumWood').textContent = woodCost;
-      document.getElementById('sumTotal').textContent = total;
+  const total = rentCost + deliveryCost + woodCost;
 
-      return { tariff, days, rentCost, loc, km, deliveryCost, woodBags, woodCost, total };
-    }
+  const uiRent = document.getElementById('sumRent');
+  if (uiRent) uiRent.textContent = rentCost;
+
+  const uiDelivery = document.getElementById('sumDelivery');
+  if (uiDelivery) uiDelivery.textContent = deliveryCost;
+
+  const uiWood = document.getElementById('sumWood');
+  if (uiWood) uiWood.textContent = woodCost;
+
+  const uiTotal = document.getElementById('sumTotal');
+  if (uiTotal) uiTotal.textContent = total;
+
+  return { tariff, days, rentCost, loc, km, deliveryCost, woodBags, woodCost, total };
+}
 
     function sendOrder(platform) {
       const calc = calculateTotal();
