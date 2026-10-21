@@ -1068,22 +1068,11 @@ footer#contacts {
           <p data-i18n="price_p3_sub" style="color: #9ca3af; font-size: 0.88rem; margin-bottom: 18px;">Reedest pühapäevani</p>
           
           <div style="margin-top: 18px; display: flex; flex-direction: column; gap: 10px;">
-  <input 
-    type="tel" 
-    id="clientPhone" 
-    placeholder="+372 5X XX XX XX" 
-    required 
-    style="width: 100%; padding: 13px 16px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #fff; font-size: 1rem; outline: none; box-sizing: border-box;"
-  />
-  
-  <button 
-    type="button" 
-    id="submitBookingBtn" 
-    onclick="sendBookingOrder()" 
-    style="width: 100%; padding: 14px; background: var(--accent-amber, #f59e0b); color: #000; font-weight: 700; font-size: 1rem; border: none; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s ease;"
-    data-i18n="calc_submit_btn"
-  >
-    Saada broneeringusoov
+  <div style="display: flex; align-items: baseline; gap: 4px; margin-bottom: 24px;">
+            <span id="ui_price_full_weekend" style="font-size: 2.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">220</span>
+            <span style="font-size: 2.4rem; font-weight: 800; color: #ffffff;">€</span>
+            <span style="font-size: 1rem; color: #9ca3af; font-weight: 500; margin-left: 4px;" data-i18n="price_per_weekend">/ pakett</span>
+          </div>
   </button>
   <div id="bookingStatusMsg" style="display: none; font-size: 0.88rem; text-align: center; margin-top: 6px;"></div>
 </div>
@@ -1181,13 +1170,24 @@ footer#contacts {
         </div>
 
         <!-- Кнопки связи для брони -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-          <button type="button" onclick="sendOrder('whatsapp')" style="padding: 14px; background: #25d366; color: #fff; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 0.95rem;">
-            WhatsApp
+        <div style="margin-top: 18px; display: flex; flex-direction: column; gap: 10px;">
+          <input 
+            type="tel" 
+            id="clientPhone" 
+            placeholder="+372 5X XX XX XX" 
+            required 
+            style="width: 100%; padding: 13px 16px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #fff; font-size: 1rem; outline: none; box-sizing: border-box;"
+          />
+          <button 
+            type="button" 
+            id="submitBookingBtn" 
+            onclick="sendBookingOrder()" 
+            style="width: 100%; padding: 14px; background: #f59e0b; color: #000; font-weight: 700; font-size: 1rem; border: none; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s ease;"
+            data-i18n="calc_submit_btn"
+          >
+            Saada broneeringusoov
           </button>
-          <button type="button" onclick="sendOrder('telegram')" style="padding: 14px; background: #0088cc; color: #fff; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 0.95rem;">
-            Telegram
-          </button>
+          <div id="bookingStatusMsg" style="display: none; font-size: 0.88rem; text-align: center; margin-top: 6px;"></div>
         </div>
 
       </div>
