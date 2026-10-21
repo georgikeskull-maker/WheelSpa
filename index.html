@@ -984,80 +984,104 @@ footer#contacts {
   </div>
 </section>
   <!-- PRICING -->
-  <section id="pricing">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="price_section_title">Тарифы и цены</h2>
-        <p data-i18n="price_section_sub">Прозрачные условия без скрытых доплат. Все цены актуальны на сегодня.</p>
+ <section id="pricing" class="pricing" style="padding: 80px 20px; background: transparent;">
+  <div class="container" style="max-width: 1100px; margin: 0 auto; text-align: center;">
+    
+    <h2 data-i18n="nav_pricing" style="font-size: 2.2rem; font-weight: 800; color: #ffffff; margin-bottom: 12px;">
+      Paketid ja hinnakiri
+    </h2>
+    <p style="color: #9ca3af; font-size: 1.05rem; margin-bottom: 48px;">
+      Läbipaistvad tingimused ilma peidetud kuludeta.
+    </p>
+
+    <!-- Сетка из трёх карточек -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: stretch; text-align: left;">
+      
+      <!-- Карточка 1: Будни -->
+      <div style="background: rgba(18, 24, 32, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 4px;">Argipäevad (E–N)</h3>
+          <p style="color: #9ca3af; font-size: 0.88rem; margin-bottom: 20px;">Rent 24 tunniks</p>
+          
+          <!-- Цена как в Тильде -->
+          <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 24px;">
+            <span style="font-size: 2.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">80€</span>
+            <span style="font-size: 1rem; color: #9ca3af; font-weight: 500;">/ 24h</span>
+          </div>
+
+          <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; display: flex; flex-direction: column; gap: 12px; color: #d1d5db; font-size: 0.92rem;">
+            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> Mullisüsteemi ja LED-valgusega tünn</li>
+            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> Termokate kiireks kütmiseks</li>
+            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> Pikendusjuhe ja tühjendusvoolik</li>
+            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> Paigaldus ja instruktaaž kohapeal</li>
+          </ul>
+        </div>
+
+        <a href="#calculator" style="display: block; text-align: center; padding: 12px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; color: #fff; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: 0.2s;">
+          Vali pakett
+        </a>
       </div>
 
-      <div class="pricing-grid">
-        <!-- Будни -->
-        <div class="price-card">
-          <div>
-            <div class="price-title" data-i18n="p_card1_title">Будни (Пн–Чт)</div>
-            <div class="price-period" data-i18n="p_card1_period">Аренда на 24 часа</div>
-            <div class="price-amount"><span id="ui_price_weekday">90</span>€ <span data-i18n="per_day">/ сутки</span></div>
-            <ul class="price-list">
-              <li data-i18n="p_inc_1">Купель с аэромассажем и LED</li>
-              <li data-i18n="p_inc_2">Термокрышка для быстрого нагрева</li>
-              <li data-i18n="p_inc_3">Удлинитель и сливной шланг</li>
-              <li data-i18n="p_inc_4">Инструктаж и установка на месте</li>
-            </ul>
+      <!-- Карточка 2: Выходной -->
+      <div style="background: rgba(18, 24, 32, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 4px;">Nädalavahetus (R–P)</h3>
+          <p style="color: #9ca3af; font-size: 0.88rem; margin-bottom: 20px;">Rent 24 tunniks</p>
+          
+          <!-- Цена как в Тильде -->
+          <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 24px;">
+            <span style="font-size: 2.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">120€</span>
+            <span style="font-size: 1rem; color: #9ca3af; font-weight: 500;">/ 24h</span>
           </div>
-          <a href="#calculator" onclick="selectTariffFromCard('weekday')" class="btn btn-outline" data-i18n="btn_choose">Выбрать тариф</a>
+
+          <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; display: flex; flex-direction: column; gap: 12px; color: #d1d5db; font-size: 0.92rem;">
+            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> Mullisüsteemi ja LED-valgusega tünn</li>
+            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> Termokate kiireks kütmiseks</li>
+            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> Pikendusjuhe ja tühjendusvoolik</li>
+            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> Paigaldus ja instruktaaž kohapeal</li>
+          </ul>
         </div>
 
-        <!-- Выходные -->
-        <div class="price-card">
-          <div>
-            <div class="price-title" data-i18n="p_card2_title">Выходные (Пт–Вс)</div>
-            <div class="price-period" data-i18n="p_card2_period">Аренда на 24 часа</div>
-            <div class="price-amount"><span id="ui_price_weekend">130</span>€ <span data-i18n="per_day">/ сутки</span></div>
-            <ul class="price-list">
-              <li data-i18n="p_inc_1">Купель с аэромассажем и LED</li>
-              <li data-i18n="p_inc_2">Термокрышка для быстрого нагрева</li>
-              <li data-i18n="p_inc_3">Удлинитель и сливной шланг</li>
-              <li data-i18n="p_inc_4">Инструктаж и установка на месте</li>
-            </ul>
-          </div>
-          <a href="#calculator" onclick="selectTariffFromCard('weekend')" class="btn btn-outline" data-i18n="btn_choose">Выбрать тариф</a>
-        </div>
-
-        <!-- Пакет Уикенд -->
-        <div class="price-card popular">
-          <div class="popular-tag" data-i18n="pop_badge">Хит сезона</div>
-          <div>
-            <div class="price-title" data-i18n="p_card3_title">Пакет «Весь Уикенд»</div>
-            <div class="price-period" data-i18n="p_card3_period">С пятницы до воскресенья</div>
-            <div class="price-amount"><span id="ui_price_full_weekend">220</span>€ <span data-i18n="per_pack">/ пакет</span></div>
-            <ul class="price-list">
-              <li data-i18n="p_inc_1">Купель с аэромассажем и LED</li>
-              <li data-i18n="p_inc_2">Термокрышка для быстрого нагрева</li>
-              <li data-i18n="p_inc_3">Удлинитель и сливной шланг</li>
-              <li data-i18n="p_inc_5">Максимальная выгода на все выходные</li>
-            </ul>
-          </div>
-          <a href="#calculator" onclick="selectTariffFromCard('full_weekend')" class="btn btn-primary" data-i18n="btn_choose">Выбрать пакет</a>
-        </div>
+        <a href="#calculator" style="display: block; text-align: center; padding: 12px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; color: #fff; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: 0.2s;">
+          Vali pakett
+        </a>
       </div>
 
-      <div class="addons-banner">
-        <div class="addon-item">
-          <span>🪵 <span data-i18n="addon_wood_label">Сухие березовые дрова (40л):</span></span>
-          <span class="addon-price"><span id="ui_price_wood">10</span>€ / <span data-i18n="bag_unit">мешок</span></span>
+      <!-- Карточка 3: Полный уикенд (Хит) -->
+      <div style="background: rgba(24, 30, 40, 0.85); border: 1.5px solid #f59e0b; border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; position: relative; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.15);">
+        
+        <!-- Бейдж Популярный -->
+        <div style="position: absolute; top: -13px; right: 24px; background: #f59e0b; color: #000; font-size: 0.75rem; font-weight: 800; padding: 4px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em;">
+          Populaarseim
         </div>
-        <div class="addon-item">
-          <span>🏙️ <span data-i18n="addon_tallinn_label">Доставка по Таллинну:</span></span>
-          <span class="addon-price"><span id="ui_delivery_tallinn">0</span>€</span>
+
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 4px;">Täispakett «Nädalavahetus»</h3>
+          <p style="color: #9ca3af; font-size: 0.88rem; margin-bottom: 20px;">Reedest pühapäevani</p>
+          
+          <!-- Цена как в Тильде -->
+          <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 24px;">
+            <span style="font-size: 2.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">200€</span>
+            <span style="font-size: 1rem; color: #9ca3af; font-weight: 500;">/ 48h</span>
+          </div>
+
+          <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; display: flex; flex-direction: column; gap: 12px; color: #d1d5db; font-size: 0.92rem;">
+            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> Mullisüsteemi ja LED-valgusega tünn</li>
+            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> Termokate kiireks kütmiseks</li>
+            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> Pikendusjuhe ja tühjendusvoolik</li>
+            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> Parim hind terveks nädalavahetuseks</li>
+          </ul>
         </div>
-        <div class="addon-item">
-          <span>🛣️ <span data-i18n="addon_km_label">За пределами Таллинна:</span></span>
-          <span class="addon-price"><span id="ui_delivery_km">1.2</span>€ / км</span>
-        </div>
+
+        <a href="#calculator" style="display: block; text-align: center; padding: 12px; background: #f59e0b; border-radius: 12px; color: #000; text-decoration: none; font-weight: 700; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); transition: 0.2s;">
+          Vali pakett
+        </a>
       </div>
+
     </div>
-  </section>
+
+  </div>
+</section>
 
   <!-- CALCULATOR -->
   <section id="calculator">
