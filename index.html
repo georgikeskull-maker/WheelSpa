@@ -1709,21 +1709,31 @@ footer#contacts {
      * 4. ОБНОВЛЕНИЕ DOM И ЛОГИКА КАЛЬКУЛЯТОРА
      * ============================================================================
      */
-    function renderConfigToUI() {
-      document.getElementById('ui_price_weekday').textContent = appConfig.price_weekday;
-      document.getElementById('ui_price_weekend').textContent = appConfig.price_weekend;
-      document.getElementById('ui_price_full_weekend').textContent = appConfig.price_full_weekend;
-      document.getElementById('ui_price_wood').textContent = appConfig.price_wood;
-      document.getElementById('ui_delivery_tallinn').textContent = appConfig.delivery_tallinn;
-      document.getElementById('ui_delivery_km').textContent = appConfig.delivery_km;
-      document.getElementById('ui_phone_display').textContent = appConfig.phone_display;
+   function renderConfigToUI() {
+  const setTxt = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  };
 
-      const cleanPhone = String(appConfig.phone_wa).replace(/\D/g, '');
-      document.getElementById('footerPhoneLink').href = `tel:+${cleanPhone}`;
-      document.getElementById('heroWaBtn').href = `https://wa.me/${cleanPhone}`;
-      document.getElementById('footerWaLink').href = `https://wa.me/${cleanPhone}`;
-      document.getElementById('footerTgLink').href = `https://t.me/${appConfig.telegram_user}`;
-    }
+  setTxt('ui_price_weekday', appConfig.price_weekday);
+  setTxt('ui_price_weekend', appConfig.price_weekend);
+  setTxt('ui_price_full_weekend', appConfig.price_full_weekend);
+  setTxt('ui_price_wood', appConfig.price_wood);
+  setTxt('ui_delivery_tallinn', appConfig.delivery_tallinn);
+  setTxt('ui_delivery_km', appConfig.delivery_km);
+  setTxt('ui_phone_display', appConfig.phone_display);
+
+  const cleanPhone = String(appConfig.phone_wa).replace(/\D/g, '');
+  const setHref = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.href = val;
+  };
+
+  setHref('footerPhoneLink', `tel:+${cleanPhone}`);
+  setHref('heroWaBtn', `https://wa.me/${cleanPhone}`);
+  setHref('footerWaLink', `https://wa.me/${cleanPhone}`);
+  setHref('footerTgLink', `https://t.me/${appConfig.telegram_user}`);
+}
 
     function selectTariffFromCard(tariffVal) {
       const sel = document.getElementById('calcTariff');
