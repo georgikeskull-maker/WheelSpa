@@ -1067,11 +1067,26 @@ footer#contacts {
           <h3 data-i18n="price_p3_title" style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 4px;">Täispakett «Nädalavahetus»</h3>
           <p data-i18n="price_p3_sub" style="color: #9ca3af; font-size: 0.88rem; margin-bottom: 18px;">Reedest pühapäevani</p>
           
-          <div style="display: flex; align-items: baseline; gap: 4px; margin-bottom: 24px;">
-            <span id="ui_price_full_weekend" style="font-size: 2.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">220</span>
-            <span style="font-size: 2.4rem; font-weight: 800; color: #ffffff;">€</span>
-            <span style="font-size: 1rem; color: #9ca3af; font-weight: 500; margin-left: 4px;" data-i18n="price_per_weekend">/ pakett</span>
-          </div>
+          <div style="margin-top: 18px; display: flex; flex-direction: column; gap: 10px;">
+  <input 
+    type="tel" 
+    id="clientPhone" 
+    placeholder="+372 5X XX XX XX" 
+    required 
+    style="width: 100%; padding: 13px 16px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #fff; font-size: 1rem; outline: none; box-sizing: border-box;"
+  />
+  
+  <button 
+    type="button" 
+    id="submitBookingBtn" 
+    onclick="sendBookingOrder()" 
+    style="width: 100%; padding: 14px; background: var(--accent-amber, #f59e0b); color: #000; font-weight: 700; font-size: 1rem; border: none; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s ease;"
+    data-i18n="calc_submit_btn"
+  >
+    Saada broneeringusoov
+  </button>
+  <div id="bookingStatusMsg" style="display: none; font-size: 0.88rem; text-align: center; margin-top: 6px;"></div>
+</div>
 
           <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; display: flex; flex-direction: column; gap: 12px; color: #d1d5db; font-size: 0.92rem;">
             <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> <span data-i18n="price_f1">Mullisüsteemi ja LED-valgusega tünn</span></li>
@@ -1736,10 +1751,20 @@ footer#contacts {
 }
 
     function selectTariffFromCard(tariffVal) {
-      const sel = document.getElementById('calcTariff');
-      sel.value = tariffVal;
-      calculateTotal();
-    }
+  const sel = document.getElementById('calcTariff') || document.getElementById('calcPackage');
+  if (sel) {
+    sel.value = tariffVal;
+  }
+
+  if (typeof calculateTotal === 'function') {
+    calculateTotal();
+  }
+
+  const calcSec = document.getElementById('calculator');
+  if (calcSec) {
+    calcSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
 
     function toggleDistanceSlider() {
       const loc = document.getElementById('calcLocation').value;
