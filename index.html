@@ -470,6 +470,15 @@
       position: relative;
       transition: var(--transition);
     }
+    .price-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(245, 158, 11, 0.4) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+}
+.price-card button:hover {
+  filter: brightness(1.15);
+  transform: scale(1.02);
+}
 
     .price-card.popular {
       border-color: var(--accent-amber);
@@ -983,7 +992,7 @@ footer#contacts {
 
   </div>
 </section>
- <!-- PRICING -->
+<!-- PRICING -->
 <section id="pricing" class="pricing" style="padding: 70px 20px 80px;">
   <div class="container" style="max-width: 1140px; margin: 0 auto; text-align: center;">
     
@@ -994,11 +1003,11 @@ footer#contacts {
       Läbipaistvad tingimused ilma peidetud kuludeta. Tasuta kohaletoomine Tallinnas!
     </p>
 
-    <!-- Сетка пакетов -->
+    <!-- Сетка пакетов с родными классами price-card для подсветки при наведении -->
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; align-items: stretch; text-align: left;">
       
       <!-- Пакет 1: Будни -->
-      <div style="background: rgba(18, 24, 32, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between;">
+      <div class="price-card" style="background: rgba(18, 24, 32, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.25s ease;">
         <div>
           <h3 data-i18n="price_p1_title" style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 4px;">Argipäevad (E–N)</h3>
           <p data-i18n="price_p1_sub" style="color: #9ca3af; font-size: 0.88rem; margin-bottom: 18px;">Rent 24 tunniks</p>
@@ -1017,13 +1026,13 @@ footer#contacts {
           </ul>
         </div>
 
-        <button type="button" onclick="selectTariffFromCard('weekday')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; color: #fff; font-weight: 600; font-size: 0.95rem; transition: 0.2s;">
+        <button type="button" class="btn" onclick="selectTariffFromCard('weekday')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; color: #fff; font-weight: 600; font-size: 0.95rem; transition: all 0.2s ease;">
           Vali pakett
         </button>
       </div>
 
       <!-- Пакет 2: Выходной -->
-      <div style="background: rgba(18, 24, 32, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between;">
+      <div class="price-card" style="background: rgba(18, 24, 32, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.25s ease;">
         <div>
           <h3 data-i18n="price_p2_title" style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 4px;">Nädalavahetus (R–P)</h3>
           <p data-i18n="price_p2_sub" style="color: #9ca3af; font-size: 0.88rem; margin-bottom: 18px;">Rent 24 tunniks</p>
@@ -1042,13 +1051,13 @@ footer#contacts {
           </ul>
         </div>
 
-        <button type="button" onclick="selectTariffFromCard('weekend_day')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; color: #fff; font-weight: 600; font-size: 0.95rem; transition: 0.2s;">
+        <button type="button" class="btn" onclick="selectTariffFromCard('weekend_day')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; color: #fff; font-weight: 600; font-size: 0.95rem; transition: all 0.2s ease;">
           Vali pakett
         </button>
       </div>
 
-      <!-- Пакет 3: Полный уикенд -->
-      <div style="background: rgba(24, 30, 40, 0.85); border: 1.5px solid #f59e0b; border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; position: relative; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.15);">
+      <!-- Пакет 3: Полный уикенд (Хит) -->
+      <div class="price-card featured" style="background: rgba(24, 30, 40, 0.85); border: 1.5px solid #f59e0b; border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; position: relative; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.15); transition: all 0.25s ease;">
         
         <div data-i18n="badge_popular" style="position: absolute; top: -13px; right: 24px; background: #f59e0b; color: #000; font-size: 0.75rem; font-weight: 800; padding: 4px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em;">
           Populaarseim
@@ -1072,7 +1081,7 @@ footer#contacts {
           </ul>
         </div>
 
-        <button type="button" onclick="selectTariffFromCard('weekend_full')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: #f59e0b; border: none; border-radius: 12px; color: #000; font-weight: 700; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); transition: 0.2s;">
+        <button type="button" class="btn btn-primary" onclick="selectTariffFromCard('weekend_full')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: #f59e0b; border: none; border-radius: 12px; color: #000; font-weight: 700; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); transition: all 0.2s ease;">
           Vali pakett
         </button>
       </div>
@@ -1081,99 +1090,6 @@ footer#contacts {
 
   </div>
 </section>
-  <!-- CALCULATOR -->
-  <section id="calculator">
-    <div class="container">
-      <div class="section-header">
-        <h2 data-i18n="calc_title">Калькулятор стоимости и бронирование</h2>
-        <p data-i18n="calc_sub">Соберите свой заказ за 30 секунд и отправьте готовую заявку напрямую в мессенджер</p>
-      </div>
-
-      <div class="calc-wrapper">
-        <!-- Левая колонка: Настройки -->
-        <div>
-          <div class="form-group">
-            <label for="calcTariff" data-i18n="calc_lbl_tariff">1. Выберите тариф</label>
-            <select id="calcTariff" class="form-control" onchange="calculateTotal()">
-              <option value="weekday" data-i18n="opt_weekday">Будни (Пн–Чт)</option>
-              <option value="weekend" data-i18n="opt_weekend">Выходной день (24 часа)</option>
-              <option value="full_weekend" selected data-i18n="opt_full_weekend">Пакет «Весь Уикенд» (Пт–Вс)</option>
-            </select>
-          </div>
-
-          <div class="form-group" id="daysCountGroup" style="display: none;">
-            <div class="range-header">
-              <label for="calcDays" data-i18n="calc_lbl_days">Количество суток:</label>
-              <span class="range-val"><span id="daysVal">1</span></span>
-            </div>
-            <input type="range" id="calcDays" min="1" max="5" value="1" oninput="calculateTotal()">
-          </div>
-
-          <div class="form-group">
-            <label for="calcDate" data-i18n="calc_lbl_date">2. Желаемая дата заезда</label>
-            <input type="date" id="calcDate" class="form-control" onchange="checkDateAvailability(); calculateTotal()">
-            <div id="dateStatusBox" class="date-status"></div>
-          </div>
-
-          <div class="form-group">
-            <label for="calcLocation" data-i18n="calc_lbl_loc">3. Зона доставки</label>
-            <select id="calcLocation" class="form-control" onchange="toggleDistanceSlider(); calculateTotal()">
-              <option value="tallinn" data-i18n="loc_tallinn">В пределах Таллинна</option>
-              <option value="harju" data-i18n="loc_harju">За пределами Таллинна (Харьюмаа)</option>
-            </select>
-          </div>
-
-          <div class="form-group" id="distanceGroup" style="display: none;">
-            <div class="range-header">
-              <label for="calcKm" data-i18n="calc_lbl_km">Расстояние от границы Таллинна (км):</label>
-              <span class="range-val"><span id="kmVal">15</span> км</span>
-            </div>
-            <input type="range" id="calcKm" min="1" max="100" value="15" oninput="calculateTotal()">
-          </div>
-
-          <div class="form-group">
-            <div class="range-header">
-              <label for="calcWood" data-i18n="calc_lbl_wood">4. Сухие дрова в мешках (рекомендуем 2–3 мешка):</label>
-              <span class="range-val"><span id="woodVal">2</span> шт.</span>
-            </div>
-            <input type="range" id="calcWood" min="0" max="10" value="2" oninput="calculateTotal()">
-          </div>
-        </div>
-
-        <!-- Правая колонка: Итог -->
-        <div class="calc-summary">
-          <div>
-            <h3 style="margin-bottom: 18px;" data-i18n="sum_title">Ваш расчет:</h3>
-            <div class="summary-row">
-              <span data-i18n="sum_rent">Аренда купели:</span>
-              <strong><span id="sumRent">220</span>€</strong>
-            </div>
-            <div class="summary-row">
-              <span data-i18n="sum_delivery">Доставка:</span>
-              <strong><span id="sumDelivery">0</span>€</strong>
-            </div>
-            <div class="summary-row">
-              <span data-i18n="sum_wood">Дрова (<span id="sumWoodBags">2</span>):</span>
-              <strong><span id="sumWood">20</span>€</strong>
-            </div>
-            <div class="summary-total">
-              <span data-i18n="sum_total_lbl">Итого к оплате:</span>
-              <span class="total-price"><span id="sumTotal">240</span>€</span>
-            </div>
-          </div>
-
-       <!-- Блок ввода телефона и кнопка заказа -->
-        <div style="margin-top: 18px; display: flex; flex-direction: column; gap: 10px;">
-          <input type="tel" id="clientPhone" placeholder="+372 5X XX XX XX" required style="width: 100%; padding: 12px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; color: #fff; font-size: 1rem; outline: none; box-sizing: border-box;">
-          
-          <button id="submitBookingBtn" onclick="sendBookingOrder()" class="btn btn-primary" style="width: 100%; padding: 14px; font-weight: 700; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; background: #f59e0b; color: #000; border: none; font-size: 1rem;">
-            <span data-i18n="btn_submit_order">Saada broneeringusoov</span>
-          </button>
-          <div id="bookingStatusMsg" style="display: none; font-size: 0.88rem; text-align: center; margin-top: 6px;"></div>
-        </div>
-        </div>
-      </div>
-  </section>
 
   <!-- FAQ -->
   <section id="faq" style="background-color: #121417 !important; background-image: none !important; padding: 40px 0 70px;">
