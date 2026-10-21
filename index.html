@@ -1003,95 +1003,87 @@ footer#contacts {
       Läbipaistvad tingimused ilma peidetud kuludeta. Tasuta kohaletoomine Tallinnas!
     </p>
 
-    <!-- Сетка пакетов с родными классами price-card для подсветки при наведении -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; align-items: stretch; text-align: left;">
-      
-      <!-- Пакет 1: Будни -->
-      <div class="price-card" style="background: rgba(18, 24, 32, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.25s ease;">
-        <div>
-          <h3 data-i18n="price_p1_title" style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 4px;">Argipäevad (E–N)</h3>
-          <p data-i18n="price_p1_sub" style="color: #9ca3af; font-size: 0.88rem; margin-bottom: 18px;">Rent 24 tunniks</p>
-          
-          <div style="display: flex; align-items: baseline; gap: 4px; margin-bottom: 24px;">
-            <span id="ui_price_weekday" style="font-size: 2.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">90</span>
-            <span style="font-size: 2.4rem; font-weight: 800; color: #ffffff;">€</span>
-            <span style="font-size: 1rem; color: #9ca3af; font-weight: 500; margin-left: 4px;" data-i18n="price_per_24h">/ 24h</span>
-          </div>
-
-          <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; display: flex; flex-direction: column; gap: 12px; color: #d1d5db; font-size: 0.92rem;">
-            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> <span data-i18n="price_f1">Mullisüsteemi ja LED-valgusega tünn</span></li>
-            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> <span data-i18n="price_f2">Termokate kiireks kütmiseks</span></li>
-            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> <span data-i18n="price_f3">Pikendusjuhe ja tühjendusvoolik</span></li>
-            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> <span data-i18n="price_f4">Tasuta tarne Tallinnas ja lähiümbruses</span></li>
-          </ul>
-        </div>
-
-        <button type="button" class="btn" onclick="selectTariffFromCard('weekday')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; color: #fff; font-weight: 600; font-size: 0.95rem; transition: all 0.2s ease;">
-          Vali pakett
-        </button>
-      </div>
-
-      <!-- Пакет 2: Выходной -->
-      <div class="price-card" style="background: rgba(18, 24, 32, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.25s ease;">
-        <div>
-          <h3 data-i18n="price_p2_title" style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 4px;">Nädalavahetus (R–P)</h3>
-          <p data-i18n="price_p2_sub" style="color: #9ca3af; font-size: 0.88rem; margin-bottom: 18px;">Rent 24 tunniks</p>
-          
-          <div style="display: flex; align-items: baseline; gap: 4px; margin-bottom: 24px;">
-            <span id="ui_price_weekend" style="font-size: 2.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">130</span>
-            <span style="font-size: 2.4rem; font-weight: 800; color: #ffffff;">€</span>
-            <span style="font-size: 1rem; color: #9ca3af; font-weight: 500; margin-left: 4px;" data-i18n="price_per_24h">/ 24h</span>
-          </div>
-
-          <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; display: flex; flex-direction: column; gap: 12px; color: #d1d5db; font-size: 0.92rem;">
-            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> <span data-i18n="price_f1">Mullisüsteemi ja LED-valgusega tünn</span></li>
-            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> <span data-i18n="price_f2">Termokate kiireks kütmiseks</span></li>
-            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> <span data-i18n="price_f3">Pikendusjuhe ja tühjendusvoolik</span></li>
-            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> <span data-i18n="price_f4">Tasuta tarne Tallinnas ja lähiümbruses</span></li>
-          </ul>
-        </div>
-
-        <button type="button" class="btn" onclick="selectTariffFromCard('weekend_day')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; color: #fff; font-weight: 600; font-size: 0.95rem; transition: all 0.2s ease;">
-          Vali pakett
-        </button>
-      </div>
-
-      <!-- Пакет 3: Полный уикенд (Хит) -->
-      <div class="price-card featured" style="background: rgba(24, 30, 40, 0.85); border: 1.5px solid #f59e0b; border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; position: relative; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.15); transition: all 0.25s ease;">
+    <!-- Сетка пакетов цен -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: stretch; text-align: left;">
         
-        <div data-i18n="badge_popular" style="position: absolute; top: -13px; right: 24px; background: #f59e0b; color: #000; font-size: 0.75rem; font-weight: 800; padding: 4px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em;">
-          Populaarseim
-        </div>
+        <!-- Пакет 1: Будни -->
+        <div class="price-card" style="background: rgba(18, 24, 32, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.25s ease;">
+          <div>
+            <h3 data-i18n="price_p1_title" style="font-size: 1.25rem; font-weight: 700; color: #fff; margin: 0 0 16px 0; min-height: 28px;">Argipäevad (E–N)</h3>
+            
+            <div style="display: flex; align-items: baseline; gap: 4px; margin-bottom: 24px;">
+              <span id="ui_price_weekday" style="font-size: 2.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">90</span>
+              <span style="font-size: 2.4rem; font-weight: 800; color: #ffffff;">€</span>
+              <span style="font-size: 1rem; color: #9ca3af; font-weight: 500; margin-left: 4px;" data-i18n="price_per_24h">/ 24h</span>
+            </div>
 
-        <div>
-          <h3 data-i18n="price_p3_title" style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 4px;">Täispakett «Nädalavahetus»</h3>
-          <p data-i18n="price_p3_sub" style="color: #9ca3af; font-size: 0.88rem; margin-bottom: 18px;">Reedest pühapäevani</p>
-          
-          <div style="margin-top: 18px; display: flex; flex-direction: column; gap: 10px;">
-  <div style="display: flex; align-items: baseline; gap: 4px; margin-bottom: 24px;">
-            <span id="ui_price_full_weekend" style="font-size: 2.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">220</span>
-            <span style="font-size: 2.4rem; font-weight: 800; color: #ffffff;">€</span>
-            <span style="font-size: 1rem; color: #9ca3af; font-weight: 500; margin-left: 4px;" data-i18n="price_per_weekend">/ pakett</span>
+            <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; display: flex; flex-direction: column; gap: 12px; color: #d1d5db; font-size: 0.92rem;">
+              <li style="display: flex; align-items: flex-start; gap: 10px;"><span style="color: #f59e0b; line-height: 1.3;">✓</span><span data-i18n="price_f1">Mullisüsteemi ja LED-valgusega tünn</span></li>
+              <li style="display: flex; align-items: flex-start; gap: 10px;"><span style="color: #f59e0b; line-height: 1.3;">✓</span><span data-i18n="price_f2">Termokate kiireks kütmiseks</span></li>
+              <li style="display: flex; align-items: flex-start; gap: 10px;"><span style="color: #f59e0b; line-height: 1.3;">✓</span><span data-i18n="price_f3">Pikendusjuhe ja tühjendusvoolik</span></li>
+              <li style="display: flex; align-items: flex-start; gap: 10px;"><span style="color: #f59e0b; line-height: 1.3;">✓</span><span data-i18n="price_f4">Tasuta tarne Tallinnas ja lähiümbruses</span></li>
+            </ul>
           </div>
-  </button>
-  <div id="bookingStatusMsg" style="display: none; font-size: 0.88rem; text-align: center; margin-top: 6px;"></div>
-</div>
 
-          <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; display: flex; flex-direction: column; gap: 12px; color: #d1d5db; font-size: 0.92rem;">
-            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> <span data-i18n="price_f1">Mullisüsteemi ja LED-valgusega tünn</span></li>
-            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> <span data-i18n="price_f2">Termokate kiireks kütmiseks</span></li>
-            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> <span data-i18n="price_f3">Pikendusjuhe ja tühjendusvoolik</span></li>
-            <li style="display: flex; align-items: center; gap: 10px;"><span style="color: #f59e0b;">✓</span> <span data-i18n="price_p3_f4">Tasuta tarne + soodsaim hind terveks nädalavahetuseks</span></li>
-          </ul>
+          <button type="button" class="btn" onclick="selectTariffFromCard('weekday')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; color: #fff; font-weight: 600; font-size: 0.95rem; transition: all 0.2s ease;">
+            Vali pakett
+          </button>
         </div>
 
-       <button type="button" class="btn btn-primary" onclick="selectTariffFromCard('weekend_full')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: #f59e0b; border: none; border-radius: 12px; color: #000; font-weight: 700; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); transition: all 0.2s ease;">
-          Vali pakett
-        </button>
+        <!-- Пакет 2: Выходной -->
+        <div class="price-card" style="background: rgba(18, 24, 32, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.25s ease;">
+          <div>
+            <h3 data-i18n="price_p2_title" style="font-size: 1.25rem; font-weight: 700; color: #fff; margin: 0 0 16px 0; min-height: 28px;">Nädalavahetus (R–P)</h3>
+            
+            <div style="display: flex; align-items: baseline; gap: 4px; margin-bottom: 24px;">
+              <span id="ui_price_weekend" style="font-size: 2.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">130</span>
+              <span style="font-size: 2.4rem; font-weight: 800; color: #ffffff;">€</span>
+              <span style="font-size: 1rem; color: #9ca3af; font-weight: 500; margin-left: 4px;" data-i18n="price_per_24h">/ 24h</span>
+            </div>
+
+            <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; display: flex; flex-direction: column; gap: 12px; color: #d1d5db; font-size: 0.92rem;">
+              <li style="display: flex; align-items: flex-start; gap: 10px;"><span style="color: #f59e0b; line-height: 1.3;">✓</span><span data-i18n="price_f1">Mullisüsteemi ja LED-valgusega tünn</span></li>
+              <li style="display: flex; align-items: flex-start; gap: 10px;"><span style="color: #f59e0b; line-height: 1.3;">✓</span><span data-i18n="price_f2">Termokate kiireks kütmiseks</span></li>
+              <li style="display: flex; align-items: flex-start; gap: 10px;"><span style="color: #f59e0b; line-height: 1.3;">✓</span><span data-i18n="price_f3">Pikendusjuhe ja tühjendusvoolik</span></li>
+              <li style="display: flex; align-items: flex-start; gap: 10px;"><span style="color: #f59e0b; line-height: 1.3;">✓</span><span data-i18n="price_f4">Tasuta tarne Tallinnas ja lähiümbruses</span></li>
+            </ul>
+          </div>
+
+          <button type="button" class="btn" onclick="selectTariffFromCard('weekend_day')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; color: #fff; font-weight: 600; font-size: 0.95rem; transition: all 0.2s ease;">
+            Vali pakett
+          </button>
+        </div>
+
+        <!-- Пакет 3: Полный уикенд (Хит) -->
+        <div class="price-card featured" style="background: rgba(24, 30, 40, 0.85); border: 1.5px solid #f59e0b; border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; position: relative; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.15); transition: all 0.25s ease;">
+          
+          <div data-i18n="badge_popular" style="position: absolute; top: -13px; right: 24px; background: #f59e0b; color: #000; font-size: 0.75rem; font-weight: 800; padding: 4px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em;">
+            Populaarseim
+          </div>
+
+          <div>
+            <h3 data-i18n="price_p3_title" style="font-size: 1.25rem; font-weight: 700; color: #fff; margin: 0 0 16px 0; min-height: 28px;">Täispakett «Nädalavahetus»</h3>
+
+            <div style="display: flex; align-items: baseline; gap: 4px; margin-bottom: 24px;">
+              <span id="ui_price_full_weekend" style="font-size: 2.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">220</span>
+              <span style="font-size: 2.4rem; font-weight: 800; color: #ffffff;">€</span>
+              <span style="font-size: 1rem; color: #9ca3af; font-weight: 500; margin-left: 4px;" data-i18n="price_per_weekend">/ pakett</span>
+            </div>
+
+            <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; display: flex; flex-direction: column; gap: 12px; color: #d1d5db; font-size: 0.92rem;">
+              <li style="display: flex; align-items: flex-start; gap: 10px;"><span style="color: #f59e0b; line-height: 1.3;">✓</span><span data-i18n="price_f1">Mullisüsteemi ja LED-valgusega tünn</span></li>
+              <li style="display: flex; align-items: flex-start; gap: 10px;"><span style="color: #f59e0b; line-height: 1.3;">✓</span><span data-i18n="price_f2">Termokate kiireks kütmiseks</span></li>
+              <li style="display: flex; align-items: flex-start; gap: 10px;"><span style="color: #f59e0b; line-height: 1.3;">✓</span><span data-i18n="price_f3">Pikendusjuhe ja tühjendusvoolik</span></li>
+              <li style="display: flex; align-items: flex-start; gap: 10px;"><span style="color: #f59e0b; line-height: 1.3;">✓</span><span data-i18n="price_p3_f4">Tasuta tarne + soodsaim hind terveks nädalavahetuseks</span></li>
+            </ul>
+          </div>
+
+          <button type="button" class="btn btn-primary" onclick="selectTariffFromCard('weekend_full')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: #f59e0b; border: none; border-radius: 12px; color: #000; font-weight: 700; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); transition: all 0.2s ease;">
+            Vali pakett
+          </button>
+        </div>
+
       </div>
-
-    </div>
-
   </div>
 </section>
   <!-- CALCULATOR & BOOKING -->
