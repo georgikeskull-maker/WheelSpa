@@ -1090,6 +1090,94 @@ footer#contacts {
 
   </div>
 </section>
+  <!-- CALCULATOR & BOOKING -->
+  <section id="calculator" class="calculator" style="padding: 70px 20px 80px; background: rgba(18, 24, 32, 0.5);">
+    <div class="container" style="max-width: 800px; margin: 0 auto;">
+      
+      <div style="text-align: center; margin-bottom: 36px;">
+        <h2 data-i18n="calc_title" style="font-size: 2.2rem; font-weight: 800; color: #ffffff; margin-bottom: 12px;">
+          Broneeri ja arvuta hind
+        </h2>
+        <p data-i18n="calc_subtitle" style="color: #9ca3af; font-size: 1.05rem;">
+          Vali kuupäev, pakett ja lisad — kohene hinna arvutus
+        </p>
+      </div>
+
+      <div style="background: rgba(18, 24, 32, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 32px 28px; box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);">
+        
+        <!-- Выбор даты -->
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; color: #fff; font-weight: 600; margin-bottom: 8px; font-size: 0.95rem;" data-i18n="calc_label_date">Rendikuupäev</label>
+          <input type="date" id="calcDate" onchange="checkDateAvailability(); calculateTotal();" style="width: 100%; padding: 12px 16px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; color: #fff; font-size: 1rem; outline: none;">
+          <div id="dateStatusBox" style="margin-top: 8px; font-size: 0.85rem;"></div>
+        </div>
+
+        <!-- Выбор тарифа -->
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; color: #fff; font-weight: 600; margin-bottom: 8px; font-size: 0.95rem;" data-i18n="calc_label_tariff">Vali pakett</label>
+          <select id="calcTariff" onchange="calculateTotal();" style="width: 100%; padding: 12px 16px; background: #161d26; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; color: #fff; font-size: 1rem; outline: none;">
+            <option value="weekday" data-i18n="calc_opt_weekday">Argipäev (E–N) — 90€ / 24h</option>
+            <option value="weekend_day" data-i18n="calc_opt_weekend">Nädalavahetus (R–P) — 130€ / 24h</option>
+            <option value="weekend_full" data-i18n="calc_opt_full">Täispakett «Nädalavahetus» — 220€ (R–P)</option>
+          </select>
+        </div>
+
+        <!-- Локация / Доставка -->
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; color: #fff; font-weight: 600; margin-bottom: 8px; font-size: 0.95rem;" data-i18n="calc_label_loc">Asukoht / Tarne</label>
+          <select id="calcLocation" onchange="toggleDistanceSlider(); calculateTotal();" style="width: 100%; padding: 12px 16px; background: #161d26; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; color: #fff; font-size: 1rem; outline: none;">
+            <option value="tallinn" data-i18n="calc_opt_tallinn">Tallinn (Tasuta kohaletoomine)</option>
+            <option value="harju" data-i18n="calc_opt_harju">Harjumaa (väljaspool Tallinnat)</option>
+          </select>
+        </div>
+
+        <!-- Слайдер расстояния (скрыт по умолчанию) -->
+        <div id="distanceGroup" style="display: none; margin-bottom: 20px;">
+          <label style="display: block; color: #fff; font-weight: 600; margin-bottom: 8px; font-size: 0.95rem;">
+            <span data-i18n="calc_label_dist">Kaugus Tallinnast:</span> <span id="distVal" style="color: #f59e0b; font-weight: 700;">10</span> km
+          </label>
+          <input type="range" id="calcDistance" min="1" max="100" value="10" oninput="document.getElementById('distVal').textContent = this.value; calculateTotal();" style="width: 100%;">
+        </div>
+
+        <!-- Дрова -->
+        <div style="margin-bottom: 24px;">
+          <label style="display: block; color: #fff; font-weight: 600; margin-bottom: 8px; font-size: 0.95rem;" data-i18n="calc_label_wood">Küttepuud (40L kott leppa)</label>
+          <input type="number" id="calcWood" min="0" max="10" value="0" onchange="calculateTotal();" oninput="calculateTotal();" style="width: 100%; padding: 12px 16px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; color: #fff; font-size: 1rem; outline: none;">
+        </div>
+
+        <!-- Итоговая плашка -->
+        <div style="background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.92rem; color: #9ca3af;">
+            <span data-i18n="calc_sum_rent">Rendi maksumus:</span>
+            <span><strong id="sumRent" style="color: #fff;">0</strong> €</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.92rem; color: #9ca3af;">
+            <span data-i18n="calc_sum_delivery">Kohaletoomine:</span>
+            <span><strong id="sumDelivery" style="color: #fff;">0</strong> €</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.92rem; color: #9ca3af;">
+            <span data-i18n="calc_sum_wood">Küttepuud:</span>
+            <span><strong id="sumWood" style="color: #fff;">0</strong> €</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 12px; font-size: 1.25rem; font-weight: 800; color: #fff;">
+            <span data-i18n="calc_sum_total">Kokku:</span>
+            <span><strong id="sumTotal" style="color: #f59e0b;">0</strong> €</span>
+          </div>
+        </div>
+
+        <!-- Кнопки связи для брони -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <button type="button" onclick="sendOrder('whatsapp')" style="padding: 14px; background: #25d366; color: #fff; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 0.95rem;">
+            WhatsApp
+          </button>
+          <button type="button" onclick="sendOrder('telegram')" style="padding: 14px; background: #0088cc; color: #fff; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 0.95rem;">
+            Telegram
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <!-- FAQ -->
   <section id="faq" style="background-color: #121417 !important; background-image: none !important; padding: 40px 0 70px;">
