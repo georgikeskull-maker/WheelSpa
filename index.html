@@ -997,16 +997,16 @@ footer#contacts {
     <!-- Сетка пакетов -->
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; align-items: stretch; text-align: left;">
       
-      <!-- Пакет 1: Будни (90€) -->
+      <!-- Пакет 1: Будни -->
       <div style="background: rgba(18, 24, 32, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between;">
         <div>
           <h3 data-i18n="price_p1_title" style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 4px;">Argipäevad (E–N)</h3>
           <p data-i18n="price_p1_sub" style="color: #9ca3af; font-size: 0.88rem; margin-bottom: 18px;">Rent 24 tunniks</p>
           
-          <!-- Цена в стиле Тильды -->
-          <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 24px;">
-            <span style="font-size: 2.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">90€</span>
-            <span style="font-size: 1rem; color: #9ca3af; font-weight: 500;" data-i18n="price_per_24h">/ 24h</span>
+          <div style="display: flex; align-items: baseline; gap: 4px; margin-bottom: 24px;">
+            <span id="ui_price_weekday" style="font-size: 2.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">90</span>
+            <span style="font-size: 2.4rem; font-weight: 800; color: #ffffff;">€</span>
+            <span style="font-size: 1rem; color: #9ca3af; font-weight: 500; margin-left: 4px;" data-i18n="price_per_24h">/ 24h</span>
           </div>
 
           <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; display: flex; flex-direction: column; gap: 12px; color: #d1d5db; font-size: 0.92rem;">
@@ -1017,21 +1017,21 @@ footer#contacts {
           </ul>
         </div>
 
-        <button type="button" onclick="selectPackage('workday')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; color: #fff; font-weight: 600; font-size: 0.95rem; transition: 0.2s;">
+        <button type="button" onclick="selectTariffFromCard('weekday')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; color: #fff; font-weight: 600; font-size: 0.95rem; transition: 0.2s;">
           Vali pakett
         </button>
       </div>
 
-      <!-- Пакет 2: Выходной (130€) -->
+      <!-- Пакет 2: Выходной -->
       <div style="background: rgba(18, 24, 32, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between;">
         <div>
           <h3 data-i18n="price_p2_title" style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 4px;">Nädalavahetus (R–P)</h3>
           <p data-i18n="price_p2_sub" style="color: #9ca3af; font-size: 0.88rem; margin-bottom: 18px;">Rent 24 tunniks</p>
           
-          <!-- Цена в стиле Тильды -->
-          <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 24px;">
-            <span style="font-size: 2.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">130€</span>
-            <span style="font-size: 1rem; color: #9ca3af; font-weight: 500;" data-i18n="price_per_24h">/ 24h</span>
+          <div style="display: flex; align-items: baseline; gap: 4px; margin-bottom: 24px;">
+            <span id="ui_price_weekend" style="font-size: 2.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">130</span>
+            <span style="font-size: 2.4rem; font-weight: 800; color: #ffffff;">€</span>
+            <span style="font-size: 1rem; color: #9ca3af; font-weight: 500; margin-left: 4px;" data-i18n="price_per_24h">/ 24h</span>
           </div>
 
           <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; display: flex; flex-direction: column; gap: 12px; color: #d1d5db; font-size: 0.92rem;">
@@ -1042,12 +1042,12 @@ footer#contacts {
           </ul>
         </div>
 
-        <button type="button" onclick="selectPackage('weekend_day')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; color: #fff; font-weight: 600; font-size: 0.95rem; transition: 0.2s;">
+        <button type="button" onclick="selectTariffFromCard('weekend_day')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; color: #fff; font-weight: 600; font-size: 0.95rem; transition: 0.2s;">
           Vali pakett
         </button>
       </div>
 
-      <!-- Пакет 3: Полный уикенд (220€ - Хит) -->
+      <!-- Пакет 3: Полный уикенд -->
       <div style="background: rgba(24, 30, 40, 0.85); border: 1.5px solid #f59e0b; border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; justify-content: space-between; position: relative; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.15);">
         
         <div data-i18n="badge_popular" style="position: absolute; top: -13px; right: 24px; background: #f59e0b; color: #000; font-size: 0.75rem; font-weight: 800; padding: 4px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em;">
@@ -1058,10 +1058,10 @@ footer#contacts {
           <h3 data-i18n="price_p3_title" style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 4px;">Täispakett «Nädalavahetus»</h3>
           <p data-i18n="price_p3_sub" style="color: #9ca3af; font-size: 0.88rem; margin-bottom: 18px;">Reedest pühapäevani</p>
           
-          <!-- Цена в стиле Тильды -->
-          <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 24px;">
-            <span style="font-size: 2.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">220€</span>
-            <span style="font-size: 1rem; color: #9ca3af; font-weight: 500;" data-i18n="price_per_weekend">/ pakett</span>
+          <div style="display: flex; align-items: baseline; gap: 4px; margin-bottom: 24px;">
+            <span id="ui_price_full_weekend" style="font-size: 2.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em;">220</span>
+            <span style="font-size: 2.4rem; font-weight: 800; color: #ffffff;">€</span>
+            <span style="font-size: 1rem; color: #9ca3af; font-weight: 500; margin-left: 4px;" data-i18n="price_per_weekend">/ pakett</span>
           </div>
 
           <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; display: flex; flex-direction: column; gap: 12px; color: #d1d5db; font-size: 0.92rem;">
@@ -1072,7 +1072,7 @@ footer#contacts {
           </ul>
         </div>
 
-        <button type="button" onclick="selectPackage('weekend_full')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: #f59e0b; border: none; border-radius: 12px; color: #000; font-weight: 700; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); transition: 0.2s;">
+        <button type="button" onclick="selectTariffFromCard('weekend_full')" data-i18n="btn_select_pkg" style="width: 100%; cursor: pointer; text-align: center; padding: 13px; background: #f59e0b; border: none; border-radius: 12px; color: #000; font-weight: 700; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); transition: 0.2s;">
           Vali pakett
         </button>
       </div>
@@ -1081,7 +1081,6 @@ footer#contacts {
 
   </div>
 </section>
-
   <!-- CALCULATOR -->
   <section id="calculator">
     <div class="container">
