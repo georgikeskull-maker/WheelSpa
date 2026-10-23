@@ -1278,8 +1278,63 @@ footer#contacts {
     </div>
   </section>
 
-      <!-- Копирайт -->
-      <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 16px; text-align: center; font-size: 0.8rem; color: #78716c;">
+     <!-- FOOTER & CONTACTS -->
+  <footer id="contacts" style="background: #111418; padding: 48px 0 24px; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+    <div class="container" style="max-width: 1140px; margin: 0 auto; padding: 0 20px; box-sizing: border-box;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px; margin-bottom: 36px;">
+        
+        <!-- Колонка 1: Бренд -->
+        <div>
+          <div style="margin-bottom: 12px; font-size: 1.25rem; font-weight: 800; letter-spacing: 0.05em; color: #fff;">
+            🔥 WHEEL<span style="color: #f59e0b;">SPA</span>
+          </div>
+          <p style="color: #9ca3af; font-size: 0.88rem; line-height: 1.6; margin: 0;" data-i18n="footer_desc">
+            Mobiilse kümblustünni rent Tallinnas ja Harjumaal. Ideaalne perepuhkuseks, sünnipäevadeks ja lõõgastumiseks.
+          </p>
+        </div>
+
+        <!-- Колонка 2: Прямая связь -->
+        <div>
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: #fff; margin: 0 0 14px 0; text-transform: uppercase; letter-spacing: 0.05em;" data-i18n="footer_contacts_title">
+            Kiire ühendus
+          </h4>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <a href="tel:+37258672888" id="footerPhoneLink" style="font-size: 1.05rem; font-weight: 700; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+              <span style="color: #f59e0b;">📞</span>
+              <span id="ui_phone_display">+372 586 7 2888</span>
+            </a>
+            <div style="display: flex; gap: 8px; margin-top: 2px;">
+              <a href="#" id="footerWaLink" target="_blank" rel="noopener" style="padding: 6px 12px; border-radius: 6px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); color: #e5e7eb; font-size: 0.82rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                WhatsApp
+              </a>
+              <a href="#" id="footerTgLink" target="_blank" rel="noopener" style="padding: 6px 12px; border-radius: 6px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); color: #e5e7eb; font-size: 0.82rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                Telegram
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Колонка 3: Локация и график -->
+        <div>
+          <h4 style="font-size: 0.95rem; font-weight: 700; color: #fff; margin: 0 0 14px 0; text-transform: uppercase; letter-spacing: 0.05em;" data-i18n="footer_loc_title">
+            Asukoht ja tööaeg
+          </h4>
+          <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: #9ca3af; line-height: 1.5;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: #f59e0b;">📍</span>
+              <span>Tallinn ja Harjumaa</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: #f59e0b;">🕒</span>
+              <span style="white-space: nowrap;">Iga päev 09:00 – 22:00</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Копирайт под чертой -->
+      <div style="border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 20px; text-align: center; font-size: 0.8rem; color: #6b7280;">
         © 2026 WheelSpa · GVKFORGE OÜ (17623024) · All rights reserved.
       </div>
     </div>
@@ -1304,8 +1359,8 @@ footer#contacts {
       price_wood: 10,
       delivery_tallinn: 0,
       delivery_km: 1.2,
-      phone_display: '+372 555 1 6666',
-      phone_wa: '37255516666',
+      phone_display: '+372 586 7 2888',
+      phone_wa: '37258672888',
       telegram_user: 'wheelspa_ee',
       busy_dates: ['2026-10-16', '2026-10-17']
     };
@@ -1431,6 +1486,10 @@ footer#contacts {
     badge_popular: "Популярный",
         pricing_sub: "Прозрачные условия без скрытых доплат. Бесплатная доставка по Таллину!",
         calc_subtitle: "Выберите дату, пакет и опции — мгновенный расчет стоимости",
+        footer_desc: "Аренда мобильной спа-купели в Таллине и уезде Харьюмаа. Идеально для семейного отдыха, праздников и релакса.",
+    footer_contacts_title: "Прямая связь",
+    footer_loc_title: "Локация и время работы",
+    footer_hours: "Каждый день 09:00 – 22:00",
       },
       et: {
         nav_features: 'Kümblustünnist',
@@ -1543,6 +1602,10 @@ footer#contacts {
     badge_popular: "Populaarseim",
         pricing_sub: "Läbipaistvad tingimused ilma peidetud kuludeta. Tasuta kohaletoomine Tallinnas!",
         calc_subtitle: "Vali kuupäev, pakett ja lisad — kohene hinna arvutus",
+        footer_desc: "Mobiilse kümblustünni rent Tallinnas ja Harjumaal. Ideaalne perepuhkuseks, sünnipäevadeks ja lõõgastumiseks.",
+    footer_contacts_title: "Kiire ühendus",
+    footer_loc_title: "Asukoht ja tööaeg",
+    footer_hours: "Iga päev 09:00 – 22:00",
         
       },
       en: {
@@ -1656,6 +1719,10 @@ footer#contacts {
     badge_popular: "Most Popular",
         pricing_sub: "Transparent terms with no hidden costs. Free delivery in Tallinn!",
         calc_subtitle: "Choose date, package and extras — instant price estimate",
+        footer_desc: "Mobile hot tub rental in Tallinn and Harju County. Perfect for family weekends, birthdays and relaxation.",
+    footer_contacts_title: "Quick Contact",
+    footer_loc_title: "Location & Working Hours",
+    footer_hours: "Every day 09:00 – 22:00",
       }
     };
 
