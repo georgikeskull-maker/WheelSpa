@@ -1011,6 +1011,62 @@ footer#contacts {
 
   </div>
 </section>
+  <!-- GALLERY SECTION -->
+  <section id="gallery" style="padding: 60px 0; background: #0e1115; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+    <div class="container" style="max-width: 1140px; margin: 0 auto; padding: 0 20px; box-sizing: border-box;">
+      
+      <div style="text-align: center; margin-bottom: 36px;">
+        <h2 style="font-size: 2rem; font-weight: 800; color: #fff; margin: 0 0 10px 0;" data-i18n="gallery_title">
+          Galerii & Elamused
+        </h2>
+        <p style="color: #9ca3af; font-size: 1rem; margin: 0;" data-i18n="gallery_sub">
+          Vaata, kuidas näeb välja tõeline lõõgastus ratastel
+        </p>
+      </div>
+
+      <!-- Сетка с точными именами загруженных картинок -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+        
+        <!-- Фото 1 -->
+        <div onclick="openLightbox(this)" style="position: relative; border-radius: 14px; overflow: hidden; aspect-ratio: 4/3; background: #161a1f; border: 1px solid rgba(255,255,255,0.08); cursor: pointer;">
+          <img src="Gemini_Generated_Image_r6kox1r6kox1r6ko.jpg" alt="WheelSpa õhtune idüll" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <div style="position: absolute; bottom: 12px; left: 12px; background: rgba(0,0,0,0.65); backdrop-filter: blur(8px); padding: 5px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
+            🌲 Õhtune idüll
+          </div>
+        </div>
+
+        <!-- Фото 2 -->
+        <div onclick="openLightbox(this)" style="position: relative; border-radius: 14px; overflow: hidden; aspect-ratio: 4/3; background: #161a1f; border: 1px solid rgba(255,255,255,0.08); cursor: pointer;">
+          <img src="image%20(1).jpg" alt="LED valgustus ja mullid" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <div style="position: absolute; bottom: 12px; left: 12px; background: rgba(0,0,0,0.65); backdrop-filter: blur(8px); padding: 5px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
+            ✨ LED & Mullisüsteem
+          </div>
+        </div>
+
+        <!-- Фото 3 -->
+        <div onclick="openLightbox(this)" style="position: relative; border-radius: 14px; overflow: hidden; aspect-ratio: 4/3; background: #161a1f; border: 1px solid rgba(255,255,255,0.08); cursor: pointer;">
+          <img src="image%20AI(1).jpg" alt="Võimas puukütteahi" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <div style="position: absolute; bottom: 12px; left: 12px; background: rgba(0,0,0,0.65); backdrop-filter: blur(8px); padding: 5px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
+            🔥 Kuum ahi & puud
+          </div>
+        </div>
+
+        <!-- Фото 4 -->
+        <div onclick="openLightbox(this)" style="position: relative; border-radius: 14px; overflow: hidden; aspect-ratio: 4/3; background: #161a1f; border: 1px solid rgba(255,255,255,0.08); cursor: pointer;">
+          <img src="IMG_20261016_232133.jpg" alt="Lihtne vedu" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <div style="position: absolute; bottom: 12px; left: 12px; background: rgba(0,0,0,0.65); backdrop-filter: blur(8px); padding: 5px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; color: #fff; border: 1px solid rgba(255,255,255,0.1);">
+            🚗 Lihtne transport
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Окно увеличения на весь экран -->
+  <div id="galleryLightbox" onclick="this.style.display='none'" style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 20px; cursor: zoom-out;">
+    <img id="lightboxImg" src="" style="max-width: 92vw; max-height: 88vh; border-radius: 12px; object-fit: contain; box-shadow: 0 20px 50px rgba(0,0,0,0.9);">
+  </div>
 <!-- PRICING -->
 <section id="pricing" class="pricing" style="padding: 70px 20px 80px;">
   <div class="container" style="max-width: 1140px; margin: 0 auto; text-align: center;">
@@ -2189,6 +2245,15 @@ footer#contacts {
   loadDataFromGoogleSheets();
      checkDateAvailability();
 });
+    function openLightbox(el) {
+    const img = el.querySelector('img');
+    const lb = document.getElementById('galleryLightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    if (img && lb && lbImg) {
+      lbImg.src = img.src;
+      lb.style.display = 'flex';
+    }
+  }
   </script>
 </body>
 </html>
