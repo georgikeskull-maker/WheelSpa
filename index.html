@@ -1048,29 +1048,12 @@ footer#contacts {
           cursor: pointer;
           box-shadow: 0 14px 35px rgba(0, 0, 0, 0.4);
         }
-        .tilda-card {
-          position: relative;
-          height: 330px;
-          border-radius: 20px;
-          overflow: hidden;
-          background: #14181d;
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          cursor: pointer;
-          box-shadow: 0 14px 35px rgba(0, 0, 0, 0.4);
-          /* Принудительная аппаратная фиксация слоя от дерганий */
-          -webkit-transform: translateZ(0);
-          transform: translateZ(0);
-          -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-        }
         .tilda-card img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           display: block;
           transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
-          -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
         }
         .tilda-card:hover img {
           transform: scale(1.04);
@@ -1093,8 +1076,6 @@ footer#contacts {
           align-items: center;
           gap: 8px;
           pointer-events: none;
-          /* Изоляция бейджа, чтобы он не конфликтовал со скроллом */
-          transform: translateZ(0);
         }
 
         /* Адаптив для планшетов и мобилок */
@@ -1118,13 +1099,8 @@ footer#contacts {
             height: 230px;
             border-radius: 16px;
           }
-          /* Отключаем тяжелый блюр на телефоне — он вызывает микролаги */
-          .tilda-badge {
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            background: rgba(12, 15, 19, 0.88);
-          }
         }
+      </style>
 
       <!-- Верхний ряд: Широкая + Компактная -->
       <div class="tilda-gallery-grid">
