@@ -1596,6 +1596,27 @@ footer#contacts {
     // Активное состояние приложения
     let appConfig = { ...FALLBACK_CONFIG };
     let currentLang = 'et';
+  // Автоматический перевод на полный 3-дневный тариф при выборе выходных
+  function handleBookingDateChange() {
+    const dateInput = document.getElementById('calcDate');
+    const tariffSelect = document.getElementById('calcTariff');
+
+    if (!dateInput || !dateInput.value || !tariffSelect) return;
+
+    const parts = dateInput.value.split('-');
+    const chosenDate = new Date(parts[0], parts[1] - 1, parts[2]);
+    const dayOfWeek = chosenDate.getDay(); // 5 = Пятница, 6 = Суббота, 0 = Воскресенье
+
+    // Если выбрана пятница, суббота или воскресенье:
+    if (dayOfWeek === 5 || dayOfWeek === 6 || dayOfWeek === 0) {
+      tariffSelect.value = 'weekend_full'; // Ставим Täispakett Nädalavahetus (220€)
+    }
+
+    // Запускаем пересчет цены в калькуляторе
+    if (typeof calculateTotal === 'function') {
+      calculateTotal();
+    }
+  }
 
     /**
      * ============================================================================
