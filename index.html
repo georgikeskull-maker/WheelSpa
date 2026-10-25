@@ -992,16 +992,27 @@ footer#contacts {
     font-weight: 700 !important;
   }
   
-  /* Эффект занятых дат (Красные ячейки с перечеркиванием) */
+  /* Прошедшие даты — просто серые и некликабельные */
   .flatpickr-day.flatpickr-disabled,
-  .flatpickr-day.flatpickr-disabled:hover,
-  .flatpickr-day.is-booked {
-    background: rgba(239, 68, 68, 0.12) !important;
+  .flatpickr-day.flatpickr-disabled:hover {
+    color: #4b5563 !important;
+    background: transparent !important;
+    border-color: transparent !important;
+    cursor: not-allowed !important;
+    text-decoration: none !important;
+    opacity: 0.35 !important;
+  }
+
+  /* Реально занятые/забронированные даты — красные с перечёркиванием */
+  .flatpickr-day.is-booked,
+  .flatpickr-day.is-booked:hover {
+    background: rgba(239, 68, 68, 0.15) !important;
     color: #ef4444 !important;
-    border: 1px solid rgba(239, 68, 68, 0.25) !important;
+    border: 1px solid rgba(239, 68, 68, 0.35) !important;
     text-decoration: line-through !important;
     cursor: not-allowed !important;
-    opacity: 0.85 !important;
+    opacity: 0.9 !important;
+    border-radius: 50% !important;
   }
 </style>
 </head>
@@ -1624,7 +1635,7 @@ footer#contacts {
       phone_display: '+372 586 7 2888',
       phone_wa: '37258672888',
       telegram_user: 'wheelspa_ee',
-      busy_dates: ['2026-10-16', '2026-10-17']
+      busy_dates: ['2026-12-24', '2026-12-25', '2026-12-26', '2026-12-31', '2027-01-01']
     };
 
     // Активное состояние приложения
@@ -1780,6 +1791,18 @@ footer#contacts {
     badge_winter: "Пар и снег зимой",
     badge_cozy: "Уютный вечер на природе",
     badge_stove: "Дровяная печь на природе",
+        calc_label_date: "Дата аренды",
+    calc_label_tariff: "Выберите пакет",
+    calc_summary_title: "ИТОГО К ОПЛАТЕ",
+    calc_sum_rent: "Стоимость аренды:",
+    calc_sum_delivery: "Доставка:",
+    calc_sum_wood: "Дрова:",
+    calc_sum_total: "Всего:",
+    calc_wood_label: "Дрова (мешок ольхи 40л)",
+    calc_submit_btn: "Отправить заявку на бронь",
+    calc_opt_weekday: "Будний день (Пн–Чт) — 90€ / 24ч",
+    calc_opt_weekend: "Выходной (Пт–Вс) — 130€ / 24ч",
+    calc_opt_full: "Полный уикенд (Пт–Вс) — 220€ (3 дня)",
       },
       et: {
         nav_features: 'Kümblustünnist',
@@ -1903,6 +1926,18 @@ footer#contacts {
     badge_winter: "Aur ja lumi talvel",
     badge_cozy: "Õdus õhtu looduses",
     badge_stove: "Puukütteahi looduses",
+        calc_label_date: "Rendikuupäev",
+    calc_label_tariff: "Vali pakett",
+    calc_summary_title: "HINNAKOKKUVÕTE",
+    calc_sum_rent: "Rendi maksumus:",
+    calc_sum_delivery: "Kohaletoomine:",
+    calc_sum_wood: "Küttepuud:",
+    calc_sum_total: "Kokku:",
+    calc_wood_label: "Küttepuud (40L kott leppa)",
+    calc_submit_btn: "Saada broneeringusoov",
+    calc_opt_weekday: "Äripäev (E–N) — 90€ / 24h",
+    calc_opt_weekend: "Nädalavahetus (R–P) — 130€ / 24h",
+    calc_opt_full: "Täispakett Nädalavahetus — 220€ (R–P)",
       },
       en: {
         nav_features: 'Features',
@@ -2027,6 +2062,18 @@ footer#contacts {
     badge_winter: "Steam & winter snow",
     badge_cozy: "Cozy retreat in nature",
     badge_stove: "Wood-fired heater outdoors",
+        calc_label_date: "Rental date",
+    calc_label_tariff: "Select package",
+    calc_summary_title: "PRICE SUMMARY",
+    calc_sum_rent: "Rental cost:",
+    calc_sum_delivery: "Delivery:",
+    calc_sum_wood: "Firewood:",
+    calc_sum_total: "Total:",
+    calc_wood_label: "Firewood (40L bag alder)",
+    calc_submit_btn: "Send booking request",
+    calc_opt_weekday: "Weekday (Mon–Thu) — 90€ / 24h",
+    calc_opt_weekend: "Weekend (Fri–Sun) — 130€ / 24h",
+    calc_opt_full: "Full Weekend (Fri–Sun) — 220€ (3 days)",
       }
     };
 
@@ -2469,7 +2516,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Список занятых дат (из конфига или статический дефицит для брони)
   const busyDates = (typeof appConfig !== 'undefined' && appConfig.busy_dates && appConfig.busy_dates.length)
     ? appConfig.busy_dates
-    : ['2026-10-30', '2026-10-31', '2026-11-01', '2026-11-06', '2026-11-07', '2026-11-08'];
+    : ['2026-12-24', '2026-12-25', '2026-12-26', '2026-12-31', '2027-01-01'];
 
   flatpickr('#calcDate', {
     locale: 'et',
