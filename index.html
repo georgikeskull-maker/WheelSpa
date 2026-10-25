@@ -969,6 +969,41 @@ footer#contacts {
 }
     
       </style>
+  <!-- Flatpickr CSS + Dark theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
+
+<!-- Flatpickr JS + Эстонская локализация -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/et.js"></script>
+
+<style>
+  /* Стилизация календаря под стиль WheelSpa */
+  .flatpickr-calendar {
+    background: #111418 !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6) !important;
+    border-radius: 12px !important;
+  }
+  .flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange {
+    background: var(--accent-amber, #f59e0b) !important;
+    border-color: var(--accent-amber, #f59e0b) !important;
+    color: #000 !important;
+    font-weight: 700 !important;
+  }
+  
+  /* Эффект занятых дат (Красные ячейки с перечеркиванием) */
+  .flatpickr-day.flatpickr-disabled,
+  .flatpickr-day.flatpickr-disabled:hover,
+  .flatpickr-day.is-booked {
+    background: rgba(239, 68, 68, 0.12) !important;
+    color: #ef4444 !important;
+    border: 1px solid rgba(239, 68, 68, 0.25) !important;
+    text-decoration: line-through !important;
+    cursor: not-allowed !important;
+    opacity: 0.85 !important;
+  }
+</style>
 </head>
 <body>
 
@@ -1321,8 +1356,7 @@ footer#contacts {
             <!-- Выбор даты -->
             <div style="margin-bottom: 20px;">
               <label style="display: block; color: #fff; font-weight: 600; margin-bottom: 8px; font-size: 0.95rem;" data-i18n="calc_label_date">Rendikuupäev</label>
-              <input type="date" id="calcDate" onchange="checkDateAvailability(); calculateTotal();" style="width: 100%; padding: 13px 16px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; color: #fff; font-size: 1rem; outline: none; box-sizing: border-box;">
-              
+              <input type="text" id="calcDate" placeholder="Vali kuupäev..." readonly style="width: 100%; padding: 13px 16px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #fff; font-size: 1rem; outline: none; box-sizing: border-box; cursor: pointer;">
               <!-- Плашка статуса доступности -->
               <div id="dateStatusBox" style="margin-top: 8px; padding: 10px 14px; border-radius: 8px; font-size: 0.88rem; font-weight: 600; display: flex; align-items: center; gap: 8px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399;" data-i18n="date_free_msg">
                 ✅ Kuupäev on vaba!
@@ -1608,15 +1642,15 @@ footer#contacts {
     const dayOfWeek = chosenDate.getDay(); // 5 = Пятница, 6 = Суббота, 0 = Воскресенье
 
     // Если выбрана пятница, суббота или воскресенье:
-    if (dayOfWeek === 5 || dayOfWeek === 6 || dayOfWeek === 0) {
-      tariffSelect.value = 'weekend_full'; // Ставим Täispakett Nädalavahetus (220€)
-    }
-
-    // Запускаем пересчет цены в калькуляторе
-    if (typeof calculateTotal === 'function') {
-      calculateTotal();
-    }
+  if (dayOfWeek === 5 || dayOfWeek === 6 || dayOfWeek === 0) {
+    tariffSelect.value = 'weekend_full'; // Ставим Täispakett Nädalavahetus (220€)
   }
+
+  // Запускаем пересчет цены в калькуляторе
+  if (typeof calculateTotal === 'function') {
+    calculateTotal();
+  }
+}
 
     /**
      * ============================================================================
@@ -2430,6 +2464,32 @@ footer#contacts {
       lb.style.display = 'flex';
     }
   }
-  </script>
+   // Инициализация визуального календаря Flatpickr с подсветкой занятых дней
+document.addEventListener('DOMContentLoaded', () => {
+  // Список занятых дат (из конфига или статический дефицит для брони)
+  const busyDates = (typeof appConfig !== 'undefined' && appConfig.busy_dates && appConfig.busy_dates.length)
+    ? appConfig.busy_dates
+    : ['2026-10-30', '2026-10-31', '2026-11-01', '2026-11-06', '2026-11-07', '2026-11-08'];
+
+  flatpickr('#calcDate', {
+    locale: 'et',
+    dateFormat: 'Y-m-d',
+    minDate: 'today',
+    disable: busyDates,
+    onDayCreate: function(dObj, dStr, fp, dayElem) {
+      const dateStr = fp.formatDate(dayElem.dateObj, 'Y-m-d');
+      if (busyDates.includes(dateStr)) {
+        dayElem.classList.add('is-booked');
+        dayElem.title = 'See kuupäev on broneeritud';
+      }
+    },
+    onChange: function(selectedDates, dateStr, instance) {
+      handleBookingDateChange();
+      if (typeof checkDateAvailability === 'function') checkDateAvailability();
+      if (typeof calculateTotal === 'function') calculateTotal();
+    }
+ });
+  });
+</script>
 </body>
 </html>
