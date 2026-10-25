@@ -825,6 +825,23 @@
   .logo-img {
     height: 48px !important;
   }
+  /* Центровка и отступы футера на смартфонах */
+    #contacts {
+      text-align: center !important;
+      padding: 36px 0 20px !important;
+    }
+    #contacts .footer-grid {
+      grid-template-columns: 1fr !important;
+      gap: 28px !important;
+    }
+    #contacts .footer-grid > div {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+    #contacts .footer-grid a {
+      justify-content: center !important;
+    }
   /* Фикс шапки и контейнера */
   .container {
     padding-left: 12px !important;
