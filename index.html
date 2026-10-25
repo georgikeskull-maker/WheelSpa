@@ -16,6 +16,27 @@
   <meta name="description" content="Аренда горячей спа-купели на прицепе с дровяной печью, подогревом аэромассажа и LED-подсветкой. Доставка по Таллинну и Харьюмаа.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='flame' x1='0%25' y1='100%25' x2='60%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23e65c00'/%3E%3Cstop offset='50%25' stop-color='%23ff9900'/%3E%3Cstop offset='100%25' stop-color='%23ffea00'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23flame)' d='M16 2C16 2 11 8.5 11 14c0 1.2.3 2.3.8 3.3C10.5 16.5 10 15 10 13c-3 3.5-4 8-1 12 2.5 3.3 6.2 5 10 5 6.6 0 12-5.4 12-12 0-7-7-12-7-12s1 3 0 5c-1-3-4-6.5-8-9z'/%3E%3C/svg%3E">
   <style>
+    /* Единые кнопки соцсетей футера */
+.footer-btn-social {
+  padding: 6px 12px !important;
+  border-radius: 8px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #e5e7eb !important;
+  font-size: 0.82rem !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: all 0.2s ease !important;
+}
+
+.footer-btn-social:hover {
+  background: rgba(245, 158, 11, 0.12) !important;
+  border-color: #f59e0b !important;
+  color: #f59e0b !important;
+}
     :root {
       --bg-main: #0f0e0c;
       --bg-card: #1a1815;
@@ -1464,25 +1485,23 @@ footer#contacts {
           </p>
         </div>
 
-        <!-- Колонка 2: Прямая связь и соцсети -->
+      <!-- Колонка 2: Прямая связь и соцсети -->
         <div>
           <h4 style="font-size: 0.95rem; font-weight: 700; color: #fff; margin: 0 0 14px 0; text-transform: uppercase; letter-spacing: 0.05em;" data-i18n="footer_contacts_title">
             Kiire ühendus
           </h4>
           <div style="display: flex; flex-direction: column; gap: 12px;">
-            <!-- Телефон -->
-            <a href="tel:+37258672888" id="footerPhoneLink" style="font-size: 1.05rem; font-weight: 700; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;">
-              <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; background: rgba(245, 158, 11, 0.12); color: #f59e0b;">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <a href="tel:+37258672888" id="footerPhoneLink" style="font-size: 1.05rem; font-weight: 700; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 8px; background: rgba(245, 158, 11, 0.12);">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                 </svg>
               </span>
               <span id="ui_phone_display">+372 586 7 2888</span>
             </a>
 
-            <!-- Кнопки мессенджеров и соцсетей в едином стиле сайта -->
-            <div style="display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; justify-content: center;">
-              <!-- WhatsApp -->
+            <!-- Кнопки мессенджеров и соцсетей -->
+            <div style="display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap;">
               <a href="https://wa.me/37258672888" id="footerWaLink" target="_blank" rel="noopener" class="footer-btn-social" aria-label="WhatsApp">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
@@ -1490,7 +1509,6 @@ footer#contacts {
                 <span>WhatsApp</span>
               </a>
 
-              <!-- Telegram -->
               <a href="https://t.me/wheelspa_ee" id="footerTgLink" target="_blank" rel="noopener" class="footer-btn-social" aria-label="Telegram">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="22" y1="2" x2="11" y2="13"/>
@@ -1499,7 +1517,6 @@ footer#contacts {
                 <span>Telegram</span>
               </a>
 
-              <!-- Instagram -->
               <a href="https://instagram.com/wheelspa_ee" id="footerInstaLink" target="_blank" rel="noopener" class="footer-btn-social" aria-label="Instagram">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
@@ -1509,49 +1526,35 @@ footer#contacts {
                 <span>Instagram</span>
               </a>
             </div>
+          </div>
         </div>
 
         <!-- Колонка 3: Локация, график и email -->
         <div>
           <h4 style="font-size: 0.95rem; font-weight: 700; color: #fff; margin: 0 0 14px 0; text-transform: uppercase; letter-spacing: 0.05em;" data-i18n="footer_loc_title">
-            Asukoht ja info
+            Asukoht ja tööaeg
           </h4>
-          <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.9rem; color: #d1d5db; line-height: 1.5;">
-            <!-- Локация -->
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <span style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 8px; background: rgba(245, 158, 11, 0.12); color: #f59e0b;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                  <circle cx="12" cy="10" r="3"/>
-                </svg>
+          <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: var(--text-muted, #9ca3af); line-height: 1.5;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 6px; background: rgba(245, 158, 11, 0.12);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               </span>
               <span>Tallinn ja Harjumaa</span>
             </div>
-
-            <!-- Время работы -->
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <span style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 8px; background: rgba(245, 158, 11, 0.12); color: #f59e0b;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
-                </svg>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 6px; background: rgba(245, 158, 11, 0.12);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               </span>
-              <span style="white-space: nowrap;" data-i18n="footer_hours">Iga päev 09:00 – 22:00</span>
+              <span>Iga päev 09:00 – 22:00</span>
             </div>
-
-            <!-- Email -->
-            <a href="mailto:info@wheelspa.ee" style="color: #d1d5db; text-decoration: none; display: flex; align-items: center; gap: 10px;">
-              <span style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 8px; background: rgba(245, 158, 11, 0.12); color: #f59e0b;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
-                </svg>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 6px; background: rgba(245, 158, 11, 0.12);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
               </span>
               <span>info@wheelspa.ee</span>
-            </a>
+            </div>
           </div>
         </div>
-
       </div>
 
       <!-- Копирайт под чертой -->
