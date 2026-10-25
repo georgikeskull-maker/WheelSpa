@@ -1807,6 +1807,10 @@ footer#contacts {
     calc_opt_weekday: "Будний день (Пн–Чт) — 90€ / 24ч",
     calc_opt_weekend: "Выходной (Пт–Вс) — 130€ / 24ч",
     calc_opt_full: "Полный уикенд (Пт–Вс) — 220€ (3 дня)",
+        calc_label_loc: "Местоположение / Доставка",
+    calc_opt_tallinn: "Таллинн (Бесплатная доставка)",
+    calc_opt_harju: "Харьюмаа (за пределами Таллинна)",
+    calc_label_wood: "Дрова (мешок ольхи 40 л)",
       },
       et: {
         nav_features: 'Kümblustünnist',
@@ -1942,6 +1946,10 @@ footer#contacts {
     calc_opt_weekday: "Äripäev (E–N) — 90€ / 24h",
     calc_opt_weekend: "Nädalavahetus (R–P) — 130€ / 24h",
     calc_opt_full: "Täispakett Nädalavahetus — 220€ (R–P)",
+        calc_label_loc: "Asukoht / Tarne",
+    calc_opt_tallinn: "Tallinn (Tasuta kohaletoomine)",
+    calc_opt_harju: "Harjumaa (väljaspool Tallinnat)",
+    calc_label_wood: "Küttepuud (40L kott leppa)",
       },
       en: {
         nav_features: 'Features',
@@ -2077,7 +2085,10 @@ footer#contacts {
     calc_submit_btn: "Send booking request",
     calc_opt_weekday: "Weekday (Mon–Thu) — 90€ / 24h",
     calc_opt_weekend: "Weekend (Fri–Sun) — 130€ / 24h",
-    calc_opt_full: "Full Weekend (Fri–Sun) — 220€ (3 days)",
+    calc_opt_full: "Full Weekend (Fri–Sun) — 220€ (3 days)",calc_label_loc: "Location / Delivery",
+    calc_opt_tallinn: "Tallinn (Free delivery)",
+    calc_opt_harju: "Harjumaa (outside Tallinn)",
+    calc_label_wood: "Firewood (40L bag of alder)",
       }
     };
 
@@ -2137,6 +2148,11 @@ footer#contacts {
 
         // Перерисовываем UI с новыми данными
         renderConfigToUI();
+        // Обновляем календарь Flatpickr полученными из таблицы занятыми датами
+    if (typeof bookingPicker !== 'undefined' && bookingPicker && appConfig && Array.isArray(appConfig.busy_dates)) {
+      bookingPicker.set('disable', appConfig.busy_dates);
+      bookingPicker.redraw();
+    }
         checkDateAvailability();
         calculateTotal();
 
@@ -2501,11 +2517,11 @@ footer#contacts {
   // Принудительно переключаем весь текст страницы на эстонский
   setLanguage('et');
 
-  renderConfigToUI();
-  calculateTotal();
-  loadDataFromGoogleSheets();
-     checkDateAvailability();
-});
+    renderConfigToUI();
+    calculateTotal();
+    loadDataFromGoogleSheets();
+    checkDateAvailability();
+  });
     function openLightbox(el) {
     const img = el.querySelector('img');
     const lb = document.getElementById('galleryLightbox');
@@ -2515,32 +2531,34 @@ footer#contacts {
       lb.style.display = 'flex';
     }
   }
-   // Инициализация визуального календаря Flatpickr с подсветкой занятых дней
+  // Инициализация визуального календаря Flatpickr с подсветкой занятых дней
+let bookingPicker = null;
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Список занятых дат (из конфига или статический дефицит для брони)
   const busyDates = (typeof appConfig !== 'undefined' && appConfig.busy_dates && appConfig.busy_dates.length)
     ? appConfig.busy_dates
-    : ['2026-12-24', '2026-12-25', '2026-12-26', '2026-12-31', '2027-01-01'];
+    : ['2026-10-26', '2026-10-27', '2026-12-24', '2026-12-25', '2026-12-31', '2027-01-01'];
 
-  flatpickr('#calcDate', {
+  bookingPicker = flatpickr('#calcDate', {
     locale: 'et',
     dateFormat: 'Y-m-d',
     minDate: 'today',
     disable: busyDates,
     onDayCreate: function(dObj, dStr, fp, dayElem) {
       const dateStr = fp.formatDate(dayElem.dateObj, 'Y-m-d');
-      if (busyDates.includes(dateStr)) {
+      const activeBusy = (typeof appConfig !== 'undefined' && appConfig.busy_dates) || busyDates;
+      if (activeBusy.includes(dateStr)) {
         dayElem.classList.add('is-booked');
         dayElem.title = 'See kuupäev on broneeritud';
       }
     },
     onChange: function(selectedDates, dateStr, instance) {
-      handleBookingDateChange();
+      if (typeof handleBookingDateChange === 'function') handleBookingDateChange();
       if (typeof checkDateAvailability === 'function') checkDateAvailability();
       if (typeof calculateTotal === 'function') calculateTotal();
     }
- });
   });
+});
 </script>
 </body>
 </html>
