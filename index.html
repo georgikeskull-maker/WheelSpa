@@ -1411,49 +1411,53 @@ footer#contacts {
           <!-- Правая колонка: чек и телефон -->
           <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; padding-top: 28px; box-sizing: border-box;">
             
-            <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 22px 24px; margin-bottom: 20px;">
-              <div style="font-size: 0.85rem; font-weight: 700; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px;" data-i18n="calc_summary_title">
-                Hinnakokkuvõte
-              </div>
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 0.95rem; color: #d1d5db;">
-                <span data-i18n="calc_sum_rent">Rendi maksumus:</span>
-                <span><strong id="sumRent" style="color: #fff; font-size: 1.1rem;">90</strong> €</span>
-              </div>
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 0.95rem; color: #d1d5db;">
-                <span data-i18n="calc_sum_delivery">Kohaletoomine:</span>
-                <span><strong id="sumDelivery" style="color: #fff; font-size: 1.1rem;">0</strong> €</span>
-              </div>
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; font-size: 0.95rem; color: #d1d5db;">
-                <span data-i18n="calc_sum_wood">Küttepuud:</span>
-                <span><strong id="sumWood" style="color: #fff; font-size: 1.1rem;">0</strong> €</span>
-              </div>
-              <div style="display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 16px;">
-                <span style="font-size: 1.15rem; font-weight: 700; color: #fff;" data-i18n="calc_sum_total">Kokku:</span>
-                <span><strong id="sumTotal" style="color: #f59e0b; font-size: 1.6rem; font-weight: 800;">90</strong> <span style="color: #f59e0b; font-size: 1.2rem; font-weight: 700;">€</span></span>
-              </div>
+         <!-- Чек с ценами -->
+          <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 20px;">
+            <div data-i18n="calc_summary_title" style="font-size: 0.85rem; font-weight: 700; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 14px;">
+              Hinnakokkuvõte
             </div>
-
-            <!-- Ввод телефона и кнопка -->
-            <div style="display: flex; flex-direction: column; gap: 12px;">
-              <input 
-                type="tel" 
-                id="clientPhone" 
-                placeholder="+372 5X XX XX XX" 
-                required 
-                style="width: 100%; padding: 14px 16px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; color: #fff; font-size: 1rem; outline: none; box-sizing: border-box;"
-              />
-              <button 
-                type="button" 
-                id="submitBookingBtn" 
-                onclick="sendBookingOrder()" 
-                style="width: 100%; padding: 15px; background: #f59e0b; color: #000; font-weight: 700; font-size: 1.05rem; border: none; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s ease; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.25);"
-                data-i18n="calc_submit_btn"
-              >
-                Saada broneeringusoov
-              </button>
-              <div id="bookingStatusMsg" style="display: none; font-size: 0.88rem; text-align: center; margin-top: 4px;"></div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 0.95rem;">
+              <span data-i18n="calc_sum_rent">Rendi maksumus:</span>
+              <span><strong id="sumRent" style="color: #fff; font-size: 1.1rem;">90€</strong></span>
             </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 0.95rem;">
+              <span data-i18n="calc_sum_delivery">Kohaletoomine:</span>
+              <span><strong id="sumDelivery" style="color: #fff; font-size: 1.1rem;">0€</strong></span>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; font-size: 0.95rem;">
+              <span data-i18n="calc_sum_wood">Küttepuud:</span>
+              <span><strong id="sumWood" style="color: #fff; font-size: 1.1rem;">0€</strong></span>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 14px;">
+              <span data-i18n="calc_sum_total" style="font-size: 1.15rem; font-weight: 700; color: #fff;">Kokku:</span>
+              <span><strong id="sumTotal" style="color: #f59e0b; font-size: 1.6rem; font-weight: 800;">90€</strong></span>
+            </div>
+          </div>
 
+          <!-- Ввод телефона и кнопка брони -->
+          <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
+            <input 
+              type="tel" 
+              id="clientPhone" 
+              placeholder="+372 5X XX XX XX" 
+              required 
+              style="width: 100%; padding: 14px 16px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #fff; font-size: 1rem; outline: none; box-sizing: border-box;"
+            />
+            <button 
+              type="button" 
+              id="submitBookingBtn" 
+              onclick="sendBookingOrder()" 
+              data-i18n="calc_submit_btn"
+              style="width: 100%; padding: 15px; background: #f59e0b; color: #000; font-weight: 700; font-size: 1.05rem; border: none; border-radius: 8px; cursor: pointer; transition: all 0.2s ease;"
+            >
+              Saada broneeringusoov
+            </button>
+            <div id="bookingStatusMsg" style="display: none; font-size: 0.88rem; text-align: center; margin-top: 6px;"></div>
+          </div>
           </div>
 
         </div>
