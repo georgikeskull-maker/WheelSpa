@@ -970,14 +970,16 @@ footer#contacts {
     
       </style>
   <!-- Flatpickr CSS + Dark theme -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css" integrity="sha384-RkASv+6KfBMW9eknReJIJ6b3UnjKOKC5bOUaNgIY778NFbQ8MtWq9Lr/khUgqtTt" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/themes/dark.css" integrity="sha384-heUUtXw0Djj2DElfLOVPlASSWFKNL3JDY6s3FEqQD03GYyWOeophY5DsfEG40sYX" crossorigin="anonymous">
 
 <!-- Flatpickr JS + Эстонская локализация -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/et.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js" integrity="sha384-5JqMv4L/Xa0hfvtF06qboNdhvuYXUku9ZrhZh3bSk8VXF0A/RuSLHpLsSV9Zqhl6" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/et.js" integrity="sha384-l6j92/VW3BnFh50jJuAGzpMquD+egVg3Dczvaiox1FrPcYnmqfVCmqOKKzC2KFZt" crossorigin="anonymous"></script>
 
 <style>
+  /* honeypot: поле-ловушка для спам-ботов — человек его не видит и не заполняет */
+  .hp-field { position: absolute !important; left: -9999px !important; top: auto !important; width: 1px; height: 1px; overflow: hidden; }
   /* Стилизация календаря под стиль WheelSpa */
   .flatpickr-calendar {
     background: #111418 !important;
@@ -1440,13 +1442,31 @@ footer#contacts {
 
           <!-- Ввод телефона и кнопка брони -->
           <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
-            <input 
-              type="tel" 
-              id="clientPhone" 
-              placeholder="+372 5X XX XX XX" 
-              required 
+            <input
+              type="text"
+              id="clientName"
+              maxlength="60"
+              autocomplete="name"
+              placeholder="Teie nimi (soovi korral)"
+              data-i18n-ph="calc_name_ph"
               style="width: 100%; padding: 14px 16px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #fff; font-size: 1rem; outline: none; box-sizing: border-box;"
             />
+            <input
+              type="tel"
+              id="clientPhone"
+              inputmode="tel"
+              autocomplete="tel"
+              maxlength="20"
+              pattern="[+0-9 ()\-]{6,20}"
+              placeholder="+372 5X XX XX XX"
+              required
+              style="width: 100%; padding: 14px 16px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #fff; font-size: 1rem; outline: none; box-sizing: border-box;"
+            />
+            <!-- honeypot: скрыто через CSS, для людей недоступно; боты заполняют и отсекаются сервером -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="websiteField">Website</label>
+              <input type="text" id="websiteField" name="website" tabindex="-1" autocomplete="off" value="">
+            </div>
             <button 
               type="button" 
               id="submitBookingBtn" 
@@ -1804,6 +1824,12 @@ footer#contacts {
     calc_sum_total: "Всего:",
     calc_wood_label: "Дрова (мешок ольхи 40л)",
     calc_submit_btn: "Отправить заявку на бронь",
+    calc_name_ph: 'Ваше имя (по желанию)',
+    calc_phone_err: 'Укажите корректный номер телефона!',
+    calc_sending: 'Отправляю...',
+    calc_sent_ok: 'Спасибо! Ваша заявка отправлена. Мы скоро свяжемся с вами!',
+    calc_sent_btn: 'Отправлено ✓',
+    calc_send_fail: 'Ошибка отправки. Пожалуйста, позвоните нам!',
     calc_opt_weekday: "Будний день (Пн–Чт) — 90€ / 24ч",
     calc_opt_weekend: "Выходной (Пт–Вс) — 130€ / 24ч",
     calc_opt_full: "Полный уикенд (Пт–Вс) — 220€ (3 дня)",
@@ -1943,6 +1969,12 @@ footer#contacts {
     calc_sum_total: "Kokku:",
     calc_wood_label: "Küttepuud (40L kott leppa)",
     calc_submit_btn: "Saada broneeringusoov",
+    calc_name_ph: 'Teie nimi (soovi korral)',
+    calc_phone_err: 'Palun sisestage korrektne telefoninumber!',
+    calc_sending: 'Saadan...',
+    calc_sent_ok: 'Aitäh! Teie soov on saadetud. Võtame peagi ühendust!',
+    calc_sent_btn: 'Saadetud ✓',
+    calc_send_fail: 'Viga saatmisel. Palun helistage meile!',
     calc_opt_weekday: "Äripäev (E–N) — 90€ / 24h",
     calc_opt_weekend: "Nädalavahetus (R–P) — 130€ / 24h",
     calc_opt_full: "Täispakett Nädalavahetus — 220€ (R–P)",
@@ -2083,6 +2115,12 @@ footer#contacts {
     calc_sum_total: "Total:",
     calc_wood_label: "Firewood (40L bag alder)",
     calc_submit_btn: "Send booking request",
+    calc_name_ph: 'Your name (optional)',
+    calc_phone_err: 'Please enter a valid phone number!',
+    calc_sending: 'Sending...',
+    calc_sent_ok: 'Thank you! Your request has been sent. We will contact you shortly!',
+    calc_sent_btn: 'Sent ✓',
+    calc_send_fail: 'Sending failed. Please call us!',
     calc_opt_weekday: "Weekday (Mon–Thu) — 90€ / 24h",
     calc_opt_weekend: "Weekend (Fri–Sun) — 130€ / 24h",
     calc_opt_full: "Full Weekend (Fri–Sun) — 220€ (3 days)",
@@ -2356,156 +2394,96 @@ footer#contacts {
           el.innerHTML = i18n[lang][key];
         }
       });
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const v = i18n[lang][el.getAttribute('data-i18n-ph')];
+        if (v) el.placeholder = v;
+      });
 
       checkDateAvailability();
       calculateTotal();
     }
   async function sendBookingOrder() {
-  const phoneInput = document.getElementById("clientPhone");
-  const phone = phoneInput ? phoneInput.value.trim() : "";
-  const statusMsg = document.getElementById("bookingStatusMsg");
-  const btn = document.getElementById("submitBookingBtn");
+    const tr = (key, fallback) => (i18n[currentLang] && i18n[currentLang][key]) || fallback;
+    const phoneInput = document.getElementById("clientPhone");
+    const nameInput = document.getElementById("clientName");
+    const trap = document.getElementById("websiteField");   // honeypot
+    const statusMsg = document.getElementById("bookingStatusMsg");
+    const btn = document.getElementById("submitBookingBtn");
 
-  if (!phone || phone.length < 6) {
-    if (statusMsg) {
+    const showStatus = (text, ok) => {
+      if (!statusMsg) return;
       statusMsg.style.display = "block";
-      statusMsg.style.color = "#ef4444";
-      statusMsg.textContent = "Palun sisestage korrektne telefoninumber!";
+      statusMsg.style.color = ok ? "#10b981" : "#ef4444";
+      statusMsg.textContent = text;
+    };
+
+    if (btn && btn.disabled) return;   // защита от двойной отправки
+
+    // Базовая валидация: телефон — только цифры и + ( ) - пробел, 7–15 цифр; имя — до 60 символов без < >
+    const phone = (phoneInput ? phoneInput.value : "").trim().replace(/\s+/g, " ");
+    const digits = phone.replace(/\D/g, "");
+    if (!/^[+0-9 ()\-]{6,20}$/.test(phone) || digits.length < 7 || digits.length > 15) {
+      showStatus(tr("calc_phone_err", "Palun sisestage korrektne telefoninumber!"), false);
+      if (phoneInput) phoneInput.focus();
+      return;
     }
-    return;
-  }
+    const name = (nameInput ? nameInput.value : "").replace(/[<>]/g, "").trim().replace(/\s+/g, " ").slice(0, 60);
 
-  const dateEl = document.getElementById("calcDate");
-  const dateVal = dateEl ? dateEl.value : "";
-  const pkgEl = document.getElementById("calcTariff") || document.getElementById("calcPackage");
-  const pkgVal = pkgEl && pkgEl.selectedOptions && pkgEl.selectedOptions.length ? pkgEl.selectedOptions[0].text : "Pakett";
-  const locEl = document.getElementById("calcLocation");
-  const locVal = locEl && locEl.selectedOptions && locEl.selectedOptions.length ? locEl.selectedOptions[0].text : "";
-  const woodEl = document.getElementById("woodRange") || document.getElementById("calcWood");
-  const woodVal = woodEl ? woodEl.value : "0";
-  const totalEl = document.getElementById("sumTotal");
-  const totalVal = totalEl ? totalEl.textContent : "0";
+    // Считываем значения из калькулятора
+    const dateEl = document.getElementById("calcDate");
+    const dateVal = dateEl ? dateEl.value : "";
 
-  if (btn) {
-    btn.disabled = true;
-    btn.style.opacity = "0.7";
-    btn.textContent = "Saadan...";
-  }
+    const tariffEl = document.getElementById("calcTariff") || document.getElementById("calcPackage");
+    const packageVal = tariffEl && tariffEl.selectedOptions.length ? tariffEl.selectedOptions[0].text : "Rent";
 
-  try {
-    await fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({
-        phone: phone,
-        date: dateVal,
-        package: pkgVal,
-        location: locVal,
-        wood: woodVal + " tk",
-        total: totalVal
-      })
-    });
+    const locEl = document.getElementById("calcLocation");
+    const locVal = locEl && locEl.selectedOptions.length ? locEl.selectedOptions[0].text : "Tallinn";
 
-    if (statusMsg) {
-      statusMsg.style.display = "block";
-      statusMsg.style.color = "#10b981";
-      statusMsg.textContent = "Aitäh! Teie soov on saadetud. Võtame peagi ühendust!";
-    }
-    if (phoneInput) phoneInput.value = "";
-    if (btn) btn.textContent = "Saadetud ✓";
-  } catch (e) {
-    console.error("Booking error:", e);
-    if (statusMsg) {
-      statusMsg.style.display = "block";
-      statusMsg.style.color = "#ef4444";
-      statusMsg.textContent = "Viga saatmisel. Palun helistage meile!";
-    }
+    const woodEl = document.getElementById("calcWood") || document.getElementById("woodRange");
+    const woodVal = woodEl ? (woodEl.value + " tk") : "0 tk";
+
+    const totalEl = document.getElementById("sumTotal");
+    const totalVal = totalEl ? totalEl.textContent : "0";
+
     if (btn) {
-      btn.disabled = false;
-      btn.style.opacity = "1";
-      btn.textContent = "Saada broneeringusoov";
+      btn.disabled = true;
+      btn.style.opacity = "0.7";
+      btn.textContent = tr("calc_sending", "Saadan...");
+    }
+
+    const payload = {
+      name: name || "Klient (koduleht)",
+      phone: phone,
+      date: dateVal,
+      package: packageVal,
+      location: locVal,
+      wood: woodVal,
+      total: totalVal,
+      website: trap ? trap.value : ""   // honeypot: у людей пусто, сервер молча отбрасывает заполненные
+    };
+
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      });
+
+      showStatus(tr("calc_sent_ok", "Aitäh! Teie soov on saadetud. Võtame peagi ühendust!"), true);
+      if (phoneInput) phoneInput.value = "";
+      if (nameInput) nameInput.value = "";
+      if (btn) btn.textContent = tr("calc_sent_btn", "Saadetud ✓");
+    } catch (err) {
+      console.error("Booking error:", err);
+      showStatus(tr("calc_send_fail", "Viga saatmisel. Palun helistage meile!"), false);
+      if (btn) {
+        btn.disabled = false;
+        btn.style.opacity = "1";
+        btn.textContent = tr("calc_submit_btn", "Saada broneeringusoov");
+      }
     }
   }
-}
-
-    // Инициализация при старте
-    async function sendBookingOrder() {
-  const phoneInput = document.getElementById("clientPhone");
-  const phone = phoneInput ? phoneInput.value.trim() : "";
-  const statusMsg = document.getElementById("bookingStatusMsg");
-  const btn = document.getElementById("submitBookingBtn");
-
-  if (!phone || phone.length < 6) {
-    if (statusMsg) {
-      statusMsg.style.display = "block";
-      statusMsg.style.color = "#ef4444";
-      statusMsg.textContent = "Palun sisestage korrektne telefoninumber!";
-    }
-    return;
-  }
-
-  // Считываем значения из калькулятора
-  const dateEl = document.getElementById("calcDate");
-  const dateVal = dateEl ? dateEl.value : "";
-
-  const tariffEl = document.getElementById("calcTariff") || document.getElementById("calcPackage");
-  const packageVal = tariffEl && tariffEl.selectedOptions.length ? tariffEl.selectedOptions[0].text : "Rent";
-
-  const locEl = document.getElementById("calcLocation");
-  const locVal = locEl && locEl.selectedOptions.length ? locEl.selectedOptions[0].text : "Tallinn";
-
-  const woodEl = document.getElementById("calcWood") || document.getElementById("woodRange");
-  const woodVal = woodEl ? (woodEl.value + " tk") : "0 tk";
-
-  const totalEl = document.getElementById("sumTotal");
-  const totalVal = totalEl ? totalEl.textContent : "0";
-
-  if (btn) {
-    btn.disabled = true;
-    btn.style.opacity = "0.7";
-    btn.textContent = "Saadan...";
-  }
-
-  const payload = {
-    name: "Klient (koduleht)",
-    phone: phone,
-    date: dateVal,
-    package: packageVal,
-    location: locVal,
-    wood: woodVal,
-    total: totalVal
-  };
-
-  try {
-   await fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(payload)
-    });
-
-    if (statusMsg) {
-      statusMsg.style.display = "block";
-      statusMsg.style.color = "#10b981";
-      statusMsg.textContent = "Aitäh! Teie soov on saadetud. Võtame peagi ühendust!";
-    }
-    if (phoneInput) phoneInput.value = "";
-    if (btn) btn.textContent = "Saadetud ✓";
-  } catch (err) {
-    console.error("Booking error:", err);
-    if (statusMsg) {
-      statusMsg.style.display = "block";
-      statusMsg.style.color = "#ef4444";
-      statusMsg.textContent = "Viga saatmisel. Palun helistage meile!";
-    }
-    if (btn) {
-      btn.disabled = false;
-      btn.style.opacity = "1";
-      btn.textContent = "Saada broneeringusoov";
-    }
-  }
-}
    document.addEventListener('DOMContentLoaded', () => {
   // Ставим сегодняшнюю дату как минимальную в календаре
   const today = new Date().toISOString().split('T')[0];
